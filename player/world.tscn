@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://enemies/shroomguy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://verlet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://dungen/Dungen.tscn" type="PackedScene" id=5]
 
@@ -17,6 +18,9 @@ smoothing_enabled = true
 smoothing_speed = 7.0
 script = ExtResource( 4 )
 
-[node name="Control" parent="Camera2D" instance=ExtResource( 3 )]
-
 [node name="Dungen" parent="." instance=ExtResource( 5 )]
+
+[node name="shroomguy" parent="." instance=ExtResource( 1 )]
+position = Vector2( -224, -112 )
+
+[node name="String" parent="." instance=ExtResource( 3 )]
