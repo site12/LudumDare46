@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 33.5768 )
 
-[node name="extratile" type="Area2D"]
+[node name="extratile" type="StaticBody2D"]
 scale = Vector2( 0.5, 0.5 )
 z_index = 2
 script = ExtResource( 2 )
@@ -21,6 +21,3 @@ texture = ExtResource( 1 )
 position = Vector2( 0, 14.6544 )
 scale = Vector2( 1.15, 0.5 )
 shape = SubResource( 1 )
-
-[node name="Timer" type="Timer" parent="."]
-[connection signal="body_entered" from="." to="." method="_on_extratile_body_entered"]

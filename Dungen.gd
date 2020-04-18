@@ -71,7 +71,8 @@ func make_rooms():
 						print('I cant believe youve done this')
 	var the_start = start_end(room_array)
 	Level.room_array = room_array
-	
+	for room in room_array:
+		room.create()
 	start_game(the_start)
 		
 	#print(room_array)
@@ -87,17 +88,17 @@ func connect_room(room, room_to, direction):
 			connect_room(room, room_to, directions[directions.find(direction)+1])
 		
 func start_game(start):
-	var root = get_tree().get_root()
+	var root = get_tree().get_root().get_node('world')
 	var level = root.get_node('Dungen')
 	root.remove_child(level)
 	level.call_deferred("free")
-	var player = load('res://player/player.tscn')
-	player = player.instance()
-	start.add_child(player)
-	player.position = Vector2(200,200)
-	player.z_index = 10
+	#var player = load('res://player/player.tscn')
+	#player = player.instance()
+	#start.add_child(player)
+	#player.position = Vector2(200,200)
+	#player.z_index = 10
 	start.current_room = true
-	start.create()
+	#start.create()
 	root.add_child(start)
 
 func start_end(room_array):

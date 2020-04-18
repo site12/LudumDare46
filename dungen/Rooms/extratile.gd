@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 
 var tiles = [load("res://tiles/shitstump.png")]
@@ -13,7 +13,7 @@ func _ready():
 	num = int(rand_range(0,10))
 	
 	var t = int(rand_range(0,25))
-	print(t)
+	#print(t)
 	if(t==0):
 		$Sprite.texture = tiles[t]
 	else: 
