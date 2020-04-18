@@ -18,7 +18,8 @@ func _ready():
 		$Sprite.texture = tiles[t]
 	else: 
 		$Sprite.texture = null
-		queue_free()
+		$CollisionShape2D.queue_free()
+	z_index = int(position.y)
 		
 
 func _on_extratile_body_entered(body):

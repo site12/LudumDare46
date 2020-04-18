@@ -6,7 +6,9 @@ class_name room
 const DOOR = preload('res://dungen/Rooms/doortile.tscn')
 const TILE = preload("res://dungen/Rooms/floortile.tscn")
 const EXTRA = preload('res://dungen/Rooms/extratile.tscn')
-export var size = Vector2(13,10)
+const PLAYER = preload('res://player/player.tscn')
+export var size = Vector2(10,10)
+var current_room = false
 var ground = []
 var extras = []
 var connected_rooms = {}
@@ -27,12 +29,21 @@ func create():
 	generate_doors()
 	
 func thru_door(side):
-	var root = get_tree().get_root()
-	var level = root.get_node('ROOM')
-	root.remove_child(level)
-	level.call_deferred("free")
-	connected_rooms[side].create()
-	root.add_child(connected_rooms[side])
+	if current_room:
+		current_room = false
+		var root = get_tree().get_root()
+		var level = root.get_node('ROOM')
+		root.remove_child(level)
+		#level.call_deferred("free")
+		var new_room = connected_rooms[side]
+		new_room.create()
+		root.add_child(new_room)
+		var player = PLAYER.instance()
+		player.position = Vector2(200,200)
+		root.get_node('ROOM').add_child(player)
+		new_room.current_room = true
+
+
 
 	
 func generate_doors():
@@ -41,13 +52,16 @@ func generate_doors():
 		new_door.door_side = door
 		match door:
 			'left':
-				new_door.position = Vector2(rand_range(0, size.x), 0)
+				new_door.position = Vector2(0, rand_range(0, size.y))
+				new_door.rotation_degrees = 90
 			'right':
-				new_door.position = Vector2(rand_range(0, size.x), size.y)
+				new_door.position = Vector2(size.x, rand_range(0, size.y))
+				new_door.rotation_degrees = 90
 			'up':
-				new_door.position = Vector2(rand_range(0, size.y), 0)
+				new_door.position = Vector2(rand_range(0, size.x), 0)
 			'down':
-				new_door.position = Vector2(rand_range(0, size.y), size.x)
+				new_door.position = Vector2(rand_range(0, size.x), size.x)
+		new_door.position*= tilesize
 		add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
 
@@ -56,13 +70,13 @@ func generate_extras(size):
 		extras.append([])
 		for ypos in size.y:
 			var t = EXTRA.instance()
+			t.z_index = -1000
 			t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
 			extras[xpos].append(t)
 			add_child(t)
 
 func generate_floor(size):
 	for xpos in size.x:
-		print(xpos)
 		ground.append([])
 		for ypos in size.y:
 			var t = TILE.instance()
