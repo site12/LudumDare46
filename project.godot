@@ -30,10 +30,10 @@ Level="*res://dungen/Level.gd"
 
 [display]
 
-window/size/width=800
+window/size/width=1920
+window/size/height=1080
 window/ios/hide_home_indicator=false
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
 
 [input]
 
@@ -64,6 +64,5 @@ down={
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
-quality/filters/anisotropic_filter_level=16
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"
