@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
-
+const ARROW = preload('res://player/arrow.tscn')
 var velocity = Vector2()
 onready var sprites = $spritehelper/sprites
 
