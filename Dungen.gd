@@ -48,17 +48,6 @@ func make_rooms():
 		new_room.pos = room.position
 		new_room.astar_index = path.get_closest_point(Vector3(new_room.pos.x, new_room.pos.y, 0))
 		room_array.append(new_room)
-		
-	# for room in room_array:
-	# 	room.astar_index = path.get_closest_point(room.pos)
-	# 	for linked_room in path.get_point_connections(room.astar_index):
-
-
-	# for room_id in path.get_points():
-	# 	var room_pos = path.get_point_position(room_id)
-	# 	for linked_room in path.get_point_connections(room_id):
-	# 		var linked_pos = path.get_point_position(linked_room)
-	# 		var pos_dif = room_pos - linked_pos
 
 
 	for room in room_array:
@@ -71,25 +60,13 @@ func make_rooms():
 					if abs(pos_dif.x) > abs(pos_dif.y):
 						if found_room.pos.x < room.pos.x:
 							connect_room(room, found_room, 'left')
-							# room.connected_rooms['left'] = found_room
-							# print(str(room)+' Connected left  to '+str(found_room))
-							# print(str(room.pos)+'\n' + str(found_room.pos)+'\n'+str(pos_dif))
 						else:
 							connect_room(room, found_room, 'right')
-							# room.connected_rooms['right'] = found_room
-							# print(str(room)+' Connected right to '+str(found_room))
-							# print(str(room.pos)+'\n' + str(found_room.pos)+'\n'+str(pos_dif))
 					elif abs(pos_dif.x) < abs(pos_dif.y):
 						if found_room.pos.y < room.pos.y:
 							connect_room(room, found_room, 'down')
-							# room.connected_rooms['down'] = found_room
-							# print(str(room)+' Connected down  to '+str(found_room))
-							# print(str(room.pos)+'\n' + str(found_room.pos)+'\n'+str(pos_dif))
 						else:
 							connect_room(room, found_room, 'up')
-							# room.connected_rooms['up'] = found_room
-							# print(str(room)+' Connected up    to '+str(found_room))
-							# print(str(room.pos)+'\n' + str(found_room.pos)+'\n'+str(pos_dif))
 					else:
 						print('I cant believe youve done this')
 	var the_start = start_end(room_array)
