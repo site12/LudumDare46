@@ -32,3 +32,6 @@ func get_input():
 func _physics_process(_delta):
 	get_input()
 	velocity = move_and_slide(velocity)
+	z_index = int(position.y)
+
+

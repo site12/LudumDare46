@@ -70,6 +70,7 @@ func generate_extras(size):
 		extras.append([])
 		for ypos in size.y:
 			var t = EXTRA.instance()
+			t.z_index = -1000
 			t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
 			extras[xpos].append(t)
 			add_child(t)

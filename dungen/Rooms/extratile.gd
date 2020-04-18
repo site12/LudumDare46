@@ -13,5 +13,6 @@ func _ready():
 	else: 
 		$Sprite.texture = null
 		$CollisionShape2D.queue_free()
+	z_index = int(position.y)
 		
 
