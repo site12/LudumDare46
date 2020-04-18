@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var tiles = [load("res://tiles/Tilesheet1/ground_33.png"),load("res://tiles/Tilesheet1/ground_41.png")]
+var tiles = [load("res://tiles/Tilesheet1/ground_45.png"),load("res://tiles/Tilesheet1/ground_36.png")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
