@@ -38,7 +38,7 @@ func thru_door(side):
 		var new_room = connected_rooms[side]
 		#new_room.create()
 		root.call_deferred('add_child',new_room)
-		root.get_node('player').position = Vector2(500,500)
+		#root.get_node('player').position = Vector2(500,500)
 		#var player = PLAYER.instance()
 		#player.position = Vector2(200,200)
 		#root.get_node('ROOM').add_child(player)
@@ -53,15 +53,15 @@ func generate_doors():
 		new_door.door_side = door
 		match door:
 			'left':
-				new_door.position = Vector2(0, rand_range(0, size.y))
+				new_door.position = Vector2(-1, rand_range(0, size.y))
 				new_door.rotation_degrees = 90
 			'right':
-				new_door.position = Vector2(size.x, rand_range(0, size.y))
+				new_door.position = Vector2(size.x, rand_range(0, size.y+1))
 				new_door.rotation_degrees = 90
 			'up':
-				new_door.position = Vector2(rand_range(0, size.x), 0)
+				new_door.position = Vector2(rand_range(0, size.x), -1)
 			'down':
-				new_door.position = Vector2(rand_range(0, size.x), size.x)
+				new_door.position = Vector2(rand_range(0, size.x), size.y)
 		new_door.position*= tilesize
 		add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
