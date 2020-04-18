@@ -26,6 +26,7 @@ func get_input():
 	elif velocity == Vector2.ZERO:
 		sprites.playing = false
 		sprites.frame = 0
+		$AnimationPlayer.play("front")
 		$AnimationPlayer.stop()
 		
 
