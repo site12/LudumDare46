@@ -91,7 +91,7 @@ func start_game(start):
 	var root = get_tree().get_root().get_node('world')
 	var level = root.get_node('Dungen')
 	root.remove_child(level)
-	level.call_deferred("free")
+	#level.call_deferred("free")
 	#var player = load('res://player/player.tscn')
 	#player = player.instance()
 	#start.add_child(player)
