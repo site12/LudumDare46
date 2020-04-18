@@ -1,10 +1,10 @@
 extends Node2D
 
 
-const LOOP = preload('res://Loop.tscn')
-const LINK = preload('res://Link.tscn')
+const LOOP = preload('res://Chains/Loop.tscn')
+const LINK = preload('res://Chains/Link.tscn')
 
-export (int) var loops = 1
+export (int) var loops = 10
 
 func _ready():
 	var parent = $Anchor
