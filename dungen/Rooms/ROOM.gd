@@ -6,6 +6,8 @@ export var size = Vector2(13,10)
 var ground = []
 var connected_rooms = {}
 var room_type = ''
+var pos
+var astar_index
 
 var tilesize = 128/2
 var roompos = global_position
