@@ -2,20 +2,15 @@ extends Node2D
 
 class_name room
 
-export var sizex = 0
-export var sizey = 0
-export var sizemin = 8
-export var sizemax = 16
+export var sizex = 5
+export var sizey = 5
+var connected_rooms = []
 
 var tilesize = 128/2
 var roompos = global_position
 onready var tile = $tile
 
 func _init():
-	randomize()
-	sizex = rand_range(sizemin,sizemax)
-	randomize()
-	sizey = rand_range(sizemin,sizemax)
 	generate_floor(sizex,sizey)
 	
 
