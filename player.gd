@@ -3,6 +3,7 @@ extends KinematicBody2D
 export (int) var speed = 200
 
 var velocity = Vector2()
+onready var sprites = $sprites
 
 func get_input():
 	velocity = Vector2()
@@ -15,6 +16,18 @@ func get_input():
 	if Input.is_action_pressed('up'):
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
+	
+	if velocity.x > 0:
+		sprites.flip_h = true
+		$AnimationPlayer.play("front")
+	elif velocity.x < 0:
+		sprites.flip_h = false
+		$AnimationPlayer.play("front")
+	elif velocity == Vector2.ZERO:
+		sprites.playing = false
+		sprites.frame = 0
+		$AnimationPlayer.stop()
+		
 
 func _physics_process(_delta):
 	get_input()
