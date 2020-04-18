@@ -1,9 +1,11 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
-
+const ARROW = preload('res://player/arrow.tscn')
 var velocity = Vector2()
+var has_arrow = true
 onready var sprites = $spritehelper/sprites
+
 
 func get_input():
 	velocity = Vector2()
@@ -29,6 +31,19 @@ func get_input():
 		$AnimationPlayer.play("front")
 		$AnimationPlayer.stop()
 		
+func _process(delta):
+	if Input.is_action_pressed("click"):
+		if has_arrow:
+			var arrow = ARROW.instance()
+			var mouse_pos = get_global_mouse_position()
+			var my_pos = position
+			print(str(mouse_pos)+'    '+str(my_pos))
+			arrow.position = position
+			arrow.linear_velocity = Vector2(mouse_pos - my_pos).normalized() * 1000
+			arrow.get_node('Sprite').rotation = arrow.linear_velocity.angle()
+			#arrow.add_(mouse_pos - my_pos)
+			get_parent().add_child(arrow)
+			has_arrow = false
 
 func _physics_process(_delta):
 	get_input()
