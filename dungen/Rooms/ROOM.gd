@@ -12,6 +12,7 @@ var current_room = false
 var ground = []
 var extras = []
 var connected_rooms = {}
+var doors = {}
 var room_type = ''
 var pos
 var astar_index
@@ -33,6 +34,7 @@ func thru_door(side):
 		current_room = false
 		var root = get_tree().get_root().get_node('world')
 		var level = root.get_node('ROOM')
+		var player = root.get_node('player')
 		root.call_deferred('remove_child', level)
 		#level.call_deferred("free")
 		var new_room = connected_rooms[side]
@@ -42,6 +44,17 @@ func thru_door(side):
 		#var player = PLAYER.instance()
 		#player.position = Vector2(200,200)
 		#root.get_node('ROOM').add_child(player)
+		match side:
+			'left':
+				player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+			'right':
+				player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+			'up':
+				player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+			'down':
+				player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
+
+
 		new_room.current_room = true
 
 
@@ -53,16 +66,17 @@ func generate_doors():
 		new_door.door_side = door
 		match door:
 			'left':
-				new_door.position = Vector2(-1, rand_range(0, size.y))
+				new_door.position = Vector2(-1, rand_range(1, size.y-1))
 				new_door.rotation_degrees = 90
 			'right':
-				new_door.position = Vector2(size.x, rand_range(0, size.y+1))
+				new_door.position = Vector2(size.x, rand_range(1, size.y-1))
 				new_door.rotation_degrees = 90
 			'up':
-				new_door.position = Vector2(rand_range(0, size.x), -1)
+				new_door.position = Vector2(rand_range(1, size.x-1), -1)
 			'down':
-				new_door.position = Vector2(rand_range(0, size.x), size.y)
+				new_door.position = Vector2(rand_range(1, size.x-1), size.y)
 		new_door.position*= tilesize
+		doors[door] = new_door
 		add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
 
