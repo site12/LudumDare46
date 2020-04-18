@@ -1,6 +1,7 @@
 extends Node2D
 
 var Room = preload('res://dungen/Room.tscn')
+var Generated_Room = preload('res://dungen/Rooms/ROOM.tscn')
 
 var tile_size = 32  # size of a tile in the TileMap
 var num_rooms = 50  # number of rooms to generate
@@ -38,6 +39,14 @@ func make_rooms():
 	yield(get_tree(), 'idle_frame')
 	# generate a minimum spanning tree connecting the rooms
 	path = find_mst(room_positions)
+	Level.a_star = path
+
+	var room_array = []
+	for room in $Rooms.get_children():
+		room_array.append(Generated_Room.instance())
+	
+	print(room_array)
+
 		
 func _draw():
 	for room in $Rooms.get_children():
@@ -93,6 +102,6 @@ func find_mst(nodes):
 		path.connect_points(path.get_closest_point(p), n)
 		# Remove the node from the array so it isn't visited again
 		nodes.erase(min_p)
-	print(path.get_points())
+	print(path.get_point_connections(1))
 	return path
 		

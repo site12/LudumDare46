@@ -24,6 +24,10 @@ config/name="LudumDare"
 run/main_scene="res://player/world.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Level="*res://dungen/Level.gd"
+
 [display]
 
 window/size/width=800
