@@ -36,3 +36,9 @@ func _physics_process(_delta):
 	z_index = int(position.y)
 
 
+
+
+func _on_hitbox_body_entered(body):
+	if body.get_class() == 'enemy':
+		#uhhhh get knocked back and apply modulate and apply damage
+		pass

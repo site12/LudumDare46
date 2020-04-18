@@ -7,10 +7,12 @@ const DOOR = preload('res://dungen/Rooms/doortile.tscn')
 const TILE = preload("res://dungen/Rooms/floortile.tscn")
 const EXTRA = preload('res://dungen/Rooms/extratile.tscn')
 const PLAYER = preload('res://player/player.tscn')
+const ENEMY = [preload('res://enemies/shroomguy.tscn')]
 export var size = Vector2(10,10)
 var current_room = false
 var ground = []
 var extras = []
+var enemies = []
 var connected_rooms = {}
 var doors = {}
 var room_type = ''
@@ -80,15 +82,33 @@ func generate_doors():
 		add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
 
+func generate_enemies(size):
+	
+	for xpos in size.x:
+		enemies.append([])
+		for ypos in size.y:
+			randomize()
+			var enemi = ENEMY[int(rand_range(0,ENEMY.size()))]
+			randomize()
+			if(int(rand_range(0,50)) == 1):
+				var e = enemi.instance()
+				e.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
+				enemies[xpos].append(e)
+				add_child(e)
+			else:
+				enemies[xpos].append(null)
+
 func generate_extras(size):
 	for xpos in size.x:
 		extras.append([])
 		for ypos in size.y:
-			var t = EXTRA.instance()
-			
-			t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
-			extras[xpos].append(t)
-			add_child(t)
+			if(enemies[xpos][ypos]==null):
+				var t = EXTRA.instance()
+				t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
+				extras[xpos].append(t)
+				add_child(t)
+			else:
+				extras[xpos].append(null)
 
 func generate_floor(size):
 	for xpos in size.x:
@@ -99,6 +119,7 @@ func generate_floor(size):
 			t.position = roompos + Vector2(tilesize*xpos,tilesize*ypos)
 			ground[xpos].append(t)
 			add_child(t)
+	generate_enemies(size)
 	generate_extras(size)
 			
 	
