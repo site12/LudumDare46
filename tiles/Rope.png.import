@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shitstump.png-62be1164fe0e2e8dd951f03e73d744cc.stex"
+path="res://.import/Rope.png-ded39cbc3e4d573974fe2ab46e903da1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/shitstump.png"
-dest_files=[ "res://.import/shitstump.png-62be1164fe0e2e8dd951f03e73d744cc.stex" ]
+source_file="res://tiles/Rope.png"
+dest_files=[ "res://.import/Rope.png-ded39cbc3e4d573974fe2ab46e903da1.stex" ]
 
 [params]
 

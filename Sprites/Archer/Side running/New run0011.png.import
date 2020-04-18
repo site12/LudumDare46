@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shitstump.png-62be1164fe0e2e8dd951f03e73d744cc.stex"
+path="res://.import/New run0011.png-8aba17a473f84fa845867815284a7f75.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/shitstump.png"
-dest_files=[ "res://.import/shitstump.png-62be1164fe0e2e8dd951f03e73d744cc.stex" ]
+source_file="res://Sprites/Archer/Side running/New run0011.png"
+dest_files=[ "res://.import/New run0011.png-8aba17a473f84fa845867815284a7f75.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
