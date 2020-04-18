@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (int) var speed = 200
 
 var velocity = Vector2()
-onready var sprites = $sprites
+onready var sprites = $spritehelper/sprites
 
 func get_input():
 	velocity = Vector2()
