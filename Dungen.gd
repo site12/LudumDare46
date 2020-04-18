@@ -3,12 +3,12 @@ extends Node2D
 var Room = preload('res://dungen/Room.tscn')
 var Generated_Room = preload('res://dungen/Rooms/ROOM.tscn')
 
-var tile_size = 128  # size of a tile in the TileMap
+var tile_size = 1 	  # size of a tile in the TileMap
 var num_rooms = 50  # number of rooms to generate
 var min_size = 4  # minimum room size (in tiles)
 var max_size = 10  # maximum room size (in tiles)
-var hspread = 400  # horizontal spread (in pixels)
-var vspread = 400 
+var hspread = 0  # horizontal spread (in pixels)
+var vspread = 0
 var cull = 0.5  # chance to cull room
 
 var path  # AStar pathfinding object
@@ -92,8 +92,10 @@ func make_rooms():
 							# print(str(room.pos)+'\n' + str(found_room.pos)+'\n'+str(pos_dif))
 					else:
 						print('I cant believe youve done this')
-			
+	var the_start = start_end(room_array)
 	Level.room_array = room_array
+	
+	start_game(the_start)
 		
 	#print(room_array)
 func connect_room(room, room_to, direction):
@@ -107,7 +109,30 @@ func connect_room(room, room_to, direction):
 		else:
 			connect_room(room, room_to, directions[directions.find(direction)+1])
 		
-			
+func start_game(start):
+	var root = get_tree().get_root()
+	var level = root.get_node('Dungen')
+	root.remove_child(level)
+	level.call_deferred("free")
+	var player = load('res://player/player.tscn')
+	player = player.instance()
+	start.add_child(player)
+	player.position = Vector2(200,200)
+	player.z_index = 10
+	root.add_child(start)
+
+func start_end(room_array):
+	var dead_ends = []
+	for room in room_array:
+		if room.connected_rooms.keys().size() == 1:
+			dead_ends.append(room)
+	
+	var start = dead_ends[randi() % dead_ends.size()]
+	start.room_type = 'start'
+	dead_ends[randi() % dead_ends.size()].room_type = 'end'
+	return start
+	
+
 func _draw():
 	for room in $Rooms.get_children():
 		draw_rect(Rect2(room.position - room.size, room.size * 2),
