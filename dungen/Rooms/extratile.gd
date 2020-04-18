@@ -18,7 +18,7 @@ func _ready():
 		$Sprite.texture = tiles[t]
 	else: 
 		$Sprite.texture = null
-		$CollisionShape2D.queue_free()
+		queue_free()
 	z_index = int(position.y)
 		
 
