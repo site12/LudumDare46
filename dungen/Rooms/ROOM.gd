@@ -4,7 +4,7 @@ class_name room
 
 export var size = Vector2(13,10)
 var ground = []
-var connected_rooms = []
+var connected_rooms = {}
 var room_type = ''
 
 var tilesize = 128/2
