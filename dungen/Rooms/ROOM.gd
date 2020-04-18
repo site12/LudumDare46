@@ -38,7 +38,7 @@ func thru_door(side):
 		var new_room = connected_rooms[side]
 		#new_room.create()
 		root.call_deferred('add_child',new_room)
-		root.get_node('player').position = Vector2(500,500)
+		#root.get_node('player').position = Vector2(500,500)
 		#var player = PLAYER.instance()
 		#player.position = Vector2(200,200)
 		#root.get_node('ROOM').add_child(player)
