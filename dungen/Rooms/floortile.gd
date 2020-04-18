@@ -7,7 +7,7 @@ var tiles = [load("res://tiles/Tilesheet1/ground_33.png"),load("res://tiles/Tile
 func _ready():
 	randomize()
 	var t = int(rand_range(0,2))
-	print(t)
+	#print(t)
 	if(t==0):
 		$Sprite.texture = tiles[t]
 	elif(t==1):

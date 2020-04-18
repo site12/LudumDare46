@@ -19,10 +19,10 @@ var astar_index
 var tilesize = 64/2
 var roompos = global_position
 
-func _ready():
-	Engine.set_target_fps(Engine.get_iterations_per_second())
-	generate_floor(size)
-	generate_doors()
+# func _ready():
+# 	Engine.set_target_fps(Engine.get_iterations_per_second())
+# 	generate_floor(size)
+# 	generate_doors()
 
 func create():
 	generate_floor(size)
@@ -31,16 +31,17 @@ func create():
 func thru_door(side):
 	if current_room:
 		current_room = false
-		var root = get_tree().get_root()
+		var root = get_tree().get_root().get_node('world')
 		var level = root.get_node('ROOM')
 		root.remove_child(level)
 		#level.call_deferred("free")
 		var new_room = connected_rooms[side]
-		new_room.create()
+		#new_room.create()
 		root.add_child(new_room)
-		var player = PLAYER.instance()
-		player.position = Vector2(200,200)
-		root.get_node('ROOM').add_child(player)
+		root.get_node('player').position = Vector2(500,500)
+		#var player = PLAYER.instance()
+		#player.position = Vector2(200,200)
+		#root.get_node('ROOM').add_child(player)
 		new_room.current_room = true
 
 
@@ -70,7 +71,7 @@ func generate_extras(size):
 		extras.append([])
 		for ypos in size.y:
 			var t = EXTRA.instance()
-			t.z_index = -1000
+			
 			t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
 			extras[xpos].append(t)
 			add_child(t)
@@ -80,6 +81,7 @@ func generate_floor(size):
 		ground.append([])
 		for ypos in size.y:
 			var t = TILE.instance()
+			t.z_index = -1000
 			t.position = roompos + Vector2(tilesize*xpos,tilesize*ypos)
 			ground[xpos].append(t)
 			add_child(t)
