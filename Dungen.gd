@@ -3,7 +3,7 @@ extends Node2D
 var Room = preload('res://dungen/Room.tscn')
 var Generated_Room = preload('res://dungen/Rooms/ROOM.tscn')
 
-var tile_size = 32  # size of a tile in the TileMap
+var tile_size = 128  # size of a tile in the TileMap
 var num_rooms = 50  # number of rooms to generate
 var min_size = 4  # minimum room size (in tiles)
 var max_size = 10  # maximum room size (in tiles)
@@ -43,8 +43,17 @@ func make_rooms():
 
 	var room_array = []
 	for room in $Rooms.get_children():
-		room_array.append(Generated_Room.instance())
-	
+		var new_room = Generated_Room.instance()
+		new_room.size = room.size
+		room_array.append(new_room)
+	for room_id in path.get_points():
+		for linked_room in path.get_point_connections(room_id):
+			room_array[room_id].connected_rooms.append(room_array[linked_room])
+	Level.room_array = room_array
+	for room in path.get_points():
+		add_child(room_array[room])
+		room_array[room].position = path.get_point_position(room)
+		
 	print(room_array)
 
 		
@@ -102,6 +111,6 @@ func find_mst(nodes):
 		path.connect_points(path.get_closest_point(p), n)
 		# Remove the node from the array so it isn't visited again
 		nodes.erase(min_p)
-	print(path.get_point_connections(1))
+	#print(path.get_point_connections(0))
 	return path
 		
