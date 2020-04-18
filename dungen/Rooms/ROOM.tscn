@@ -1,11 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://tiles/shitsquare.png" type="Texture" id=1]
 [ext_resource path="res://dungen/Rooms/ROOM.gd" type="Script" id=2]
 
 [node name="ROOM" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="tile" type="Sprite" parent="."]
-position = Vector2( 64, 64 )
-texture = ExtResource( 1 )
