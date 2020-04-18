@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/anchor.png-01ee7210248ecba43682165d7acc1b70.stex"
+path="res://.import/anchor.png-8f193c0b1ac0d1b778ef3d2efc258b62.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://anchor.png"
-dest_files=[ "res://.import/anchor.png-01ee7210248ecba43682165d7acc1b70.stex" ]
+source_file="res://Chains/anchor.png"
+dest_files=[ "res://.import/anchor.png-8f193c0b1ac0d1b778ef3d2efc258b62.stex" ]
 
 [params]
 
