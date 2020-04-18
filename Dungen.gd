@@ -3,7 +3,7 @@ extends Node2D
 var Room = preload('res://dungen/Room.tscn')
 var Generated_Room = preload('res://dungen/Rooms/ROOM.tscn')
 
-var tile_size = 1 	  # size of a tile in the TileMap
+var tile_size = 2 	  # size of a tile in the TileMap
 var num_rooms = 50  # number of rooms to generate
 var min_size = 4  # minimum room size (in tiles)
 var max_size = 10  # maximum room size (in tiles)
@@ -51,7 +51,7 @@ func make_rooms():
 
 
 	for room in room_array:
-		yield(get_tree().create_timer(0.1), 'timeout')
+		#yield(get_tree().create_timer(0.1), 'timeout')
 		for linked_room in path.get_point_connections(room.astar_index):
 			for searched_room in room_array:
 				if searched_room.astar_index == linked_room:
@@ -79,7 +79,7 @@ func connect_room(room, room_to, direction):
 	var directions = ['right', 'up', 'left', 'down']
 	if not room.connected_rooms.has(direction):
 		room.connected_rooms[direction] = room_to
-		print(str(room)+' Connected ' + direction + ' to '+str(room_to))
+		#print(str(room)+' Connected ' + direction + ' to '+str(room_to))
 	else:
 		if direction == 'down':
 			connect_room(room, room_to, 'right')
@@ -96,6 +96,8 @@ func start_game(start):
 	start.add_child(player)
 	player.position = Vector2(200,200)
 	player.z_index = 10
+	start.current_room = true
+	start.create()
 	root.add_child(start)
 
 func start_end(room_array):
