@@ -50,9 +50,6 @@ func make_rooms():
 		for linked_room in path.get_point_connections(room_id):
 			room_array[room_id].connected_rooms.append(room_array[linked_room])
 	Level.room_array = room_array
-	for room in path.get_points():
-		add_child(room_array[room])
-		room_array[room].position = path.get_point_position(room)
 		
 	print(room_array)
 
