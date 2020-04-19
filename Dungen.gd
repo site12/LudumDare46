@@ -110,7 +110,10 @@ func start_end(room_array):
 	
 	var start = dead_ends[randi() % dead_ends.size()]
 	start.room_type = 'start'
-	dead_ends[randi() % dead_ends.size()].room_type = 'end'
+	var end = dead_ends[randi() % dead_ends.size()]
+	while end.room_type:
+		end = dead_ends[randi() % dead_ends.size()]
+	end.room_type = 'end'
 	return start
 	
 

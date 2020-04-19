@@ -46,9 +46,10 @@ func thru_door(side):
 		var root = get_tree().get_root().get_node('world')
 		var level = root.get_node('ROOM')
 		var player = root.get_node('player')
+		var new_room = connected_rooms[side]
 		root.call_deferred('remove_child', level)
 		#level.call_deferred("free")
-		var new_room = connected_rooms[side]
+		
 		#new_room.create()
 		root.call_deferred('add_child',new_room)
 		#root.get_node('player').position = Vector2(500,500)
