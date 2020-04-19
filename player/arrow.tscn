@@ -3,33 +3,34 @@
 [ext_resource path="res://Sprites/Archer/arrow_i_stole.png" type="Texture" id=1]
 [ext_resource path="res://player/arrow.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.0217, 4.16348 )
 
-[sub_resource type="Gradient" id=22]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0.960784, 0.521569, 0.192157, 0.772549, 0.372549, 0.192157, 0.054902, 1 )
 
-[sub_resource type="GradientTexture" id=23]
-gradient = SubResource( 22 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=18]
+[sub_resource type="Curve" id=4]
 max_value = 3.0
-_data = [ Vector2( 0.00421687, 0.0065273 ), 0.0, 0.0, 0, 0, Vector2( 1, 2.96475 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.00180723, 1.49804 ), 0.0, 0.0, 0, 0, Vector2( 1, 2.96475 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=19]
-curve = SubResource( 18 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=20]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
+spread = 24.37
 gravity = Vector3( 0, 140, 0 )
 initial_velocity = 150.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale_curve = SubResource( 19 )
-color_ramp = SubResource( 23 )
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
 [node name="Arrow" type="RigidBody2D" groups=[
 "arrow",
@@ -42,7 +43,7 @@ contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 21 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
 scale = Vector2( 0.05, 0.05 )
@@ -52,8 +53,9 @@ texture = ExtResource( 1 )
 position = Vector2( 22, 0 )
 z_index = -9
 emitting = false
+amount = 16
 lifetime = 0.4
 one_shot = true
 explosiveness = 0.8
-process_material = SubResource( 20 )
+process_material = SubResource( 6 )
 [connection signal="body_entered" from="." to="." method="_on_Arrow_body_entered"]
