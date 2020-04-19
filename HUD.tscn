@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fipps-Regular.otf" type="DynamicFontData" id=1]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.333333, 0.25098, 0.631373, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -31,7 +31,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/MarginContainer"]
 margin_right = 1920.0
 margin_bottom = 1080.0
-color = Color( 1, 1, 1, 0.0784314 )
+color = Color( 1, 1, 1, 0 )
 
 [node name="healthbar" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -52,7 +52,7 @@ margin_left = 8.0
 margin_top = 16.0
 margin_right = -72.0
 margin_bottom = -16.0
-custom_styles/fg = SubResource( 4 )
+custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 75.0
 percent_visible = false

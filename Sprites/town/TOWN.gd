@@ -1,6 +1,7 @@
+tool
+
 extends Node2D
 
-class_name room
 
 
 const DOOR = preload('res://dungen/Rooms/doortile.tscn')
@@ -35,7 +36,7 @@ var roompos = global_position
 # 	generate_floor(size)
 # 	generate_doors()
 
-func create():
+func _ready():
 	generate_floor(size)
 	generate_doors()
 	
@@ -90,33 +91,15 @@ func generate_doors():
 		add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
 
-func generate_enemies(size):
-	if(room_type != "start" || room_type != "end"):
-		for xpos in size.x:
-			enemies.append([])
-			for ypos in size.y:
-				randomize()
-				var enemi = ENEMY[int(rand_range(0,ENEMY.size()))]
-				randomize()
-				if(int(rand_range(0,50)) == 1):
-					var e = enemi.instance()
-					e.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
-					enemies[xpos].append(e)
-					add_child(e)
-				else:
-					enemies[xpos].append(null)
 
 func generate_extras(size):
 	for xpos in size.x:
 		extras.append([])
 		for ypos in size.y:
-			if(enemies[xpos][ypos]==null):
-				var t = EXTRA.instance()
-				t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
-				extras[xpos].append(t)
-				add_child(t)
-			else:
-				extras[xpos].append(null)
+			var t = EXTRA.instance()
+			t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
+			extras[xpos].append(t)
+			add_child(t)
 
 func generate_walls(size):
 	var r = WALLS.instance()
@@ -217,7 +200,6 @@ func generate_floor(size):
 			t.position = roompos + Vector2(tilesize*xpos,tilesize*ypos)
 			ground[xpos].append(t)
 			add_child(t)
-	generate_enemies(size)
 	generate_extras(size)
 	generate_walls(size)
 	generate_gaps(size)

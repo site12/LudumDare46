@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/town/TOWN.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=3]
+
+[node name="Town" type="Node2D"]
+
+[node name="Camera2D" parent="." instance=ExtResource( 3 )]
+
+[node name="TOWN" parent="." instance=ExtResource( 1 )]
+size = Vector2( 32, 15 )
+
+[node name="player" parent="." instance=ExtResource( 2 )]

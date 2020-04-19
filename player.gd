@@ -20,8 +20,6 @@ func get_input():
 		velocity.y += 1
 	if Input.is_action_pressed('up'):
 		velocity.y -= 1
-	if Input.is_action_pressed('click'):
-		get_parent().get_node("Camera2D").shake(0.2,15,8)
 	velocity = velocity.normalized() * speed
 	
 	if velocity.x > 0:
@@ -37,9 +35,9 @@ func get_input():
 		$AnimationPlayer.stop()
 		
 func _process(delta):
-	if Input.is_action_pressed("click"):
+	if Input.is_action_just_pressed("click"):
 		if has_arrow:
-			
+			get_parent().get_node("Camera2D").isArrow = true
 			var mouse_pos = get_global_mouse_position()
 			var my_pos = position
 			#print(str(mouse_pos)+'    '+str(my_pos))
@@ -74,6 +72,7 @@ func _on_Collection_body_entered(body):
 	print('arrow!')
 	if body.is_in_group('arrow'):
 		if body.linear_velocity.length() < 500:
+			get_parent().get_node("Camera2D").isArrow = false
 			print('got arrow')
 			has_arrow = true
 			# get_parent().call_deferred('remove_child','arrow')

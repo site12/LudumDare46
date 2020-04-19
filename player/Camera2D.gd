@@ -9,10 +9,22 @@ var _previous_x = 0.0
 var _previous_y = 0.0
 var _last_offset = Vector2(0, 0)
 
+var isArrow = false
+var arrow
+var l = 200.1
+
 onready var target = get_parent().get_node("player")
 
 func _physics_process(_delta):
 	position = target.position
+	if isArrow:
+		arrow = get_parent().get_node("Arrow")
+		var length = (arrow.global_position - target.global_position).length()
+		if length > 200:
+			l = length
+			print(l)
+	zoom = Vector2(l/300,l/300)
+
 
 func _ready():
 	set_process(true)
