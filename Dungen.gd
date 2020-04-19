@@ -63,7 +63,7 @@ func make_rooms():
 						else:
 							connect_room(room, found_room, 'right')
 					elif abs(pos_dif.x) < abs(pos_dif.y):
-						if found_room.pos.y < room.pos.y:
+						if found_room.pos.y > room.pos.y:
 							connect_room(room, found_room, 'down')
 						else:
 							connect_room(room, found_room, 'up')
@@ -98,6 +98,7 @@ func start_game(start):
 	#player.position = Vector2(200,200)
 	#player.z_index = 10
 	start.current_room = true
+	start.discovered = true
 	#start.create()
 	root.add_child(start)
 
