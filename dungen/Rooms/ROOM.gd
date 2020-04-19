@@ -8,6 +8,7 @@ const TILE = preload("res://dungen/Rooms/floortile.tscn")
 const EXTRA = preload('res://dungen/Rooms/extratile.tscn')
 const PLAYER = preload('res://player/player.tscn')
 const ENEMY = [preload('res://enemies/shroomguy.tscn')]
+const WALLS = preload('res://dungen/Rooms/walls/wall.tscn')
 export var size = Vector2(10,10)
 var current_room = false
 var ground = []
@@ -110,6 +111,37 @@ func generate_extras(size):
 			else:
 				extras[xpos].append(null)
 
+func generate_walls(size):
+	
+	#backwall
+	for xpos in size.x:
+		var t = WALLS.instance()
+		t.tile = t.tiles[0]
+		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+12)
+		add_child(t)
+	
+	#rightwall
+	for ypos in size.y:
+		var t = WALLS.instance()
+		t.tile = t.tiles[1]
+		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
+		add_child(t)
+		
+	#leftwall
+	for ypos in size.y:
+		var t = WALLS.instance()
+		t.tile = t.tiles[2]
+		t.position = roompos + Vector2(tilesize*-2,tilesize*ypos)
+		add_child(t)
+	
+	#frontwall
+	for xpos in size.x:
+		var t = WALLS.instance()
+		t.tile = t.tiles[3]
+		t.position = roompos + Vector2(tilesize*xpos,tilesize*-3)
+		t.z_index = 999
+		add_child(t)
+
 func generate_floor(size):
 	for xpos in size.x:
 		ground.append([])
@@ -121,5 +153,6 @@ func generate_floor(size):
 			add_child(t)
 	generate_enemies(size)
 	generate_extras(size)
+	generate_walls(size)
 			
 	
