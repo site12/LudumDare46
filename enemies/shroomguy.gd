@@ -1,6 +1,7 @@
 extends enemy
 
 onready var anims = $player
+var awaydist = 250
 
 func _ready():
 	speed = 0
@@ -17,3 +18,15 @@ func _ready():
 func hurt(damage, arrow):
 	.hurt(damage,arrow)
 	anims.play("hurt")
+	
+func _physics_process(delta):
+	if dead:
+		die()
+	var dir = (obj.global_position - global_position).normalized()
+	if dir.x<0:
+		sprites.flip_h = false
+	if dir.x>0:
+		sprites.flip_h = true
+		
+	move_and_collide(dir * speed * delta)
+	z_index = int(position.y)
