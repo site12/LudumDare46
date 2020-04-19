@@ -6,7 +6,7 @@ var num
 
 class_name extra
 
-func get_class(): return "extra"
+func get_cass(): return "extra"
 
 func _ready():
 	randomize()

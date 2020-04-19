@@ -5,7 +5,7 @@ class_name enemy
 var speed = 100
 var health = 15
 onready var sprites = $spritehelper/sprites
-onready var obj = get_parent().get_parent().get_node("player")
+onready var obj = get_parent().get_parent().get_parent().get_node("player")
 #onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
 
 func hurt(damage, arrow):

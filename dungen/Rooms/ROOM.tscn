@@ -4,3 +4,15 @@
 
 [node name="ROOM" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="floor" type="Node2D" parent="."]
+
+[node name="extras" type="Node2D" parent="."]
+
+[node name="doors" type="Node2D" parent="."]
+
+[node name="walls" type="Node2D" parent="."]
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="wallcollision" type="Node2D" parent="."]
