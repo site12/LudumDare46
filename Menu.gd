@@ -17,5 +17,4 @@ func _ready():
 
 func _on_play_pressed():
 	anims.play("load")
-	yield(get_tree().create_timer(1.1), 'timeout')
-	get_tree().change_scene("res://player/world.tscn")
+	

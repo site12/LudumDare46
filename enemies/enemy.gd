@@ -27,17 +27,5 @@ func die():
 	get_parent().call_deferred('remove_child', 'self')
 	call_deferred('queue_free')
 
-func _physics_process(delta):
-	if dead:
-		die()
-	var dir = (obj.global_position - global_position).normalized()
-	if dir.x<0:
-		sprites.flip_h = false
-	if dir.x>0:
-		sprites.flip_h = true
-		
-	move_and_collide(dir * speed * delta)
-	z_index = int(position.y)
-
 
 func get_class(): return "enemy"
