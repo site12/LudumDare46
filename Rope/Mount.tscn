@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Mount" type="RigidBody2D"]
+
+[node name="Joint" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+bias = 0.9
+softness = 0.1
