@@ -46,13 +46,13 @@ func _process(delta):
 			arrow.get_node('CollisionShape2D').rotation = arrow.linear_velocity.angle()
 			#arrow.add_(mouse_pos - my_pos)
 			#var rope = get_parent().find_node('String')
-			
+			get_parent().add_child(arrow)
 			if rope:
 				rope.player = self
 				rope.arrow = arrow
-				rope.visible = true
+				rope.visible = false
 				get_parent().add_child(rope)
-			get_parent().add_child(arrow)
+			
 			has_arrow = false
 
 func _physics_process(_delta):

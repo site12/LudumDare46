@@ -41,11 +41,17 @@ func init_position():
 
 func init_at_player():
 	for i in range(count):
-		pos[i] = player.position + Vector2(constrain*i, 0)
-		pos_ex[i] = player.position + Vector2(constrain *i, 0)
+		pos[i] = player.position + arrow.linear_velocity.normalized()*constrain*i
+		pos_ex[i] = player.position + arrow.linear_velocity.normalized()*constrain*i
+		# pos[i] = player.position + Vector2(constrain*i, 0)
+		# pos_ex[i] = player.position + Vector2(constrain *i, 0)
+	position = Vector2.ZERO
+	$Line2D.points = pos
+	visible = true
 	
 
 func _process(delta):
+	arrow.second_last_point = pos[count-2]
 	# if Input.is_action_pressed("click"):	#Move start point
 	# 	pos[0] = get_global_mouse_position()
 	# 	pos_ex[0] = get_global_mouse_position()
