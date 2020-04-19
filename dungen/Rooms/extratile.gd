@@ -12,7 +12,7 @@ func _ready():
 	randomize()
 	num = int(rand_range(0,10))
 	
-	var t = int(rand_range(0,25))
+	var t = int(rand_range(0,50))
 	#print(t)
 	if(t==0):
 		$Sprite.texture = tiles[t]

@@ -10,6 +10,7 @@ extents = Vector2( 48, 33.5768 )
 [node name="extratile" type="StaticBody2D"]
 scale = Vector2( 0.5, 0.5 )
 z_index = 2
+collision_layer = 33
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

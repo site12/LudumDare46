@@ -1,17 +1,22 @@
 extends Node2D
 
 
-var tiles = [load("res://tiles/Tilesheet1/ground_33.png"),load("res://tiles/Tilesheet1/ground_41.png")]
-
+var tiles = [load("res://tiles/Tilesheet1/ground_45.png"),load("res://tiles/Tilesheet1/ground_36.png")]
+var tree = load("res://tiles/leaves_new/sprite_80.png")
+var tile
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func pick():
 	randomize()
 	var t = int(rand_range(0,2))
 	#print(t)
 	if(t==0):
-		$Sprite.texture = tiles[t]
+		tile = tiles[t]
 	elif(t==1):
-		$Sprite.texture = tiles[t]
+		tile = tiles[t]
+	$Sprite.texture = tile
+
+func tree():
+	$Sprite.texture = tree
 
 
 
