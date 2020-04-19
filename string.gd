@@ -70,9 +70,11 @@ func _process(delta):
 
 
 func retract_rope(delta):
+	if length > 3:
+		length -= 1
 	count = get_count(length)
 	resize_arrays()
-	length -= 1
+	
 
 	# constrain = abs(constrain - 0.1) 
 	# for i in range(count):
