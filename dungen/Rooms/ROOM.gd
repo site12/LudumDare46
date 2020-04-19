@@ -27,6 +27,7 @@ var room_type = ''
 var pos
 var astar_index
 var discovered
+var force_stay = false
 
 var tilesize = 64/2
 var roompos = global_position
@@ -41,17 +42,19 @@ func create():
 	generate_doors()
 	
 func thru_door(side):
+	
 	if current_room:
+		print('thru '+side+' door from ' + str(self.get_instance_id()))
 		current_room = false
 		var root = get_tree().get_root().get_node('world')
 		var level = root.get_node('ROOM')
 		var player = root.get_node('player')
 		var new_room = connected_rooms[side]
-		root.call_deferred('remove_child', level)
+		root.call_deferred('remove_child', self)
 		#level.call_deferred("free")
 		
 		#new_room.create()
-		root.call_deferred('add_child',new_room)
+		
 		#root.get_node('player').position = Vector2(500,500)
 		#var player = PLAYER.instance()
 		#player.position = Vector2(200,200)
@@ -82,9 +85,9 @@ func thru_door(side):
 		# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
 		# 	'down':
 		# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
-
-
-		new_room.current_room = true
+		root.call_deferred('add_child',new_room)
+		if not force_stay:
+			new_room.current_room = true
 		new_room.discovered = true
 
 
@@ -111,20 +114,24 @@ func generate_doors():
 		#new_door.position = randi() % (max_size - min_size)
 
 func generate_enemies(size):
-	if(room_type != "start" || room_type != "end"):
-		for xpos in size.x:
-			enemies.append([])
-			for ypos in size.y:
-				randomize()
-				var enemi = ENEMY[int(rand_range(0,ENEMY.size()))]
-				randomize()
+
+	for xpos in size.x:
+		enemies.append([])
+		for ypos in size.y:
+			randomize()
+			var enemi = ENEMY[int(rand_range(0,ENEMY.size()))]
+			randomize()
+			if(room_type != "start" and room_type != "end"):
 				if(int(rand_range(0,50)) == 1):
+					
 					var e = enemi.instance()
 					e.position = roompos + Vector2(tilesize*xpos+2,tilesize*ypos+2)
 					enemies[xpos].append(e)
 					$enemies.add_child(e)
 				else:
 					enemies[xpos].append(null)
+			else:
+				enemies[xpos].append(null)
 
 func generate_extras(size):
 	for xpos in size.x:

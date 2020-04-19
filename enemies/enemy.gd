@@ -4,6 +4,7 @@ class_name enemy
 
 var speed = 100
 var health = 15
+var dead = false
 onready var sprites = $spritehelper/sprites
 onready var obj = get_parent().get_parent().get_parent().get_node("player")
 #onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
@@ -25,6 +26,8 @@ func die():
 	call_deferred('queue_free')
 
 func _physics_process(delta):
+	if dead:
+		die()
 	var dir = (obj.global_position - global_position).normalized()
 	if dir.x<0:
 		sprites.flip_h = false
