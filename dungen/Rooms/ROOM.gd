@@ -55,15 +55,32 @@ func thru_door(side):
 		#var player = PLAYER.instance()
 		#player.position = Vector2(200,200)
 		#root.get_node('ROOM').add_child(player)
-		match side:
-			'left':
-				player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+		var which_door
+		for key in new_room.connected_rooms:
+			printt(new_room.connected_rooms[key].get_instance_id(), self.get_instance_id())
+			if int(new_room.connected_rooms[key].get_instance_id()) == int(self.get_instance_id()):
+				which_door = key
+		print(which_door)
+		match which_door:
 			'right':
+				player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+			'left':
 				player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
-			'up':
-				player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
 			'down':
+				player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+			'up':
 				player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
+
+
+		# match side:
+		# 	'left':
+		# 		player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+		# 	'right':
+		# 		player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+		# 	'up':
+		# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+		# 	'down':
+		# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
 
 
 		new_room.current_room = true
