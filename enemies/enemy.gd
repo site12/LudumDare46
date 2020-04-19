@@ -3,24 +3,20 @@ extends KinematicBody2D
 class_name enemy
 
 var speed = 100
-var health = 100
+var health = 15
 onready var sprites = $spritehelper/sprites
-onready var anims = $AnimationPlayer
 onready var obj = get_parent().get_parent().get_node("player")
-onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
-
-func _ready():
-	anims.play("run")
+#onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
 
 func hurt(damage, arrow):
 	move_and_collide(position - arrow.position)
-	
+	$hurt.emitting = true
+	yield(get_tree().create_timer(0.1), 'timeout')
+	$hurt.emitting = false
 	health -= damage
 	if health < 0:
 		health == 0
 		die()
-	else:
-		healthbar.value	= health
 
 func die():
 	get_parent().call_deferred('remove_child', 'self')

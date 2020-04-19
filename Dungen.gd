@@ -51,7 +51,7 @@ func make_rooms():
 
 
 	for room in room_array:
-		#yield(get_tree().create_timer(0.1), 'timeout')
+		#
 		for linked_room in path.get_point_connections(room.astar_index):
 			for searched_room in room_array:
 				if searched_room.astar_index == linked_room:
