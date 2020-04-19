@@ -69,7 +69,7 @@ func _on_hitbox_body_entered(body):
 		pass
 
 func _on_Collection_body_entered(body):
-	print('arrow!')
+	# print('arrow!')
 	if body.is_in_group('arrow'):
 		if body.linear_velocity.length() < 500:
 			get_parent().get_node("Camera2D").isArrow = false
