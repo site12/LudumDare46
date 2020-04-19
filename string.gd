@@ -1,7 +1,7 @@
 extends Node2D
 
 
-export (float) var length = 30
+export (float) var length = 100
 export (float) var constrain = 1
 export (Vector2) var gravity = Vector2(0,0)
 export (float) var friction = 0.9

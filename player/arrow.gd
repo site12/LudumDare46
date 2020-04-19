@@ -4,7 +4,7 @@ var pos = Vector2.ZERO
 
 func _on_Arrow_body_entered(body):
 	if body.is_in_group('enemy'):
-		body.hurt(20)
+		body.hurt(20, self)
 
 func _integrate_forces(state):
 	if not pos == Vector2.ZERO:

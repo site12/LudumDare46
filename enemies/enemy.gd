@@ -12,7 +12,8 @@ onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
 func _ready():
 	anims.play("run")
 
-func hurt(damage):
+func hurt(damage, arrow):
+	move_and_collide(position - arrow.position)
 	health -= damage
 	if health < 0:
 		health == 0
