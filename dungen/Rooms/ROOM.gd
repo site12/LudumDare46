@@ -26,6 +26,7 @@ var doors = {}
 var room_type = ''
 var pos
 var astar_index
+var discovered
 
 var tilesize = 64/2
 var roompos = global_position
@@ -66,6 +67,7 @@ func thru_door(side):
 
 
 		new_room.current_room = true
+		new_room.discovered = true
 
 
 
