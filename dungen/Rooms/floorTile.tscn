@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://tiles/Tilesheet1/ground_33.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/town/Tilesheet1/ground_33.png" type="Texture" id=1]
 [ext_resource path="res://dungen/Rooms/floortile.gd" type="Script" id=2]
 [ext_resource path="res://JitterFreePixelArt.tres" type="Material" id=3]
 

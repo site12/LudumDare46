@@ -87,7 +87,7 @@ func generate_doors():
 				new_door.position = Vector2(rand_range(1, size.x-1), size.y)
 		new_door.position*= tilesize
 		doors[door] = new_door
-		add_child(new_door)
+		$doors.add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
 
 func generate_enemies(size):
@@ -102,7 +102,7 @@ func generate_enemies(size):
 					var e = enemi.instance()
 					e.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
 					enemies[xpos].append(e)
-					add_child(e)
+					$enemies.add_child(e)
 				else:
 					enemies[xpos].append(null)
 
@@ -114,7 +114,7 @@ func generate_extras(size):
 				var t = EXTRA.instance()
 				t.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
 				extras[xpos].append(t)
-				add_child(t)
+				$extras.add_child(t)
 			else:
 				extras[xpos].append(null)
 
@@ -122,7 +122,7 @@ func generate_walls(size):
 	var r = WALLS.instance()
 	r.tile = r.corners[0]
 	r.position = roompos + Vector2(tilesize*-2,tilesize*-3.75)
-	add_child(r)
+	$walls.add_child(r)
 	
 	#backwall
 	for xpos in size.x:
@@ -131,8 +131,8 @@ func generate_walls(size):
 		t.tile = t.tiles[0]
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
-		add_child(t)
-		add_child(c)
+		$walls.add_child(t)
+		$wallcollision.add_child(c)
 	
 	#rightwall
 	for ypos in size.y+2:
@@ -144,8 +144,8 @@ func generate_walls(size):
 			t.tile = t.tiles[1]
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 		c.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
-		add_child(t)
-		add_child(c)
+		$walls.add_child(t)
+		$wallcollision.add_child(c)
 		
 	#leftwall
 	for ypos in size.y+2:
@@ -157,8 +157,8 @@ func generate_walls(size):
 			t.tile = t.tiles[2]
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 		c.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
-		add_child(t)
-		add_child(c)
+		$walls.add_child(t)
+		$wallcollision.add_child(c)
 	
 	#frontwall
 	for xpos in size.x+2:
@@ -171,8 +171,8 @@ func generate_walls(size):
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 		t.z_index = -499
-		add_child(t)
-		add_child(c)
+		$walls.add_child(t)
+		$wallcollision.add_child(c)
 
 func generate_gaps(size):
 	#treewall
@@ -181,7 +181,7 @@ func generate_gaps(size):
 		t.tree()
 		t.z_index = -499
 		t.position = roompos + Vector2(tilesize*xpos-tilesize/2,-tilesize+5)
-		add_child(t)
+		$floor.add_child(t)
 	
 	#leftwall
 	for ypos in size.y+2:
@@ -189,7 +189,7 @@ func generate_gaps(size):
 		t.pick()
 		t.z_index = -500
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
-		add_child(t)
+		$floor.add_child(t)
 	
 	#rightwall
 	for ypos in size.y+2:
@@ -197,7 +197,7 @@ func generate_gaps(size):
 		t.pick()
 		t.z_index = -500
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
-		add_child(t)
+		$floor.add_child(t)
 		
 	#backwall
 	for xpos in size.x:
@@ -205,7 +205,7 @@ func generate_gaps(size):
 		t.pick()
 		t.z_index = -500
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
-		add_child(t)
+		$floor.add_child(t)
 
 func generate_floor(size):
 	for xpos in size.x:
@@ -216,7 +216,7 @@ func generate_floor(size):
 			t.z_index = -500
 			t.position = roompos + Vector2(tilesize*xpos,tilesize*ypos)
 			ground[xpos].append(t)
-			add_child(t)
+			$floor.add_child(t)
 	generate_enemies(size)
 	generate_extras(size)
 	generate_walls(size)

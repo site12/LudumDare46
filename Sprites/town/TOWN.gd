@@ -153,7 +153,7 @@ func generate_walls(size):
 			t.tile = t.tiles[3]
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
-		t.z_index = 999
+		t.z_index = -499
 		add_child(t)
 		add_child(c)
 
@@ -162,7 +162,7 @@ func generate_gaps(size):
 	for xpos in size.x+1:
 		var t = TILE.instance()
 		t.tree()
-		t.z_index = -999
+		t.z_index = -499
 		t.position = roompos + Vector2(tilesize*xpos-tilesize/2,-tilesize+5)
 		add_child(t)
 	
@@ -170,7 +170,7 @@ func generate_gaps(size):
 	for ypos in size.y+2:
 		var t = TILE.instance()
 		t.pick()
-		t.z_index = -1000
+		t.z_index = -500
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 		add_child(t)
 	
@@ -178,7 +178,7 @@ func generate_gaps(size):
 	for ypos in size.y+2:
 		var t = TILE.instance()
 		t.pick()
-		t.z_index = -1000
+		t.z_index = -500
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 		add_child(t)
 		
@@ -186,7 +186,7 @@ func generate_gaps(size):
 	for xpos in size.x:
 		var t = TILE.instance()
 		t.pick()
-		t.z_index = -1000
+		t.z_index = -500
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		add_child(t)
 
@@ -196,7 +196,7 @@ func generate_floor(size):
 		for ypos in size.y:
 			var t = TILE.instance()
 			t.pick()
-			t.z_index = -1000
+			t.z_index = -500
 			t.position = roompos + Vector2(tilesize*xpos,tilesize*ypos)
 			ground[xpos].append(t)
 			add_child(t)
