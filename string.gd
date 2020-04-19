@@ -65,9 +65,9 @@ func _process(delta):
 	
 	#update_distance()	#Repeat to get tighter rope
 	#update_distance()
-	if Input.is_action_pressed("click"):
+	if Input.is_action_pressed("pull"):
 		if not player.has_arrow:
-			if (player.position - arrow.position).length() > 100:
+			if (player.position - arrow.position).length() > 50:
 				retract_rope(delta)
 	
 	update_distance()
@@ -76,10 +76,11 @@ func _process(delta):
 
 
 func retract_rope(delta):
-	if length > 3:
-		length -= 1
-	count = get_count(length)
-	resize_arrays()
+	if not arrow.stuck:
+		if length > 4:
+			length -= 1
+		count = get_count(length)
+		resize_arrays()
 	
 
 	# constrain = abs(constrain - 0.1) 
@@ -112,7 +113,10 @@ func update_distance():
 				else:
 					# arrow.linear_velocity = Vector2(pos[i]-arrow.position)
 					# arrow.linear_velocity = (Vector2(pos[i]-arrow.position))
-					arrow.pos = pos[i]
+					if not arrow.stuck:
+						arrow.pos = pos[i]
+					else:
+						pos[i] = arrow.position
 					
 					# mount.position = pos[i]
 			return

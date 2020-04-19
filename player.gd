@@ -61,15 +61,13 @@ func _physics_process(_delta):
 	z_index = int(position.y)
 
 
-
-
 func _on_hitbox_body_entered(body):
 	if body.get_class() == 'enemy':
 		#uhhhh get knocked back and apply modulate and apply damage
 		pass
 
 func _on_Collection_body_entered(body):
-	print('arrow!')
+	# print('arrow!')
 	if body.is_in_group('arrow'):
 		if body.linear_velocity.length() < 500:
 			get_parent().get_node("Camera2D").isArrow = false
