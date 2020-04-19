@@ -1,28 +1,32 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
 [ext_resource path="res://0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=3]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=13]
 bg_color = Color( 0.0588235, 0.647059, 0.027451, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.0823529, 0.00392157, 0.00392157, 1 )
 
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0.00180723, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.996083 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
 [sub_resource type="ParticlesMaterial" id=4]
-emission_shape = 2
-emission_box_extents = Vector3( 15, 1, 1 )
+emission_shape = 1
+emission_sphere_radius = 2.0
 flag_disable_z = true
 spread = 180.0
-gravity = Vector3( 0, -98, 0 )
-initial_velocity = 19.87
-initial_velocity_random = 0.4
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel_random = 0.6
-angle_random = 1.0
 scale = 0.2
+scale_curve = SubResource( 12 )
 
 [node name="enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -68,16 +72,16 @@ __meta__ = {
 margin_right = 32.0
 margin_bottom = 1.0
 size_flags_horizontal = 3
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 14 )
 max_value = 15.0
 step = 1.0
 value = 15.0
 percent_visible = false
 
 [node name="hurt" type="Particles2D" parent="."]
-modulate = Color( 1, 0.0117647, 0.0117647, 1 )
-position = Vector2( 0, -11 )
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, 16 )
 z_index = 11
 emitting = false
 amount = 1
