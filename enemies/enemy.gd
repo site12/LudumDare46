@@ -12,7 +12,7 @@ onready var obj = get_parent().get_parent().get_parent().get_node("player")
 
 
 func hurt(damage, arrow):
-	# move_and_collide(position - arrow.position)
+	move_and_collide(position - arrow.position)
 	
 	$hurt.emitting = true
 	# yield(get_tree().create_timer(0.1), 'timeout')

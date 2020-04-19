@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Sprites/Archer/Side running/New run0005.png" type="Texture" id=1]
 [ext_resource path="res://player.gd" type="Script" id=2]
 [ext_resource path="res://player/shadow.png" type="Texture" id=3]
 [ext_resource path="res://player/rotation_helper.gd" type="Script" id=4]
+[ext_resource path="res://0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Archer/Side running/New run0003.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Archer/Side running/New run0006.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Archer/Side running/New run0007.png" type="Texture" id=8]
@@ -124,12 +125,49 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=5]
 radius = 69.5
 
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0.00180723, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.996083 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.2
+scale_curve = SubResource( 7 )
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 16.9361
+height = 17.8888
+
+[sub_resource type="Animation" id=13]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("spritehelper/sprites:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.596078, 0.0156863, 0.0156863, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 17
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 18 )
+position = Vector2( 0, 20 )
 scale = Vector2( 1.5, 1 )
 shape = SubResource( 1 )
 
@@ -164,4 +202,26 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection"]
 shape = SubResource( 5 )
+
+[node name="hurt" type="Particles2D" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, 6 )
+z_index = 11
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+visibility_rect = Rect2( -4.0105, -8.88989, 10.1708, 9.56652 )
+process_material = SubResource( 8 )
+texture = ExtResource( 5 )
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( 0.203918, 2.24297 )
+shape = SubResource( 9 )
+
+[node name="player" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 13 )
 [connection signal="body_entered" from="Collection" to="." method="_on_Collection_body_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
