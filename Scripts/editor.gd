@@ -1,0 +1,3 @@
+extends WindowDialog
+
+var ID

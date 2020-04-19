@@ -1,0 +1,284 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Root.gd" type="Script" id=1]
+[ext_resource path="res://Visuals/titlefont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Visuals/button.tres" type="StyleBox" id=3]
+[ext_resource path="res://Visuals/font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Visuals/theme.tres" type="Theme" id=5]
+[ext_resource path="res://Scripts/editor.gd" type="Script" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.164706, 0.301961, 0.411765, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.164706, 0.301961, 0.411765, 1 )
+
+[node name="Program" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="back" type="Polygon2D" parent="."]
+position = Vector2( 0, -2 )
+scale = Vector2( 1, 1.008 )
+color = Color( 0.678431, 0.796078, 0.890196, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 500, 800, 500, 800, 0 )
+
+[node name="sideBar" type="Polygon2D" parent="back"]
+scale = Vector2( 1.28571, 1 )
+color = Color( 0.905882, 0.937255, 0.964706, 1 )
+polygon = PoolVector2Array( 0, 0, 140, 0, 140, 500, 0, 500 )
+
+[node name="welcome" type="Polygon2D" parent="back"]
+position = Vector2( 200, 20 )
+scale = Vector2( 4.14286, 0.92 )
+color = Color( 0.905882, 0.937255, 0.964706, 1 )
+polygon = PoolVector2Array( 0, 0, 140, 0, 140, 500, 0, 500 )
+
+[node name="Title" type="Label" parent="back"]
+margin_top = 1.98413
+margin_right = 180.0
+margin_bottom = 41.9841
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.164706, 0.301961, 0.411765, 1 )
+text = "GoDialogue"
+align = 1
+valign = 1
+
+[node name="create" type="Button" parent="back"]
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 165.0
+margin_bottom = 120.0
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "Create New Dialogue"
+
+[node name="open" type="Button" parent="back"]
+margin_left = 16.0
+margin_top = 140.0
+margin_right = 165.0
+margin_bottom = 180.0
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "Open Dialogue"
+
+[node name="quit" type="Button" parent="back"]
+margin_left = 20.0
+margin_top = 460.0
+margin_right = 80.0
+margin_bottom = 480.0
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "Quit"
+
+[node name="welcomeLabel" type="Label" parent="back"]
+margin_left = 220.0
+margin_top = 40.0
+margin_right = 400.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.164706, 0.301961, 0.411765, 1 )
+text = "Welcome to GoDialogue"
+align = 1
+valign = 1
+
+[node name="welcomeLabel2" type="Label" parent="back"]
+margin_left = 240.0
+margin_top = 77.0
+margin_right = 720.0
+margin_bottom = 460.0
+rect_pivot_offset = Vector2( 840, -55 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Version #0.1
+
+This is a very barebones program that will allow you to create linear dialogues within godot. 
+
+
+
+KNOWN BUGS:
+
+-A popup asking you to overwrite an existing file shows up every time you create a new file. Idk what's up with that man"
+autowrap = true
+
+[node name="createFile" type="FileDialog" parent="."]
+visible = true
+margin_left = -760.0
+margin_top = 520.0
+margin_bottom = 960.0
+theme = ExtResource( 5 )
+window_title = "Create New Dialogue"
+dialog_text = "Create a new dialogue file...
+"
+dialog_hide_on_ok = true
+access = 2
+current_dir = "C:/Users/Shane/Desktop/GoDialogue"
+current_path = "C:/Users/Shane/Desktop/GoDialogue/"
+
+[node name="openFile" type="FileDialog" parent="."]
+visible = true
+margin_left = -760.0
+margin_top = 40.0
+margin_bottom = 480.0
+theme = ExtResource( 5 )
+window_title = "Open a File"
+dialog_text = "Open a dialogue file...
+"
+dialog_hide_on_ok = true
+mode = 0
+access = 2
+current_dir = "C:/Users/Shane/Desktop/GoDialogue"
+current_path = "C:/Users/Shane/Desktop/GoDialogue/"
+
+[node name="editor" type="WindowDialog" parent="."]
+visible = true
+margin_left = 20.0
+margin_top = 520.0
+margin_right = 600.0
+margin_bottom = 820.0
+theme = ExtResource( 5 )
+window_title = "Editor"
+script = ExtResource( 6 )
+
+[node name="editorBack" type="Polygon2D" parent="editor"]
+position = Vector2( 20, 39 )
+scale = Vector2( 0.75, 0.571429 )
+color = Color( 0.905882, 0.937255, 0.964706, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 420, 360, 420, 720, 420, 720, 0 )
+
+[node name="namestuff" type="Control" parent="editor"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="nameBack" type="Polygon2D" parent="editor/namestuff"]
+position = Vector2( 40, 47 )
+scale = Vector2( 1.66667, 0.883334 )
+color = Color( 0.294118, 0.52549, 0.705882, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 60, 120, 60, 120, 30.1625, 120, 0, 60, 0 )
+
+[node name="name" type="Label" parent="editor/namestuff"]
+margin_left = 38.0
+margin_top = 47.0
+margin_right = 118.0
+margin_bottom = 100.0
+theme = ExtResource( 5 )
+text = "Name:"
+align = 1
+valign = 1
+
+[node name="nameBox" type="TextEdit" parent="editor/namestuff"]
+anchor_right = 1.0
+margin_left = 106.0
+margin_top = 58.0
+margin_right = 180.0
+margin_bottom = 89.0
+theme = ExtResource( 5 )
+custom_styles/normal = SubResource( 1 )
+text = "text"
+
+[node name="saystuff" type="Control" parent="editor"]
+margin_top = 89.0
+margin_right = 40.0
+margin_bottom = 129.0
+
+[node name="saysBack" type="Polygon2D" parent="editor/saystuff"]
+position = Vector2( 40, 47 )
+scale = Vector2( 4.16667, 1.4 )
+color = Color( 0.294118, 0.52549, 0.705882, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 60, 120, 60, 120, 30.1625, 120, 0, 60, 0 )
+
+[node name="says" type="Label" parent="editor/saystuff"]
+margin_left = 38.0
+margin_top = 58.0
+margin_right = 118.0
+margin_bottom = 80.0
+theme = ExtResource( 5 )
+text = "Says:"
+align = 1
+valign = 1
+
+[node name="saysBox" type="TextEdit" parent="editor/saystuff"]
+anchor_right = 1.0
+margin_left = 106.0
+margin_top = 58.0
+margin_right = 480.0
+margin_bottom = 111.0
+theme = ExtResource( 5 )
+custom_styles/normal = SubResource( 2 )
+text = "text"
+
+[node name="back2" type="Button" parent="editor"]
+margin_left = 20.0
+margin_right = 80.0
+margin_bottom = 20.0
+theme = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+text = "Back"
+
+[node name="save" type="Button" parent="editor"]
+margin_left = 80.0
+margin_right = 140.0
+margin_bottom = 20.0
+theme = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+text = "Save"
+
+[node name="created" type="AcceptDialog" parent="."]
+visible = true
+margin_top = -120.0
+margin_right = 214.0
+margin_bottom = -44.0
+theme = ExtResource( 5 )
+window_title = "Success!"
+dialog_text = "Dialogue file has been created!"
+
+[node name="dialogues" type="WindowDialog" parent="."]
+visible = true
+margin_left = 1000.0
+margin_top = 609.0
+margin_right = 1320.0
+margin_bottom = 900.0
+theme = ExtResource( 5 )
+window_title = "Choose Dialogue To Edit"
+
+[node name="button" type="MenuButton" parent="dialogues"]
+margin_left = 20.0
+margin_top = 11.0
+margin_right = 300.0
+margin_bottom = 71.0
+theme = ExtResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+text = "MENU"
+flat = false
+
+[node name="choose" type="PopupMenu" parent="dialogues/button"]
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="newDialogue" type="Button" parent="dialogues"]
+margin_left = 140.0
+margin_top = 211.0
+margin_right = 300.0
+margin_bottom = 231.0
+custom_styles/normal = ExtResource( 3 )
+text = "Create New Dialogue"
+
+[node name="preview" type="Button" parent="dialogues"]
+margin_left = 220.0
+margin_top = 251.0
+margin_right = 300.0
+margin_bottom = 271.0
+custom_styles/normal = ExtResource( 3 )
+text = "Preview"
+[connection signal="pressed" from="back/create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="back/open" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="back/quit" to="." method="_on_quit_pressed"]
+[connection signal="confirmed" from="createFile" to="." method="_on_createFile_confirmed"]
+[connection signal="file_selected" from="openFile" to="." method="_on_openFile_file_selected"]
+[connection signal="pressed" from="editor/back2" to="." method="_on_back2_pressed"]
+[connection signal="pressed" from="editor/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="dialogues/button" to="." method="_on_button_pressed"]
+[connection signal="id_focused" from="dialogues/button/choose" to="." method="_on_choose_id_focused"]
+[connection signal="pressed" from="dialogues/newDialogue" to="." method="_on_newDialogue_pressed"]
+[connection signal="pressed" from="dialogues/preview" to="." method="_on_preview_pressed"]

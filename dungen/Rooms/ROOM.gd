@@ -111,6 +111,7 @@ func generate_doors():
 		#new_door.position = randi() % (max_size - min_size)
 
 func generate_enemies(size):
+	print(room_type)
 	if(room_type != "start" || room_type != "end"):
 		for xpos in size.x:
 			enemies.append([])
