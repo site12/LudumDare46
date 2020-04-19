@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 class_name enemy
 
+
 var speed = 100
 var health = 15
 var dead = false
@@ -12,6 +13,7 @@ onready var obj = get_parent().get_parent().get_parent().get_node("player")
 
 func hurt(damage, arrow):
 	# move_and_collide(position - arrow.position)
+	
 	$hurt.emitting = true
 	# yield(get_tree().create_timer(0.1), 'timeout')
 	# $hurt.emitting = false

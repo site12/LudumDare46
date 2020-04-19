@@ -1,5 +1,7 @@
 extends enemy
 
+onready var anims = $player
+
 func _ready():
 	speed = 0
 	$spritehelper.visible = false
@@ -12,3 +14,6 @@ func _ready():
 	speed = 100
 	visible = true
 
+func hurt(damage, arrow):
+	.hurt(damage,arrow)
+	anims.play("hurt")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
@@ -27,6 +27,22 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.2
 scale_curve = SubResource( 4 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("spritehelper/sprites:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.337255, 0.568627, 0.054902, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -90,3 +106,6 @@ one_shot = true
 visibility_rect = Rect2( -4.0105, -8.88989, 10.1708, 9.56652 )
 process_material = SubResource( 5 )
 texture = ExtResource( 3 )
+
+[node name="player" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 8 )
