@@ -119,7 +119,7 @@ func generate_enemies(size):
 				randomize()
 				if(int(rand_range(0,50)) == 1):
 					var e = enemi.instance()
-					e.position = roompos + Vector2(tilesize*xpos+1,tilesize*ypos+1)
+					e.position = roompos + Vector2(tilesize*xpos+2,tilesize*ypos+2)
 					enemies[xpos].append(e)
 					$enemies.add_child(e)
 				else:

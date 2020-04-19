@@ -8,6 +8,7 @@ onready var sprites = $spritehelper/sprites
 onready var obj = get_parent().get_parent().get_parent().get_node("player")
 #onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
 
+
 func hurt(damage, arrow):
 	# move_and_collide(position - arrow.position)
 	$hurt.emitting = true
