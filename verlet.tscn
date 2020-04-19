@@ -3,6 +3,7 @@
 [ext_resource path="res://string.gd" type="Script" id=1]
 
 [node name="String" type="KinematicBody2D"]
+visible = false
 script = ExtResource( 1 )
 length = 50.0
 
