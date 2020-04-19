@@ -112,7 +112,10 @@ func update_distance():
 				else:
 					# arrow.linear_velocity = Vector2(pos[i]-arrow.position)
 					# arrow.linear_velocity = (Vector2(pos[i]-arrow.position))
-					arrow.pos = pos[i]
+					if not arrow.stuck:
+						arrow.pos = pos[i]
+					else:
+						pos[i] = arrow.position
 					
 					# mount.position = pos[i]
 			return
