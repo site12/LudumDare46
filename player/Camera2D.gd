@@ -23,7 +23,7 @@ func _physics_process(_delta):
 		if length > 200:
 			l = length
 			print(l)
-	zoom = Vector2(l/300,l/300)
+	zoom = Vector2(l/400,l/400)
 
 
 func _ready():
