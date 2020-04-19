@@ -2,7 +2,8 @@ extends enemy
 
 onready var anims = $player
 var awaydist = 250
-var attacking = false
+var canattack = true
+var dir
 
 func _ready():
 	speed = 0
@@ -23,10 +24,11 @@ func hurt(damage, arrow):
 func _physics_process(delta):
 	if dead:
 		die()
-	var dir = (obj.global_position - global_position).normalized()
+	dir = (obj.global_position - global_position).normalized()
 	if (obj.global_position - global_position).length() < 100:
 		speed = 0
-		attacking = true
+		if canattack:
+			attack(delta)
 	else:
 		speed = 100
 	if dir.x<0:
@@ -37,6 +39,17 @@ func _physics_process(delta):
 	move_and_collide(dir * speed * delta)
 	z_index = int(position.y)
 
-func attack():
-	
+func attack(delta):
+	canattack = false
+	speed = 100
+	move_and_slide(dir * speed*30 * delta)
 	$attacktimer.start()
+	#dir = -(obj.global_position - global_position).normalized()
+	yield(get_tree().create_timer(0.3), 'timeout')
+	speed = 100
+	move_and_slide(-dir * speed*30 * delta)
+	
+
+func _on_attacktimer_timeout():
+	canattack = true
+	
