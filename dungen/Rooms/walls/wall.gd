@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 
 var tiles = [load("res://tiles/leaves_tile/sprite_22.png"),
@@ -13,6 +13,14 @@ load("res://tiles/leaves_tile/sprite_23.png")]
 
 var tile
 
+var side
+
 func _ready():
 	$Sprite.texture = tile
+#	if side == "left":
+#		$right.enabled = false
+#		$left.enabled = true
+#	if side == "right":
+#		$right.enabled = true
+#		$left.enabled = false
 
