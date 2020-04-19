@@ -71,7 +71,7 @@ var quips = [
 "I (ludum)dare you!",
 "They'll toss a coin your way if you do!",
 "I swear this is a one-time thing.",
-""
+"Or like, whatever. Do what you want."
 ]
 
 

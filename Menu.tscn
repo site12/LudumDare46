@@ -101,7 +101,6 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
 
 [node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 0.993
 margin_left = -32.0
@@ -177,6 +176,7 @@ __meta__ = {
 }
 
 [node name="intro text" type="MarginContainer" parent="Control/CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 32.0
