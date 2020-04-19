@@ -17,6 +17,8 @@ func get_input():
 		velocity.y += 1
 	if Input.is_action_pressed('up'):
 		velocity.y -= 1
+	if Input.is_action_pressed('click'):
+		get_parent().get_node("Camera2D").shake(0.2,15,8)
 	velocity = velocity.normalized() * speed
 	
 	if velocity.x > 0:
