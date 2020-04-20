@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 
-var tiles = [load("res://tiles/shitstump.png")]
+var tiles = [load("res://tiles/shitstump.png"),load("res://tiles/shit_leaves.png")]
 var num
 
 class_name extra
@@ -15,7 +15,9 @@ func _ready():
 	var t = int(rand_range(0,50))
 	#print(t)
 	if(t==0):
-		$Sprite.texture = tiles[t]
+		$Sprite.texture = tiles[0]
+	if(t==1):
+		$Sprite.texture = tiles[1]
 	else: 
 		$Sprite.texture = null
 		queue_free()

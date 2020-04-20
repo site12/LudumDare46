@@ -11,7 +11,7 @@ var tran
 func _ready():
 	get_parent().get_node("Camera2D")
 	colliding = true
-func _process(delta):
+func _process(_delta):
 	z_index = position.y+10
 	if Input.is_action_pressed('pull'):
 		colliding = false
@@ -30,7 +30,7 @@ func _process(delta):
 		else:
 			linear_velocity = Vector2.ZERO
 
-func body_killed(body):
+func body_killed(_body):
 	stuck = false
 	stuck_to = null
 

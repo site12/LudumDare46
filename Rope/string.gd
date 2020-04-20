@@ -75,7 +75,7 @@ func _process(delta):
 	$Line2D.points = pos
 
 
-func retract_rope(delta):
+func retract_rope(_delta):
 	if not arrow.stuck:
 		if length > 4:
 			length -= 1

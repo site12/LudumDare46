@@ -1,0 +1,245 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://alagard.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://shopUI.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "init"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CanvasLayer/Control/ui:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.545, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CanvasLayer/Control/ui/title:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -147, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CanvasLayer/Control/ui/list:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -1000, -0.25, 0, 0.25, 0, 80, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CanvasLayer/Control/ui/currency:rect_position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1984, -0.25, 0, 0.25, 0, 1184, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("CanvasLayer/Control/Button:rect_position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 2064, -0.25, 0, 0.25, 0, 1664, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Control:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="shoppe" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui" type="ColorRect" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.831373, 0.807843, 0.807843, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="ColorRect" parent="CanvasLayer/Control/ui"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_top = -147.0
+margin_right = 256.0
+margin_bottom = -19.0
+color = Color( 0.819608, 0.623529, 0.207843, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Control/ui/title"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 496.0
+margin_bottom = 112.0
+color = Color( 0.360784, 0.352941, 0.341176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ui/title/ColorRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "[type] Shoppe"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="currency" type="ColorRect" parent="CanvasLayer/Control/ui"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 1024.0
+margin_top = 256.0
+margin_right = 1536.0
+margin_bottom = 417.0
+color = Color( 0.819608, 0.623529, 0.207843, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Control/ui/currency"]
+anchor_right = 0.969
+anchor_bottom = 0.917
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -0.128021
+margin_bottom = 0.29599
+color = Color( 0.360784, 0.352941, 0.341176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ui/currency/ColorRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 44.067
+custom_fonts/font = SubResource( 2 )
+text = "Currency: [x]
+potions: [x]
+
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="list" type="ColorRect" parent="CanvasLayer/Control/ui"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -1960.0
+margin_top = 256.0
+margin_right = -1064.0
+margin_bottom = 1024.0
+color = Color( 0.819608, 0.623529, 0.207843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="itemanchor" type="ColorRect" parent="CanvasLayer/Control/ui/list"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 880.0
+margin_bottom = 752.0
+color = Color( 0.360784, 0.352941, 0.341176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Control/ui/list/itemanchor"]
+anchor_left = 0.019
+anchor_top = 0.022
+anchor_right = 0.981
+anchor_bottom = 0.978
+margin_left = 15.584
+margin_top = -0.192001
+margin_right = 0.415955
+margin_bottom = 0.191956
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 144.0
+margin_top = -168.0
+margin_right = 336.0
+margin_bottom = -56.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "BACK"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/init = SubResource( 4 )
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_Button_pressed"]

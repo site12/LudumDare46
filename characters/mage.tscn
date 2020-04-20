@@ -1,0 +1,357 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0016.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0015.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0003.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0006.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0005.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0004.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0014.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0006.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0009.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0000.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0003.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0011.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0008.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0013.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0004.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0007.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0008.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0001.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0012.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0015.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0010.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0016.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0005.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0002.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0001.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Magic Guy/Magic Guy0007.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0000.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0002.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0010.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0011.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0014.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0012.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0013.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0009.png" type="Texture" id=34]
+[ext_resource path="res://characters/mage.gd" type="Script" id=35]
+[ext_resource path="res://player/shadow.png" type="Texture" id=36]
+[ext_resource path="res://Fipps-Regular.otf" type="DynamicFontData" id=37]
+[ext_resource path="res://characters/dialogue.gd" type="Script" id=38]
+[ext_resource path="res://alagard.ttf" type="DynamicFontData" id=39]
+[ext_resource path="res://shopUI.tscn" type="PackedScene" id=40]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 25 ), ExtResource( 28 ), ExtResource( 3 ), ExtResource( 15 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 34 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 31 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "mage",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 18 ), ExtResource( 24 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 23 ), ExtResource( 4 ), ExtResource( 26 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 20 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "mage",
+"speed": 15.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "near"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("outline:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "E"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 400.5
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 176, 224 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 100
+font_data = ExtResource( 37 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 18 ), ExtResource( 24 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 23 ), ExtResource( 4 ), ExtResource( 26 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 19 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 20 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "mage",
+"speed": 15.0
+} ]
+
+[sub_resource type="DynamicFont" id=9]
+size = 40
+font_data = ExtResource( 39 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 64
+font_data = ExtResource( 39 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "begin"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CanvasLayer/Node2D/bottom:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -400, -0.25, 0, 0.25, 0, 30.9307, -0.25, 0, 0.6925, 153.863 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CanvasLayer/Node2D/bottom:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.1825, 0.446373, 1, -0.25, 0, 0.7125, 21.6871 ),
+"times": PoolRealArray( 0.1, 0.6 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CanvasLayer/Node2D/portait:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.5725, 1.08953, 1, -0.25, 0, 0.1425, 0.0112801 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CanvasLayer/Node2D/Polygon2D:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("CanvasLayer/Node2D/AnimatedSprite:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.9525, 0.665215 ),
+"times": PoolRealArray( 0.3, 0.6 )
+}
+
+[node name="blacksmith" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 35 )
+
+[node name="shadow" type="Sprite" parent="."]
+position = Vector2( -1.52588e-05, 480 )
+scale = Vector2( 5, 7.5 )
+texture = ExtResource( 36 )
+
+[node name="outline" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+frames = SubResource( 1 )
+animation = "mage"
+flip_h = true
+
+[node name="sprites" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "mage"
+frame = 9
+playing = true
+flip_h = true
+
+[node name="near" type="AnimationPlayer" parent="."]
+anims/near = SubResource( 3 )
+
+[node name="e" type="AnimationPlayer" parent="."]
+anims/E = SubResource( 4 )
+
+[node name="interact" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact"]
+position = Vector2( 0, 564 )
+shape = SubResource( 5 )
+
+[node name="collision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
+position = Vector2( 0, 384 )
+shape = SubResource( 6 )
+
+[node name="Control" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -320.0
+margin_top = -480.0
+margin_right = 320.0
+margin_bottom = 800.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 7 )
+text = "E"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dialogue" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 38 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="dialogue"]
+
+[node name="Node2D" type="Node2D" parent="dialogue/CanvasLayer"]
+
+[node name="portait" type="ColorRect" parent="dialogue/CanvasLayer/Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 64.0
+margin_top = 464.0
+margin_right = 352.0
+margin_bottom = 800.0
+color = Color( 0, 0, 0, 0.717647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="dialogue/CanvasLayer/Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 208, 688 )
+scale = Vector2( 0.525, 0.534152 )
+frames = SubResource( 8 )
+animation = "mage"
+frame = 15
+playing = true
+flip_h = true
+
+[node name="Polygon2D" type="Polygon2D" parent="dialogue/CanvasLayer/Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 64, 464 )
+color = Color( 0.937255, 0.768627, 0.321569, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 336, 288, 336, 288, 0, 272, 0, 272, 304, 16, 304, 16, 32, 272, 32, 272, 0 )
+
+[node name="bottom" type="Node2D" parent="dialogue/CanvasLayer/Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -400, 0 )
+
+[node name="ColorRect2" type="ColorRect" parent="dialogue/CanvasLayer/Node2D/bottom"]
+margin_left = 48.0
+margin_top = 784.0
+margin_right = 1344.0
+margin_bottom = 976.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="dialogue/CanvasLayer/Node2D/bottom/ColorRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -16.0
+custom_fonts/font = SubResource( 9 )
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buy" type="Button" parent="dialogue/CanvasLayer/Node2D/bottom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1408.0
+margin_top = 784.0
+margin_right = 1568.0
+margin_bottom = 864.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="dialogue/CanvasLayer/Node2D/bottom/buy"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 10 )
+text = "BUY"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bye" type="Button" parent="dialogue/CanvasLayer/Node2D/bottom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1408.0
+margin_top = 896.0
+margin_right = 1568.0
+margin_bottom = 976.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="dialogue/CanvasLayer/Node2D/bottom/bye"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 10 )
+text = "BYE!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="texttimer" type="Timer" parent="dialogue"]
+wait_time = 0.05
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dialogue"]
+anims/begin = SubResource( 11 )
+
+[node name="shoppe" parent="." instance=ExtResource( 40 )]
+[connection signal="animation_finished" from="e" to="." method="_on_e_animation_finished"]
+[connection signal="area_entered" from="interact" to="." method="_on_interact_area_entered"]
+[connection signal="body_entered" from="interact" to="." method="_on_interact_body_entered"]
+[connection signal="body_exited" from="interact" to="." method="_on_interact_body_exited"]
+[connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/buy" to="dialogue" method="_on_buy_pressed"]
+[connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/bye" to="dialogue" method="_on_bye_pressed"]
+[connection signal="timeout" from="dialogue/texttimer" to="dialogue" method="_on_texttimer_timeout"]

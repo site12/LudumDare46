@@ -63,11 +63,11 @@ var dirs = [
 
 var quips = [
 "They've got the only bar around!",
-"You probably don't have much else going on.",
+"I mean let's be honest, you probably don't have much else going on.",
 "Your third cousin's girlfriend's dentist lives there!",
 "Mike told you to!",
 "You used to be sweet on a girl from there!",
-"They've got toilet paper in stock!'",
+"They've got toilet paper in stock!",
 "I (ludum)dare you!",
 "They'll toss a coin your way if you do!",
 "I swear this is a one-time thing.",
@@ -79,7 +79,8 @@ onready var Label = $Label
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	Label.text = "An evil army approaches the town of " + townNames[rand_range(0,49)]+" from the "+dirs[rand_range(0,3)]+". Protect it at all costs! " +quips[rand_range(0,9)]
+	Level.direction = dirs[rand_range(0,3)]
+	Label.text = "An evil army approaches the town of " + townNames[rand_range(0,49)]+" from the "+Level.direction+". Protect it at all costs! " +quips[rand_range(0,9)]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -88,5 +89,6 @@ func _ready():
 
 
 func _on_Button_pressed():
-	yield(get_tree().create_timer(2), 'timeout')
-	get_tree().change_scene("res://world/world.tscn")
+	get_parent().get_parent().get_parent().get_node("AnimationPlayer").play("next")
+	yield(get_tree().create_timer(1), 'timeout')
+	get_tree().change_scene("res://town/Town.tscn")
