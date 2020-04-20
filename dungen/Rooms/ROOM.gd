@@ -31,14 +31,14 @@ var force_stay = false
 
 var tilesize = 64/2
 var roompos = global_position
-
+var biome =  "cave"
 # func _ready():
 # 	Engine.set_target_fps(Engine.get_iterations_per_second())
 # 	generate_floor(size)
 # 	generate_doors()
 
 func create():
-	generate_floor(size)
+	generate_floor(size,biome)
 	generate_doors()
 	
 func thru_door(side):
@@ -113,7 +113,7 @@ func generate_doors():
 		$doors.add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
 
-func generate_enemies(size):
+func generate_enemies(size,biome):
 
 	for xpos in size.x:
 		enemies.append([])
@@ -133,7 +133,7 @@ func generate_enemies(size):
 			else:
 				enemies[xpos].append(null)
 
-func generate_extras(size):
+func generate_extras(size,biome):
 	for xpos in size.x:
 		extras.append([])
 		for ypos in size.y:
@@ -145,29 +145,33 @@ func generate_extras(size):
 			else:
 				extras[xpos].append(null)
 
-func generate_walls(size):
+func generate_walls(size,biome):
 	var r = WALLS.instance()
+	$walls.add_child(r)
+	r.wall(biome)
 	r.tile = r.corners[0]
 	r.position = roompos + Vector2(tilesize*-2,tilesize*-3.75)
-	$walls.add_child(r)
+	
 	
 	#backwall
 	for xpos in size.x:
 		var t = WALLS.instance()
 		var c = COLL[3].instance()
-		t.wall()
+		$walls.add_child(t)
+		t.wall(biome)
 		t.tile = t.tiles[0]
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		
-		$walls.add_child(t)
+		
 		$wallcollision.add_child(c)
 	
 	#rightwall
 	for ypos in size.y+2:
 		var t = WALLS.instance()
 		var c = COLL[1].instance()
-		t.wall()
+		$walls.add_child(t)
+		t.wall(biome)
 		if ypos == size.y+1:
 			t.tile = t.corners[3]
 		else:
@@ -175,14 +179,15 @@ func generate_walls(size):
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 		c.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 
-		$walls.add_child(t)
+		
 		$wallcollision.add_child(c)
 		
 	#leftwall
 	for ypos in size.y+2:
 		var t = WALLS.instance()
 		var c = COLL[0].instance()
-		t.wall()
+		$walls.add_child(t)
+		t.wall(biome)
 		if ypos == size.y+1:
 			t.tile = t.corners[2]
 		else:
@@ -190,15 +195,16 @@ func generate_walls(size):
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 		c.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 
-		$walls.add_child(t)
+		
 		$wallcollision.add_child(c)
 	
 	#frontwall
 	for xpos in size.x+2:
 		var t = WALLS.instance()
 		var c = COLL[2].instance()
-		t.wall()
-		if xpos == size.x+1:
+		$walls.add_child(t)
+		t.wall(biome)
+		if xpos == (size.x+1):
 			t.tile = t.corners[1]
 		else:
 			t.tile = t.tiles[3]
@@ -206,14 +212,14 @@ func generate_walls(size):
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 
 		t.z_index = -499
-		$walls.add_child(t)
+		
 		$wallcollision.add_child(c)
 
-func generate_gaps(size):
+func generate_gaps(size,biome):
 	#treewall
 	for xpos in size.x+1:
 		var t = TILE.instance()
-		t.tree()
+		t.tree(biome)
 		t.z_index = -499
 		t.position = roompos + Vector2(tilesize*xpos-tilesize/2,-tilesize+5)
 		$floor.add_child(t)
@@ -221,7 +227,7 @@ func generate_gaps(size):
 	#leftwall
 	for ypos in size.y+2:
 		var t = TILE.instance()
-		t.pick()
+		t.pick(biome)
 		t.z_index = -500
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 		$floor.add_child(t)
@@ -229,7 +235,7 @@ func generate_gaps(size):
 	#rightwall
 	for ypos in size.y+2:
 		var t = TILE.instance()
-		t.pick()
+		t.pick(biome)
 		t.z_index = -500
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 		$floor.add_child(t)
@@ -237,24 +243,24 @@ func generate_gaps(size):
 	#backwall
 	for xpos in size.x:
 		var t = TILE.instance()
-		t.pick()
+		t.pick(biome)
 		t.z_index = -500
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		$floor.add_child(t)
 
-func generate_floor(size):
+func generate_floor(size,biome):
 	for xpos in size.x:
 		ground.append([])
 		for ypos in size.y:
 			var t = TILE.instance()
-			t.pick()
+			t.pick(biome)
 			t.z_index = -500
 			t.position = roompos + Vector2(tilesize*xpos,tilesize*ypos)
 			ground[xpos].append(t)
 			$floor.add_child(t)
-	generate_enemies(size)
-	generate_extras(size)
-	generate_walls(size)
-	generate_gaps(size)
+	generate_enemies(size,biome)
+	generate_extras(size,biome)
+	generate_walls(size,biome)
+	generate_gaps(size,biome)
 			
 	
