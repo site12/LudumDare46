@@ -2,7 +2,7 @@ extends Control
 
 var player = ""
 
-func dead():
+func _ready():
 	$AnimationPlayer.play("die")
 
 

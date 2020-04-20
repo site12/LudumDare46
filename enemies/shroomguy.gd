@@ -5,6 +5,7 @@ var awaydist = 250
 var canattack = true
 var can_damage = true
 var dir
+onready var d = preload("res://enemies/deadparticlesshroom.tscn")
 
 
 func _ready():
@@ -28,7 +29,6 @@ func hurt(damage, arrow=null):
 	
 func _physics_process(delta):
 	if dead:
-		obj.killshroomguy()
 		die()
 		
 	dir = Vector2()
@@ -58,6 +58,7 @@ func _physics_process(delta):
 	z_index = int(position.y)
 
 func attack(delta):
+	
 	canattack = false
 	attack_dir = (obj.global_position - global_position).normalized()
 	speed = 100
@@ -71,4 +72,11 @@ func attack(delta):
 
 func _on_attacktimer_timeout():
 	canattack = true
+
+func die():
+	.die()
+	var di = d.instance()
+	di.position = position
+	get_parent().add_child(di)
+
 	
