@@ -232,6 +232,7 @@ __meta__ = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="dialogue"]
+layer = 5
 
 [node name="Node2D" type="Node2D" parent="dialogue/CanvasLayer"]
 
