@@ -8,6 +8,7 @@ onready var house1 = $houses/house_generic
 onready var house2 = $houses/house_generic2
 onready var house3 = $houses/house_generic3
 onready var house4 = $houses/house_generic4
+var house_types = ['house', 'house', 'potion', 'blacksmith']
 const WORLD = preload('res://world/world.tscn')
 
 # Called when the node enters the scene tree for the first time.
@@ -23,10 +24,12 @@ func transition():
 	get_tree().get_root().call_deferred('remove_child', self)
 
 func generate_houses():
-	house1.house("house")
-	house2.house("potion")
-	house3.house("house")
-	house4.house("blacksmith")
+	randomize()
+	house_types.shuffle()
+	house1.house(house_types[0])
+	house2.house(house_types[1])
+	house3.house(house_types[2])
+	house4.house(house_types[3])
 
 func killfade():
 	$Control.queue_free()

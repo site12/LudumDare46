@@ -31,7 +31,7 @@ var force_stay = false
 
 var tilesize = 64/2
 var roompos = global_position
-var biome =  "cave"
+var biome =  "forest"
 # func _ready():
 # 	Engine.set_target_fps(Engine.get_iterations_per_second())
 # 	generate_floor(size)
@@ -148,8 +148,9 @@ func generate_extras(size,biome):
 func generate_walls(size,biome):
 	var r = WALLS.instance()
 	$walls.add_child(r)
-	r.wall(biome)
+	r.set_biome(biome)
 	r.tile = r.corners[0]
+	r.wall(biome)
 	r.position = roompos + Vector2(tilesize*-2,tilesize*-3.75)
 	
 	
@@ -158,8 +159,9 @@ func generate_walls(size,biome):
 		var t = WALLS.instance()
 		var c = COLL[3].instance()
 		$walls.add_child(t)
-		t.wall(biome)
+		t.set_biome(biome)
 		t.tile = t.tiles[0]
+		t.wall(biome)
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		
@@ -171,11 +173,12 @@ func generate_walls(size,biome):
 		var t = WALLS.instance()
 		var c = COLL[1].instance()
 		$walls.add_child(t)
-		t.wall(biome)
+		t.set_biome(biome)
 		if ypos == size.y+1:
 			t.tile = t.corners[3]
 		else:
 			t.tile = t.tiles[1]
+		t.wall(biome)
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 		c.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 
@@ -187,11 +190,12 @@ func generate_walls(size,biome):
 		var t = WALLS.instance()
 		var c = COLL[0].instance()
 		$walls.add_child(t)
-		t.wall(biome)
+		t.set_biome(biome)
 		if ypos == size.y+1:
 			t.tile = t.corners[2]
 		else:
 			t.tile = t.tiles[2]
+		t.wall(biome)
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 		c.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 
@@ -203,11 +207,12 @@ func generate_walls(size,biome):
 		var t = WALLS.instance()
 		var c = COLL[2].instance()
 		$walls.add_child(t)
-		t.wall(biome)
+		t.set_biome(biome)
 		if xpos == (size.x+1):
 			t.tile = t.corners[1]
 		else:
 			t.tile = t.tiles[3]
+		t.wall(biome)
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 

@@ -1,24 +1,42 @@
 extends StaticBody2D
 
-#var cavetiles = [
-#	load("res://tiles/rockwalls2/sprite_3.png"),
-#	load("res://tiles/rockwalls2/sprite_2.png"),
-#	load("res://tiles/rockwalls2/sprite_1.png"),
-#	load("res://tiles/rockwalls2/sprite_0.png")]
-#var cavecorners = [
-#	load("res://tiles/rockwalls2/sprite_4.png"),
-#	load("res://tiles/rockwalls2/sprite_5.png"),
-#	load("res://tiles/rockwalls2/sprite_6.png"),
-#	load("res://tiles/rockwalls2/sprite_7.png")]
-var corners = [load("res://tiles/leaves_tile/sprite_22.png"),load("res://tiles/leaves_tile/sprite_19.png"),load("res://tiles/leaves_tile/sprite_18.png"),load("res://tiles/leaves_tile/sprite_26.png")]
-var tiles = [load("res://tiles/leaves_tile/sprite_14.png"),load("res://tiles/leaves_tile/sprite_16.png"),load("res://tiles/leaves_tile/sprite_21.png"),load("res://tiles/leaves_tile/sprite_23.png")]
+var cavetiles = [
+	preload("res://tiles/rockwalls2/sprite_3.png"),
+	preload("res://tiles/rockwalls2/sprite_2.png"),
+	preload("res://tiles/rockwalls2/sprite_1.png"),
+	preload("res://tiles/rockwalls2/sprite_0.png")]
+var cavecorners = [
+	preload("res://tiles/rockwalls2/sprite_4.png"),
+	preload("res://tiles/rockwalls2/sprite_5.png"),
+	preload("res://tiles/rockwalls2/sprite_6.png"),
+	preload("res://tiles/rockwalls2/sprite_7.png")]
+var foresttiles = [
+	preload("res://tiles/leaves_tile/sprite_22.png"),
+	preload("res://tiles/leaves_tile/sprite_19.png"),
+	preload("res://tiles/leaves_tile/sprite_18.png"),
+	preload("res://tiles/leaves_tile/sprite_26.png")]
+var forestcorners = [
+	preload("res://tiles/leaves_tile/sprite_14.png"),
+	preload("res://tiles/leaves_tile/sprite_16.png"),
+	preload("res://tiles/leaves_tile/sprite_21.png"),
+	preload("res://tiles/leaves_tile/sprite_23.png")]
+var corners
+var tiles
 var tile
 
 
 func _ready():
 	pass
 	
-	
+
+func set_biome(biome):
+	if biome == 'cave':
+		corners = cavecorners
+		tiles = cavetiles
+	elif biome == 'forest':
+		corners = forestcorners
+		tiles = foresttiles
+
 func wall(biome):
 	$Sprite.texture = tile
 	
