@@ -207,5 +207,8 @@ shape = SubResource( 6 )
 
 [node name="player" type="AnimationPlayer" parent="."]
 anims/hurt = SubResource( 7 )
+
+[node name="magic_cooldown" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="Collection" to="." method="_on_Collection_body_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

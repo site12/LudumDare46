@@ -4,7 +4,6 @@
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=3]
 
-
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0588235, 0.647059, 0.027451, 1 )
 
@@ -29,7 +28,7 @@ orbit_velocity_random = 0.0
 scale = 0.2
 scale_curve = SubResource( 4 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "hurt"
 length = 0.3
 tracks/0/type = "value"
@@ -109,4 +108,8 @@ process_material = SubResource( 5 )
 texture = ExtResource( 3 )
 
 [node name="player" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 8 )
+anims/hurt = SubResource( 6 )
+
+[node name="fire_timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="fire_timer" to="." method="_on_fire_timer_timeout"]

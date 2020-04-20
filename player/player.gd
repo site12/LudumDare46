@@ -5,8 +5,11 @@ const ARROW = preload('res://player/arrow.tscn')
 const ROPE = preload('res://Rope/verlet.tscn')
 var velocity = Vector2()
 var has_arrow = true
+var max_health = 100
 var health = 100
 var interacting = false
+var spell = 'whack'
+var armor = 1
 onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
@@ -64,10 +67,21 @@ func _process(_delta):
 	if Input.is_action_pressed('pull'):
 		if (arrow.position - position).length() < 50:
 			collect_arrow()
+	if Input.is_action_just_pressed('magic'):
+		if $magic_cooldown.time_left == 0:
+			$magic_cooldown.start()
+			match spell:
+				'speed_up': speed_up()
+				'health_up': health_up()
+				'armor_up': armor_up()
+				'whack': whack()
+
+
+
 
 func hurt(damage):	
 	$hurt.emitting = true
-	health -= damage
+	health -= damage / armor
 	$player.play('hurt')
 	healthbar.value = health
 	health_value.text = str(health)
@@ -77,6 +91,37 @@ func hurt(damage):
 
 func die():
 	print('sucks to suck guy')
+
+func speed_up():
+	speed += 100
+	yield(get_tree().create_timer(2), 'timeout')
+	speed -= 100
+	#Like probably indicated this somehow
+
+func health_up():
+	max_health += 40
+	health += 40
+	yield(get_tree().create_timer(2), 'timeout')
+	max_health -= 40
+	health = max(health-40, 1)
+
+func armor_up():
+	armor += 1
+	yield(get_tree().create_timer(2), 'timeout')
+	armor -= 1
+
+func whack():
+	var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
+	for baddy in baddies:
+		var pos_dif = (position - baddy.position)
+		if pos_dif.length() < 100:
+			var baddy_dp = baddy.attack_dir.normalized().dot(Vector2(get_global_mouse_position() - position).normalized())
+			print(baddy_dp)
+			if baddy_dp < -0.5:
+				baddy.hurt(5)
+				baddy.knockback(50, -pos_dif.normalized())
+
+
 
 func collect_arrow():
 	get_parent().get_node("Camera2D").isArrow = false

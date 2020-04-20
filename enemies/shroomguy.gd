@@ -5,8 +5,7 @@ var awaydist = 250
 var canattack = true
 var can_damage = true
 var dir
-var pre_dir
-var attack_dir
+
 
 func _ready():
 	pass
@@ -21,7 +20,7 @@ func _ready():
 	# speed = 100
 	# visible = true
 
-func hurt(damage, arrow):
+func hurt(damage, arrow=null):
 	.hurt(damage,arrow)
 	anims.play("hurt")
 	
@@ -48,7 +47,6 @@ func _physics_process(delta):
 		sprites.flip_h = false
 	if dir.x>0:
 		sprites.flip_h = true
-	pre_dir = dir
 	# if abs(dir.length()) > 50:
 	dir = dir.normalized() 
 	move_and_collide(dir * speed * delta)
