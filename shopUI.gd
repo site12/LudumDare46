@@ -28,13 +28,26 @@ var blacksmith_stock = [
 
 # Called when the node enters the scene tree for the first time.
 
-	
+func update_ui():
+	get_node('CanvasLayer/Control/ui/currency/ColorRect2/Label').text = 'Potions: '+str(global.potions) + '\nCurrent Spell: ' + global.spell
+	#do the thing for currency
 
 func shoppe(type):
 	$AnimationPlayer.play("init")
 	$CanvasLayer/Control/ui/title/ColorRect2/Label.text = type + " Shoppe"
+	randomize()
+	blacksmith_stock.shuffle()
+	magic_stock.shuffle()
+	update_ui()
 	for x in 5:
 		var t = item.instance()
+		match type:
+			'majick':
+				t.get_node('ColorRect/ColorRect2/HBoxContainer/name').text = magic_stock[x][0]
+				t.get_node('ColorRect/ColorRect2/HBoxContainer/name2').text = str(magic_stock[x][1])
+			'Weapons':
+				t.get_node('ColorRect/ColorRect2/HBoxContainer/name').text = blacksmith_stock[x][0]
+				t.get_node('ColorRect/ColorRect2/HBoxContainer/name2').text = str(blacksmith_stock[x][1])
 		anchor.add_child(t)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

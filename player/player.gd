@@ -6,16 +6,13 @@ const ROPE = preload('res://Rope/verlet.tscn')
 const FIREBALL = preload('res://player/fireball.tscn')
 const SHADOWBALL = preload('res://player/shadowball.tscn')
 const EXPLODE = preload('res://player/explode.tscn')
-var bow_damage = 5
 var velocity = Vector2()
 var has_arrow = true
 var max_health = 100
 var health = 100
 var interacting = false
-var spell = 'shadowball'
 var armor = 1
 var flame_cloak = false
-var potions = 0
 onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
@@ -80,7 +77,7 @@ func _process(_delta):
 	if Input.is_action_pressed('magic'):
 		if $magic_cooldown.time_left == 0:
 			$magic_cooldown.wait_time = 1
-			match spell:
+			match global.spell:
 				'speed_up': speed_up()
 				'health_up': health_up()
 				'armor_up': armor_up()
@@ -208,8 +205,8 @@ func freezeblast():
 			baddy.freeze()
 
 func use_potion():
-	if potions > 0:
-		potions -= 1
+	if global.potions > 0:
+		global.potions -= 1
 		health += 20
 		healthbar.value = health
 		health_value.text = str(health)
