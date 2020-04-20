@@ -3,12 +3,13 @@ extends KinematicBody2D
 export (int) var speed = 200
 const ARROW = preload('res://player/arrow.tscn')
 const ROPE = preload('res://Rope/verlet.tscn')
+const FIREBALL = preload('res://player/fireball.tscn')
 var velocity = Vector2()
 var has_arrow = true
 var max_health = 100
 var health = 100
 var interacting = false
-var spell = 'whack'
+var spell = 'fireball'
 var armor = 1
 onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
@@ -75,6 +76,7 @@ func _process(_delta):
 				'health_up': health_up()
 				'armor_up': armor_up()
 				'whack': whack()
+				'fireball': fireball()
 
 
 
@@ -120,6 +122,15 @@ func whack():
 			if baddy_dp < -0.5:
 				baddy.hurt(5)
 				baddy.knockback(50, -pos_dif.normalized())
+
+func fireball():
+	var fireball = FIREBALL.instance()
+	var mouse_pos = get_global_mouse_position()
+	var my_pos = position
+	fireball.position = position
+	fireball.linear_velocity = Vector2(mouse_pos - my_pos).normalized() * 500
+	fireball.z_index = z_index
+	get_parent().add_child(fireball)
 
 
 
