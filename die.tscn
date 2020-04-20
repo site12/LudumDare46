@@ -65,7 +65,7 @@ __meta__ = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 10
+layer = 128
 
 [node name="background" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0

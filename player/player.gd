@@ -6,6 +6,8 @@ const ROPE = preload('res://Rope/verlet.tscn')
 const FIREBALL = preload('res://player/fireball.tscn')
 const SHADOWBALL = preload('res://player/shadowball.tscn')
 const EXPLODE = preload('res://player/explode.tscn')
+const DIE = preload('res://die.tscn')
+const PARTI = preload('res://enemies/deadparticleshuman.tscn')
 var velocity = Vector2()
 var has_arrow = true
 var max_health = 100
@@ -13,6 +15,7 @@ var health = 100
 var interacting = false
 var armor = 1
 var flame_cloak = false
+var dead = false
 onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
@@ -114,7 +117,21 @@ func hurt(damage):
 		die()
 
 func die():
-	print('sucks to suck guy')
+	
+	if !dead:
+		interacting = true
+		dead = true
+		print("deadd")
+		var t = DIE.instance()
+		get_parent().add_child(t)
+		var p = PARTI.instance()
+		p.position = position
+		get_parent().add_child(p)
+		$spritehelper/sprites.visible = false
+		$shadow.visible = false
+		$hurt.visible = false
+		$hurt2.pitch_scale = 0.1
+		
 
 func speed_up():
 	speed += 100
