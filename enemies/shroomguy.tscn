@@ -11,7 +11,7 @@
 [ext_resource path="res://Sprites/Mushboi run/Scarry Mushroom boi0003.png" type="Texture" id=9]
 [ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=10]
 [ext_resource path="res://player/shadow.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=12]
+[ext_resource path="res://tiles/damage_particles/Allagard_5.png" type="Texture" id=12]
 [ext_resource path="res://enemies/hurt.tres" type="Material" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -71,7 +71,7 @@ position = Vector2( 0, -0.00748885 )
 material = ExtResource( 10 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 5
+frame = 7
 speed_scale = 2.5
 playing = true
 
@@ -107,6 +107,7 @@ percent_visible = false
 
 [node name="hurt" type="Particles2D" parent="."]
 modulate = Color( 1, 0, 0, 1 )
+material = ExtResource( 10 )
 position = Vector2( 0, 6 )
 z_index = 11
 emitting = false

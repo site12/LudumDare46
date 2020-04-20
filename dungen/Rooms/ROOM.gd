@@ -155,10 +155,11 @@ func generate_walls(size):
 	for xpos in size.x:
 		var t = WALLS.instance()
 		var c = COLL[3].instance()
+		t.wall()
 		t.tile = t.tiles[0]
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
-		t.wall()
+		
 		$walls.add_child(t)
 		$wallcollision.add_child(c)
 	
@@ -166,13 +167,14 @@ func generate_walls(size):
 	for ypos in size.y+2:
 		var t = WALLS.instance()
 		var c = COLL[1].instance()
+		t.wall()
 		if ypos == size.y+1:
 			t.tile = t.corners[3]
 		else:
 			t.tile = t.tiles[1]
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 		c.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
-		t.wall()
+
 		$walls.add_child(t)
 		$wallcollision.add_child(c)
 		
@@ -180,13 +182,14 @@ func generate_walls(size):
 	for ypos in size.y+2:
 		var t = WALLS.instance()
 		var c = COLL[0].instance()
+		t.wall()
 		if ypos == size.y+1:
 			t.tile = t.corners[2]
 		else:
 			t.tile = t.tiles[2]
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 		c.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
-		t.wall()
+
 		$walls.add_child(t)
 		$wallcollision.add_child(c)
 	
@@ -194,13 +197,14 @@ func generate_walls(size):
 	for xpos in size.x+2:
 		var t = WALLS.instance()
 		var c = COLL[2].instance()
+		t.wall()
 		if xpos == size.x+1:
 			t.tile = t.corners[1]
 		else:
 			t.tile = t.tiles[3]
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
-		t.wall()
+
 		t.z_index = -499
 		$walls.add_child(t)
 		$wallcollision.add_child(c)

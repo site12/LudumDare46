@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://tiles/leaves_new/sprite_82.png" type="Texture" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -53,6 +53,7 @@
 [ext_resource path="res://Sprites/town/house_generic.tscn" type="PackedScene" id=51]
 [ext_resource path="res://dungen/Rooms/extratile.tscn" type="PackedScene" id=52]
 [ext_resource path="res://town/Town.gd" type="Script" id=53]
+[ext_resource path="res://transition.tscn" type="PackedScene" id=54]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 464 )
@@ -894,3 +895,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/load = SubResource( 3 )
+
+[node name="transition" parent="." instance=ExtResource( 54 )]
