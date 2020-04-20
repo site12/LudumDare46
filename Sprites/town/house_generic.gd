@@ -15,6 +15,7 @@ func house(house):
 		randomize()
 		var m = mage.instance()
 		m.position = pos[rand_range(0,2)]
+		m.z_index = int(m.get_global_position().y)
 		add_child(m)
 	if house == type[1]:
 		$blacksmith.visible = true
@@ -22,6 +23,7 @@ func house(house):
 		randomize()
 		var s = smith.instance()
 		s.position = pos[rand_range(0,2)]
+		s.z_index = int(s.get_global_position().y)
 		add_child(s)
 	if house == type[2]:
 		$generic.visible = true
