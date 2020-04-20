@@ -158,6 +158,7 @@ func generate_walls(size):
 		t.tile = t.tiles[0]
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*size.y+32)
+		t.wall()
 		$walls.add_child(t)
 		$wallcollision.add_child(c)
 	
@@ -171,6 +172,7 @@ func generate_walls(size):
 			t.tile = t.tiles[1]
 		t.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
 		c.position = roompos + Vector2(tilesize*size.x+tilesize,tilesize*ypos)
+		t.wall()
 		$walls.add_child(t)
 		$wallcollision.add_child(c)
 		
@@ -184,6 +186,7 @@ func generate_walls(size):
 			t.tile = t.tiles[2]
 		t.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
 		c.position = roompos + Vector2(-tilesize*2,tilesize*ypos)
+		t.wall()
 		$walls.add_child(t)
 		$wallcollision.add_child(c)
 	
@@ -197,6 +200,7 @@ func generate_walls(size):
 			t.tile = t.tiles[3]
 		t.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
 		c.position = roompos + Vector2(tilesize*xpos,tilesize*-3.75)
+		t.wall()
 		t.z_index = -499
 		$walls.add_child(t)
 		$wallcollision.add_child(c)

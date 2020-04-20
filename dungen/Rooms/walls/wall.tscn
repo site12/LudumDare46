@@ -3,7 +3,6 @@
 [ext_resource path="res://dungen/Rooms/walls/wall.gd" type="Script" id=2]
 [ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=3]
 
-
 [node name="wall" type="StaticBody2D"]
 z_index = 1000
 z_as_relative = false

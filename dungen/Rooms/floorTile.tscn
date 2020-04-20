@@ -4,7 +4,6 @@
 [ext_resource path="res://dungen/Rooms/floortile.gd" type="Script" id=2]
 [ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=3]
 
-
 [node name="floortile" type="Node2D"]
 script = ExtResource( 2 )
 
