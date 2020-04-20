@@ -52,51 +52,53 @@ func get_input():
 		
 func _process(_delta):
 	currency_value.text = str(global.currency)
-	if Input.is_action_just_pressed("click") and !interacting:
-		if has_arrow:
-			get_parent().get_node("Camera2D").isArrow = true
-			var mouse_pos = get_global_mouse_position()
-			var my_pos = position
-			#print(str(mouse_pos)+'    '+str(my_pos))
-			arrow.position = position
-			arrow.linear_velocity = Vector2(mouse_pos - my_pos).normalized() * 500*2
-			arrow.get_node('CollisionShape2D').rotation = arrow.linear_velocity.angle()
-			#arrow.add_(mouse_pos - my_pos)
-			#var rope = get_parent().find_node('String')
-			get_parent().add_child(arrow)
-			if rope:
-				rope.player = self
-				rope.arrow = arrow
-				rope.visible = false
-				get_parent().add_child(rope)
-			has_arrow = false
+	if get_parent().name != 'Town':
+		if Input.is_action_just_pressed("click") and !interacting:
+			if has_arrow:
+				get_parent().get_node("Camera2D").isArrow = true
+				var mouse_pos = get_global_mouse_position()
+				var my_pos = position
+				#print(str(mouse_pos)+'    '+str(my_pos))
+				arrow.position = position
+				arrow.linear_velocity = Vector2(mouse_pos - my_pos).normalized() * 500*2
+				arrow.get_node('CollisionShape2D').rotation = arrow.linear_velocity.angle()
+				#arrow.add_(mouse_pos - my_pos)
+				#var rope = get_parent().find_node('String')
+				get_parent().add_child(arrow)
+				if rope:
+					rope.player = self
+					rope.arrow = arrow
+					rope.visible = false
+					get_parent().add_child(rope)
+				has_arrow = false
 
-	if Input.is_action_pressed('pull'):
-		if (arrow.position - position).length() < 50:
-			collect_arrow()
+		if Input.is_action_pressed('pull'):
+			if (arrow.position - position).length() < 50:
+				collect_arrow()
 
-	if Input.is_action_pressed('magic'):
-		if $magic_cooldown.time_left == 0:
-			$magic_cooldown.wait_time = 1
-			match global.spell:
-				'speed_up': speed_up()
-				'health_up': health_up()
-				'armor_up': armor_up()
-				'whack': whack()
-				'fireball': fireball()
-				'shadowball': shadowball()
-				'flamecloak': 
-					flamecloak()
-					$magic_cooldown.wait_time = 5
-				'fireblast': fireblast()
-				'remote_detonate': 
-					remote_detonate()
-					$magic_cooldown.wait_time = 3
-				'freezeblast': freezeblast()
-			$magic_cooldown.start()
+		if Input.is_action_pressed('magic'):
+			
+			if $magic_cooldown.time_left == 0:
+				$magic_cooldown.wait_time = 1
+				match global.spell:
+					'speed_up': speed_up()
+					'health_up': health_up()
+					'armor_up': armor_up()
+					'whack': whack()
+					'fireball': fireball()
+					'shadowball': shadowball()
+					'flamecloak': 
+						flamecloak()
+						$magic_cooldown.wait_time = 5
+					'fireblast': fireblast()
+					'remote_detonate': 
+						remote_detonate()
+						$magic_cooldown.wait_time = 3
+					'freezeblast': freezeblast()
+				$magic_cooldown.start()
 
-	if Input.is_action_just_pressed('potion'):
-		use_potion()
+		if Input.is_action_just_pressed('potion'):
+			use_potion()
 
 
 
@@ -139,7 +141,7 @@ func whack():
 		if pos_dif.length() < 100:
 			var baddy_dp = baddy.attack_dir.normalized().dot(Vector2(get_global_mouse_position() - position).normalized())
 			print(baddy_dp)
-			if baddy_dp < -0.5:
+			if baddy_dp < 0:
 				baddy.hurt(5)
 				baddy.knockback(50, -pos_dif.normalized())
 

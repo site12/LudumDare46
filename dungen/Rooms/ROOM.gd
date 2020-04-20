@@ -28,6 +28,7 @@ var pos
 var astar_index
 var discovered
 var force_stay = false
+var do_doors_work = false
 
 var tilesize = 64/2
 var roompos = global_position
@@ -39,56 +40,61 @@ var roompos = global_position
 func create():
 	generate_floor(size,Level.biome)
 	generate_doors()
+
+func _ready():
+	do_doors_work = false
+	$door_timer.start()
 	
 func thru_door(side):
 	if get_node('enemies').get_children().empty():
 		if current_room:
-			print('thru '+side+' door from ' + str(self.get_instance_id()))
-			current_room = false
-			var root = get_tree().get_root().get_node('world')
-			var level = root.get_node('ROOM')
-			var player = root.get_node('player')
-			var new_room = connected_rooms[side]
-			root.call_deferred('remove_child', self)
-			root.call_deferred('add_child',new_room)
-			#level.call_deferred("free")
-			
-			#new_room.create()
-			
-			#root.get_node('player').position = Vector2(500,500)
-			#var player = PLAYER.instance()
-			#player.position = Vector2(200,200)
-			#root.get_node('ROOM').add_child(player)
-			var which_door
-			for key in new_room.connected_rooms:
-				printt(new_room.connected_rooms[key].get_instance_id(), self.get_instance_id())
-				if int(new_room.connected_rooms[key].get_instance_id()) == int(self.get_instance_id()):
-					which_door = key
-			print(which_door)
-			match which_door:
-				'right':
-					player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
-				'left':
-					player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
-				'down':
-					player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
-				'up':
-					player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
+			if do_doors_work:
+				print('thru '+side+' door from ' + str(self.get_instance_id()))
+				current_room = false
+				var root = get_tree().get_root().get_node('world')
+				var level = root.get_node('ROOM')
+				var player = root.get_node('player')
+				var new_room = connected_rooms[side]
+				root.call_deferred('remove_child', self)
+				root.call_deferred('add_child',new_room)
+				#level.call_deferred("free")
+				
+				#new_room.create()
+				
+				#root.get_node('player').position = Vector2(500,500)
+				#var player = PLAYER.instance()
+				#player.position = Vector2(200,200)
+				#root.get_node('ROOM').add_child(player)
+				var which_door
+				for key in new_room.connected_rooms:
+					printt(new_room.connected_rooms[key].get_instance_id(), self.get_instance_id())
+					if int(new_room.connected_rooms[key].get_instance_id()) == int(self.get_instance_id()):
+						which_door = key
+				print(which_door)
+				match which_door:
+					'right':
+						player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+					'left':
+						player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+					'down':
+						player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+					'up':
+						player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
 
 
-			# match side:
-			# 	'left':
-			# 		player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
-			# 	'right':
-			# 		player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
-			# 	'up':
-			# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
-			# 	'down':
-			# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
-			
-			if not force_stay:
-				new_room.current_room = true
-			new_room.discovered = true
+				# match side:
+				# 	'left':
+				# 		player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+				# 	'right':
+				# 		player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+				# 	'up':
+				# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+				# 	'down':
+				# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
+				
+				if not force_stay:
+					new_room.current_room = true
+				new_room.discovered = true
 
 
 
@@ -109,6 +115,8 @@ func generate_doors():
 			'down':
 				new_door.position = Vector2(rand_range(1, size.x-1), size.y)
 		new_door.position*= tilesize
+		new_door.z_index = -490
+		new_door.z_as_relative = false
 		doors[door] = new_door
 		$doors.add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
@@ -275,4 +283,5 @@ func generate_floor(size,biome):
 	generate_walls(size,biome)
 	generate_gaps(size,biome)
 			
-	
+func _on_door_timer_timeout():
+	do_doors_work = true
