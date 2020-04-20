@@ -31,7 +31,7 @@ var force_stay = false
 
 var tilesize = 64/2
 var roompos = global_position
-var biome =  "forest"
+onready var biome =  Level.biome
 # func _ready():
 # 	Engine.set_target_fps(Engine.get_iterations_per_second())
 # 	generate_floor(size)
