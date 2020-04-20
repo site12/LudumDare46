@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/link.png-afdfdb9ecaaea1612c7acea072f3f868.stex"
+path="res://.import/0cddeb41ec7b14acc1a3eae0542218b7.png-2010244d0652d5aa354fa411b591715a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Chains/link.png"
-dest_files=[ "res://.import/link.png-afdfdb9ecaaea1612c7acea072f3f868.stex" ]
+source_file="res://Sprites/0cddeb41ec7b14acc1a3eae0542218b7.png"
+dest_files=[ "res://.import/0cddeb41ec7b14acc1a3eae0542218b7.png-2010244d0652d5aa354fa411b591715a.stex" ]
 
 [params]
 

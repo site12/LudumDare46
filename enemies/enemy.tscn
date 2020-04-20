@@ -2,7 +2,8 @@
 
 [ext_resource path="res://enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
-[ext_resource path="res://0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=3]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0588235, 0.647059, 0.027451, 1 )

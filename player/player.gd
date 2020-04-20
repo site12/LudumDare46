@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export (int) var speed = 200
 const ARROW = preload('res://player/arrow.tscn')
-const ROPE = preload('res://verlet.tscn')
+const ROPE = preload('res://Rope/verlet.tscn')
 var velocity = Vector2()
 var has_arrow = true
 var health = 100
