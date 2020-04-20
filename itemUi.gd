@@ -6,6 +6,7 @@ func _on_Button_pressed():
 	var cost = int(get_node('ColorRect/ColorRect2/HBoxContainer/name2').text)
 	if global.currency >= cost:
 		global.currency -= cost
+		$chaching.play()
 		match item:
 			'Potion':
 				global.potions += 1
