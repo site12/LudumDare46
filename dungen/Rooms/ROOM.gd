@@ -7,7 +7,7 @@ const DOOR = preload('res://dungen/Rooms/doortile.tscn')
 const TILE = preload("res://dungen/Rooms/floortile.tscn")
 const EXTRA = preload('res://dungen/Rooms/extratile.tscn')
 const PLAYER = preload('res://player/player.tscn')
-const ENEMY = [preload('res://enemies/shroomguy.tscn')]
+const ENEMY = [preload('res://enemies/shroomguy.tscn'),preload("res://enemies/bigshroom.tscn")]
 const WALLS = preload('res://dungen/Rooms/walls/wall.tscn')
 const COLL = [
 preload('res://dungen/Rooms/walls/left.tscn'),
@@ -114,13 +114,20 @@ func generate_doors():
 		$doors.add_child(new_door)
 		#new_door.position = randi() % (max_size - min_size)
 
+func generate_boss(size):
+	if(room_type == "end"):
+		var enemi = ENEMY[1]
+		var e = enemi.instance()
+		e.position = roompos + Vector2(tilesize*size.x/2,tilesize*size.y/2)
+		$enemies.add_child(e)
+
 func generate_enemies(size,biome):
 
 	for xpos in size.x:
 		enemies.append([])
 		for ypos in size.y:
 			randomize()
-			var enemi = ENEMY[int(rand_range(0,ENEMY.size()))]
+			var enemi = ENEMY[0]
 			randomize()
 			if(room_type != "start" and room_type != "end"):
 				if(int(rand_range(0,50)) == 1):

@@ -182,6 +182,7 @@ frames = SubResource( 1 )
 
 [node name="sprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+frame = 8
 playing = true
 
 [node name="near" type="AnimationPlayer" parent="."]
@@ -252,7 +253,7 @@ position = Vector2( 208, 608 )
 scale = Vector2( 0.525, 0.534152 )
 frames = SubResource( 8 )
 animation = "blacksmith"
-frame = 12
+frame = 3
 playing = true
 flip_h = true
 
