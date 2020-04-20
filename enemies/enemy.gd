@@ -32,6 +32,7 @@ func hurt(damage, arrow = null):
 func set_on_fire():
 	on_fire = true
 	fire_time = 5
+	$fire_timer.start()
 	#add fire effect
 
 func _on_fire_timer_timeout():
