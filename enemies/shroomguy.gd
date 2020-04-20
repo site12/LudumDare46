@@ -24,6 +24,7 @@ func hurt(damage, arrow=null):
 	.hurt(damage,arrow)
 	anims.play("hurt")
 	
+	
 func _physics_process(delta):
 	if dead:
 		die()
@@ -49,7 +50,8 @@ func _physics_process(delta):
 		sprites.flip_h = true
 	# if abs(dir.length()) > 50:
 	dir = dir.normalized() 
-	move_and_collide(dir * speed * delta)
+	if not frozen:
+		move_and_collide(dir * speed * delta)
 	z_index = int(position.y)
 
 func attack(delta):

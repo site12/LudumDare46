@@ -17,6 +17,8 @@ func _ready():
 	dir(Level.direction)
 
 func transition():
+	$transition.play(true)
+	yield(get_tree().create_timer(0.3), 'timeout')
 	get_tree().get_root().call_deferred('add_child', WORLD.instance())
 	get_tree().get_root().call_deferred('remove_child', self)
 

@@ -51,7 +51,7 @@ func _on_Arrow_body_entered(body):
 		get_parent().get_node("Camera2D").shake(0.2,15,8)
 		stuck = true
 		if body.is_in_group('enemy'):
-			body.hurt(5, self)
+			body.hurt(player.bow_damage, self)
 			stuck_to = body
 			stuck_to.can_damage = false
 			stuck_to.canattack = false

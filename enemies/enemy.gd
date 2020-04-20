@@ -8,6 +8,7 @@ var health = 15
 var dead = false
 var on_fire = false
 var fire_time
+var frozen = false
 onready var sprites = $spritehelper/sprites
 onready var obj = get_parent().get_parent().get_parent().get_node("player")
 #onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
@@ -34,6 +35,14 @@ func set_on_fire():
 	fire_time = 5
 	$fire_timer.start()
 	#add fire effect
+
+func freeze():
+	#Add frozen effects
+	modulate = Color.lightskyblue
+	frozen = true
+	yield(get_tree().create_timer(1.1), 'timeout')
+	frozen = false
+	modulate = Color.white
 
 func _on_fire_timer_timeout():
 	hurt(1)

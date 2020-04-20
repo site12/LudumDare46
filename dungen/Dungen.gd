@@ -90,7 +90,8 @@ func connect_room(room, room_to, direction):
 func start_game(start):
 	var root = get_tree().get_root().get_node('world')
 	var level = root.get_node('Dungen')
-	root.remove_child(level)
+	# root.remove_child(level)
+	root.call_deferred('remove_child', level)
 	#level.call_deferred("free")
 	#var player = load('res://player/player.tscn')
 	#player = player.instance()
@@ -100,7 +101,9 @@ func start_game(start):
 	start.current_room = true
 	start.discovered = true
 	#start.create()
-	root.add_child(start)
+	root.call_deferred('add_child', start)
+	get_parent().open()
+	# root.add_child(start)
 
 func start_end(room_array):
 	var dead_ends = []

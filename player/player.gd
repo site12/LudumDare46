@@ -4,13 +4,18 @@ export (int) var speed = 200
 const ARROW = preload('res://player/arrow.tscn')
 const ROPE = preload('res://Rope/verlet.tscn')
 const FIREBALL = preload('res://player/fireball.tscn')
+const SHADOWBALL = preload('res://player/shadowball.tscn')
+const EXPLODE = preload('res://player/explode.tscn')
+var bow_damage = 5
 var velocity = Vector2()
 var has_arrow = true
 var max_health = 100
 var health = 100
 var interacting = false
-var spell = 'fireball'
+var spell = 'shadowball'
 var armor = 1
+var flame_cloak = false
+var potions = 0
 onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
@@ -39,6 +44,9 @@ func get_input():
 	elif velocity.x < 0:
 		sprites.flip_h = false
 		$AnimationPlayer.play("front")
+	elif velocity.y != 0:
+		sprites.flip_h = true
+		$AnimationPlayer.play("front")
 	elif velocity == Vector2.ZERO:
 		sprites.playing = false
 		sprites.frame = 0
@@ -63,20 +71,34 @@ func _process(_delta):
 				rope.arrow = arrow
 				rope.visible = false
 				get_parent().add_child(rope)
-			
 			has_arrow = false
+
 	if Input.is_action_pressed('pull'):
 		if (arrow.position - position).length() < 50:
 			collect_arrow()
-	if Input.is_action_just_pressed('magic'):
+
+	if Input.is_action_pressed('magic'):
 		if $magic_cooldown.time_left == 0:
-			$magic_cooldown.start()
+			$magic_cooldown.wait_time = 1
 			match spell:
 				'speed_up': speed_up()
 				'health_up': health_up()
 				'armor_up': armor_up()
 				'whack': whack()
 				'fireball': fireball()
+				'shadowball': shadowball()
+				'flamecloak': 
+					flamecloak()
+					$magic_cooldown.wait_time = 5
+				'fireblast': fireblast()
+				'remote_detonate': 
+					remote_detonate()
+					$magic_cooldown.wait_time = 3
+				'freezeblast': freezeblast()
+			$magic_cooldown.start()
+
+	if Input.is_action_just_pressed('potion'):
+		use_potion()
 
 
 
@@ -132,7 +154,65 @@ func fireball():
 	fireball.z_index = z_index
 	get_parent().add_child(fireball)
 
+func shadowball():
+	var shadowball = SHADOWBALL.instance()
+	var mouse_pos = get_global_mouse_position()
+	var my_pos = position
+	shadowball.position = position
+	shadowball.linear_velocity = Vector2(mouse_pos - my_pos).normalized() * 500
+	shadowball.z_index = z_index
+	get_parent().add_child(shadowball)
 
+func flamecloak():
+	flame_cloak = true
+	yield(get_tree().create_timer(3), 'timeout')
+	flame_cloak = false
+
+func fireblast():
+	var explode = EXPLODE.instance()
+	explode.emitting = true
+	explode.position = position
+	explode.modulate = Color.red
+	get_parent().call_deferred('add_child', explode)
+	var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
+	for baddy in baddies:
+		var pos_dif = (position - baddy.position)
+		if pos_dif.length < 100:
+			baddy.hurt(5)
+			baddy.knockback(50, -pos_dif.normalized())
+
+func remote_detonate():
+	if not has_arrow:
+		var explode = EXPLODE.instance()
+		explode.emitting = true
+		explode.position = arrow.position
+		explode.modulate = Color.red
+		get_parent().call_deferred('add_child', explode)
+		var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
+		for baddy in baddies:
+			var pos_dif = (arrow.position - baddy.position)
+			if pos_dif.length < 100:
+				baddy.hurt(5)
+				baddy.knockback(50, -pos_dif.normalized())
+
+func freezeblast():
+	var explode = EXPLODE.instance()
+	explode.emitting = true
+	explode.position = position
+	explode.modulate = Color.aqua
+	get_parent().call_deferred('add_child', explode)
+	var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
+	for baddy in baddies:
+		var pos_dif = (position - baddy.position)
+		if pos_dif.length < 100:
+			baddy.freeze()
+
+func use_potion():
+	if potions > 0:
+		potions -= 1
+		health += 20
+		healthbar.value = health
+		health_value.text = str(health)
 
 func collect_arrow():
 	get_parent().get_node("Camera2D").isArrow = false
@@ -154,6 +234,8 @@ func _on_hitbox_body_entered(body):
 	if body.get_class() == 'enemy':
 		if body.can_damage:
 			hurt(5)	
+			if flame_cloak:
+				body.set_on_fire()
 
 func _on_Collection_body_entered(body):
 	# print('arrow!')

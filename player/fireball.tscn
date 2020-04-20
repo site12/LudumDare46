@@ -43,13 +43,4 @@ amount = 274
 lifetime = 0.25
 speed_scale = 2.0
 process_material = SubResource( 4 )
-
-[node name="explode" type="Particles2D" parent="."]
-emitting = false
-amount = 200
-lifetime = 0.3
-one_shot = true
-speed_scale = 2.0
-explosiveness = 0.8
-process_material = SubResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_fireball_body_entered"]
