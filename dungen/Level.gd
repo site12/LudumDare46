@@ -5,7 +5,6 @@ var room_array = []
 var a_star
 var virtual_rooms = []
 var direction = ""
-var biome = "forest"
 var cursor = load("res://tiles/cursor.png")
 var biome = 'forest'
 func _ready():
