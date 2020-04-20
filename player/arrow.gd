@@ -12,7 +12,7 @@ onready var player = get_parent().get_node('player')
 func _ready():
 	get_parent().get_node("Camera2D")
 	colliding = true
-func _process(delta):
+func _process(_delta):
 	z_index = position.y+10
 	if Input.is_action_pressed('pull'):
 		if linear_velocity.length()<100:
@@ -40,7 +40,7 @@ func _process(delta):
 		stuck_to = null
 		
 
-func body_killed(body):
+func body_killed(_body):
 	stuck = false
 	stuck_to = null
 

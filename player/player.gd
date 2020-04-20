@@ -6,23 +6,27 @@ const ROPE = preload('res://Rope/verlet.tscn')
 var velocity = Vector2()
 var has_arrow = true
 var health = 100
+var interacting = false
 onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
 onready var healthbar = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/ProgressBar')
 onready var health_value = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/Label')
 
+func dir():
+	if !interacting:
+		if Input.is_action_pressed('right'):
+			velocity.x += 1
+		if Input.is_action_pressed('left'):
+			velocity.x -= 1
+		if Input.is_action_pressed('down'):
+			velocity.y += 1
+		if Input.is_action_pressed('up'):
+			velocity.y -= 1
 
 func get_input():
 	velocity = Vector2()
-	if Input.is_action_pressed('right'):
-		velocity.x += 1
-	if Input.is_action_pressed('left'):
-		velocity.x -= 1
-	if Input.is_action_pressed('down'):
-		velocity.y += 1
-	if Input.is_action_pressed('up'):
-		velocity.y -= 1
+	dir()
 	velocity = velocity.normalized() * speed
 	
 	if velocity.x > 0:
@@ -37,8 +41,8 @@ func get_input():
 		$AnimationPlayer.play("front")
 		$AnimationPlayer.stop()
 		
-func _process(delta):
-	if Input.is_action_just_pressed("click"):
+func _process(_delta):
+	if Input.is_action_just_pressed("click") and !interacting:
 		if has_arrow:
 			get_parent().get_node("Camera2D").isArrow = true
 			var mouse_pos = get_global_mouse_position()
