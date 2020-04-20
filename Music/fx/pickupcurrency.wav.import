@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pickupcurrency.wav-5e45d4753e83dd9bf6d2ae91da305b70.sample"
+
+[deps]
+
+source_file="res://Music/fx/pickupcurrency.wav"
+dest_files=[ "res://.import/pickupcurrency.wav-5e45d4753e83dd9bf6d2ae91da305b70.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

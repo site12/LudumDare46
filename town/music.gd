@@ -17,3 +17,7 @@ func play():
 		$AudioStreamPlayer2D.set_stream(music[2])
 	if Level.biome == "cave":
 		$AudioStreamPlayer2D.set_stream(music[3])
+
+
+func _on_AudioStreamPlayer2D_finished():
+	$AudioStreamPlayer2D.play()

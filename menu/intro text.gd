@@ -1,4 +1,4 @@
-extends MarginContainer
+extends CanvasLayer
 
 
 var townNames = [
@@ -74,10 +74,11 @@ var quips = [
 "Or like, whatever. Do what you want."
 ]
 
-onready var Label = $Label
+onready var Label = $ColorRect/Node2D/Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimationPlayer.play("init")
 	randomize()
 	Level.direction = dirs[rand_range(0,3)]
 	Label.text = "An evil army approaches the town of " + townNames[rand_range(0,49)]+" from the "+Level.direction+". Protect it at all costs! " +quips[rand_range(0,9)]
@@ -89,6 +90,6 @@ func _ready():
 
 
 func _on_Button_pressed():
-	get_parent().get_parent().get_parent().get_node("AnimationPlayer").play("next")
+	get_node("AnimationPlayer").play("next")
 	yield(get_tree().create_timer(1), 'timeout')
 	get_tree().change_scene("res://town/Town.tscn")

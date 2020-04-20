@@ -7,6 +7,7 @@ func _process(_delta):
 	if available:
 		if (player.position - position).length() < 50:
 			available = false
+			player.pickupcoin()
 			global.currency += 1
 			get_parent().call_deferred('remove_child', self)
 			

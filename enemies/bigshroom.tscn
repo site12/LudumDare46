@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://enemies/bigshroom.gd" type="Script" id=1]
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://Sprites/big boi2/big guy0001.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/big boi2/big guy0002.png" type="Texture" id=21]
 [ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=22]
+[ext_resource path="res://Music/fx/mushroom_die.wav" type="AudioStream" id=23]
+[ext_resource path="res://Music/fx/mushroom_damage.wav" type="AudioStream" id=24]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.844444, 0.992593, 1 )
@@ -170,3 +172,9 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 56 )
 shape = SubResource( 12 )
+
+[node name="damage2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 24 )
+
+[node name="die2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 23 )

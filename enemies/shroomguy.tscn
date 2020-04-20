@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://enemies/shroomguy.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Mushboi run/Scarry Mushroom boi0004.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://player/shadow.png" type="Texture" id=11]
 [ext_resource path="res://tiles/damage_particles/Allagard_5.png" type="Texture" id=12]
 [ext_resource path="res://enemies/hurt.tres" type="Material" id=13]
+[ext_resource path="res://Music/fx/mushroom_damage.wav" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 7.08337 )
@@ -71,7 +72,7 @@ position = Vector2( 0, -0.00748885 )
 material = ExtResource( 10 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 6
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -126,5 +127,9 @@ wait_time = 3.0
 
 [node name="fire_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+pitch_scale = 2.0
 [connection signal="timeout" from="attacktimer" to="." method="_on_attacktimer_timeout"]
 [connection signal="timeout" from="fire_timer" to="." method="_on_fire_timer_timeout"]
