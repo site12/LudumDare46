@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://alagard.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://itemUi.gd" type="Script" id=2]
+[ext_resource path="res://Music/fx/cha-ching.wav" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -37,10 +38,11 @@ __meta__ = {
 [node name="ColorRect2" type="ColorRect" parent="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
+margin_left = 8.0
 margin_top = 16.0
-margin_right = -16.0
+margin_right = -24.0
 margin_bottom = -16.0
+rect_min_size = Vector2( 744.168, 96 )
 color = Color( 0.407843, 0.203922, 0.203922, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -60,42 +62,46 @@ __meta__ = {
 }
 
 [node name="name" type="Label" parent="ColorRect/ColorRect2/HBoxContainer"]
-margin_right = 194.0
+margin_right = 204.0
 margin_bottom = 96.0
+rect_min_size = Vector2( 204, 96 )
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
 text = "[ITEM NAME]"
 valign = 1
 
 [node name="spacer" type="Label" parent="ColorRect/ColorRect2/HBoxContainer"]
-margin_left = 198.0
-margin_right = 318.0
+margin_left = 208.0
+margin_right = 328.0
 margin_bottom = 96.0
+rect_min_size = Vector2( 120, 96 )
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
 text = "            "
 valign = 1
 
 [node name="name2" type="Label" parent="ColorRect/ColorRect2/HBoxContainer"]
-margin_left = 322.0
-margin_right = 418.0
+margin_left = 332.0
+margin_right = 428.0
 margin_bottom = 96.0
+rect_min_size = Vector2( 96, 96 )
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
 text = "[COST]"
 valign = 1
 
 [node name="spacer2" type="Label" parent="ColorRect/ColorRect2/HBoxContainer"]
-margin_left = 422.0
-margin_right = 552.0
+margin_left = 432.0
+margin_right = 562.0
 margin_bottom = 96.0
+rect_min_size = Vector2( 130, 96 )
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
 text = "             "
 valign = 1
 
 [node name="Button" type="Button" parent="ColorRect/ColorRect2/HBoxContainer"]
-margin_left = 556.0
+margin_left = 566.0
 margin_right = 712.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
@@ -103,6 +109,7 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="ColorRect/ColorRect2/HBoxContainer/Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 156, 96 )
 custom_fonts/font = SubResource( 2 )
 text = "BUY"
 align = 1
@@ -110,4 +117,9 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="chaching" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 11.718
+pitch_scale = 1.75
 [connection signal="pressed" from="ColorRect/ColorRect2/HBoxContainer/Button" to="." method="_on_Button_pressed"]
