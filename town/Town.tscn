@@ -54,6 +54,7 @@
 [ext_resource path="res://dungen/Rooms/extratile.tscn" type="PackedScene" id=52]
 [ext_resource path="res://town/Town.gd" type="Script" id=53]
 [ext_resource path="res://town/clearing.tscn" type="PackedScene" id=54]
+[ext_resource path="res://transition.tscn" type="PackedScene" id=55]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 464 )
@@ -915,3 +916,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/load = SubResource( 3 )
+
+[node name="transition" parent="." instance=ExtResource( 54 )]
