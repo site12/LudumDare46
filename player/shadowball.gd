@@ -12,7 +12,7 @@ func _on_Timer_timeout():
 
 func _on_shadowball_body_entered(body):
 	if body.is_in_group('enemy'):
-		body.hurt(1)
+		body.hurt(3)
 	elif body.is_in_group('player'):
 		return
 		

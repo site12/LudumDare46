@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name enemy
 
+const COINBAG = preload('res://player/coinbag.tscn')
+
 var attack_dir
 var speed = 100
 var health = 15
@@ -57,6 +59,9 @@ func knockback(amount: float, direction: Vector2):
 	move_and_collide(direction.normalized()*amount)
 
 func die():
+	var coinbag = COINBAG.instance()
+	coinbag.position = position
+	get_parent().get_parent().get_parent().call_deferred('add_child', coinbag)
 	get_parent().call_deferred('remove_child', 'self')
 	call_deferred('queue_free')
 

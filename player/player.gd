@@ -17,7 +17,7 @@ onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
 onready var healthbar = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/ProgressBar')
-onready var health_value = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/Label')
+onready var currency_value = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/Label')
 
 func dir():
 	if !interacting:
@@ -51,6 +51,7 @@ func get_input():
 		$AnimationPlayer.stop()
 		
 func _process(_delta):
+	currency_value.text = str(global.currency)
 	if Input.is_action_just_pressed("click") and !interacting:
 		if has_arrow:
 			get_parent().get_node("Camera2D").isArrow = true
@@ -105,7 +106,6 @@ func hurt(damage):
 	health -= damage / armor
 	$player.play('hurt')
 	healthbar.value = health
-	health_value.text = str(health)
 	if health < 0:
 		health == 0
 		die()
@@ -209,7 +209,6 @@ func use_potion():
 		global.potions -= 1
 		health += 20
 		healthbar.value = health
-		health_value.text = str(health)
 
 func collect_arrow():
 	get_parent().get_node("Camera2D").isArrow = false

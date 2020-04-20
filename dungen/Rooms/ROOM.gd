@@ -51,6 +51,7 @@ func thru_door(side):
 			var player = root.get_node('player')
 			var new_room = connected_rooms[side]
 			root.call_deferred('remove_child', self)
+			root.call_deferred('add_child',new_room)
 			#level.call_deferred("free")
 			
 			#new_room.create()
@@ -85,7 +86,7 @@ func thru_door(side):
 			# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
 			# 	'down':
 			# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
-			root.call_deferred('add_child',new_room)
+			
 			if not force_stay:
 				new_room.current_room = true
 			new_room.discovered = true
