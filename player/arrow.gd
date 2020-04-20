@@ -48,6 +48,7 @@ func _on_Arrow_body_entered(body):
 	if colliding:
 		colliding = false
 		$impact.emitting = true
+		$impactsound.play()
 		get_parent().get_node("Camera2D").shake(0.2,15,8)
 		stuck = true
 		if body.is_in_group('enemy'):

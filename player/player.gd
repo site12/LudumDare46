@@ -101,7 +101,8 @@ func _process(_delta):
 
 
 
-func hurt(damage):	
+func hurt(damage):
+	$hurt2.play()
 	$hurt.emitting = true
 	health -= damage / armor
 	$player.play('hurt')
@@ -192,6 +193,9 @@ func remote_detonate():
 				baddy.hurt(5)
 				baddy.knockback(50, -pos_dif.normalized())
 
+func killshroomguy():
+	$killshroomguy.play()
+
 func freezeblast():
 	var explode = EXPLODE.instance()
 	explode.emitting = true
@@ -219,6 +223,9 @@ func collect_arrow():
 	get_parent().remove_child(rope)
 	arrow = ARROW.instance()
 	rope = ROPE.instance()
+
+func pickupcoin():
+	$pickupcoins.play()
 
 func _physics_process(_delta):
 	get_input()

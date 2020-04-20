@@ -23,11 +23,14 @@ func _ready():
 func hurt(damage, arrow=null):
 	.hurt(damage,arrow)
 	anims.play("hurt")
+	$damage.play()
 	
 	
 func _physics_process(delta):
 	if dead:
+		obj.killshroomguy()
 		die()
+		
 	dir = Vector2()
 	for enemy in get_parent().get_children():
 		if (enemy.global_position - global_position).length() < 50:

@@ -1,22 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://menu/intro text.gd" type="Script" id=2]
 [ext_resource path="res://tiles/title_placeholder.png" type="Texture" id=3]
-[ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=5]
+[ext_resource path="res://menu/next.tres" type="Animation" id=4]
 [ext_resource path="res://alagard.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 51
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 6 )
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "init"
 length = 0.5
 tracks/0/type = "value"
@@ -26,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -45,8 +38,19 @@ tracks/1/keys = {
 "method": "killsquare"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control/CanvasLayer/ColorRect:visible")
@@ -119,42 +123,6 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Control/CanvasLayer/intro text:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Control/CanvasLayer/intro text:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 1, 1.4, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("Control/CanvasLayer/intro text:modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.2525, -0.25, 0, -0.0375, -13.25, 0.6625, 39.75 ),
-"times": PoolRealArray( 0, 1 )
 }
 
 [node name="Menu" type="Node2D"]
@@ -244,63 +212,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="intro text" type="MarginContainer" parent="Control/CanvasLayer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -24.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Control/CanvasLayer/intro text"]
-material = ExtResource( 5 )
-margin_right = 1856.0
-margin_bottom = 1024.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
-text = "An army approaches the town of [townname] from the [direction]. Protect it at all costs! [insert quip]"
-align = 1
-valign = 1
-autowrap = true
-
-[node name="Label2" type="Label" parent="Control/CanvasLayer/intro text"]
-material = ExtResource( 5 )
-margin_right = 1856.0
-margin_bottom = 1024.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
-text = "Click the screen to continue..."
-align = 1
-valign = 2
-autowrap = true
-
-[node name="Button" type="Button" parent="Control/CanvasLayer/intro text"]
-margin_right = 1856.0
-margin_bottom = 1024.0
-focus_mode = 0
-enabled_focus_mode = 0
-flat = true
-
 [node name="ColorRect2" type="ColorRect" parent="Control/CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/init = SubResource( 3 )
-anims/load = SubResource( 4 )
-anims/next = SubResource( 5 )
+anims/init = SubResource( 2 )
+anims/load = SubResource( 3 )
+anims/next = ExtResource( 4 )
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Control/CanvasLayer/intro text/Button" to="Control/CanvasLayer/intro text" method="_on_Button_pressed"]

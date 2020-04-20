@@ -16,8 +16,6 @@ func _ready():
 	#print(t)
 	if(t==0):
 		$Sprite.texture = tiles[0]
-	if(t==1):
-		$Sprite.texture = tiles[1]
 	else: 
 		$Sprite.texture = null
 		queue_free()

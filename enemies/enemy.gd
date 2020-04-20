@@ -59,6 +59,7 @@ func knockback(amount: float, direction: Vector2):
 	move_and_collide(direction.normalized()*amount)
 
 func die():
+	
 	var coinbag = COINBAG.instance()
 	coinbag.position = position
 	get_parent().get_parent().get_parent().call_deferred('add_child', coinbag)

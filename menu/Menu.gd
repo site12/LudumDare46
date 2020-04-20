@@ -18,4 +18,9 @@ func killsquare():
 
 func _on_play_pressed():
 	anims.play("load")
+	yield(get_tree().create_timer(3), 'timeout')
+	townbabey()
 	
+func townbabey():
+	
+	get_tree().change_scene("res://intro text.tscn")

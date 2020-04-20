@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mushroom_die.wav-45afb0623f218087c6e31fe268c03a36.sample"
+
+[deps]
+
+source_file="res://Music/fx/mushroom_die.wav"
+dest_files=[ "res://.import/mushroom_die.wav-45afb0623f218087c6e31fe268c03a36.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
