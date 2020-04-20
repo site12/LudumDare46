@@ -23,6 +23,9 @@ func hurt(damage, arrow):
 		die()
 		arrow.body_killed(self)
 
+func knockback(amount: float, direction: Vector2):
+	move_and_collide(direction.normalized()*amount)
+
 func die():
 	get_parent().call_deferred('remove_child', 'self')
 	call_deferred('queue_free')

@@ -88,5 +88,5 @@ func _ready():
 
 
 func _on_Button_pressed():
-	yield(get_tree().create_timer(2), 'timeout')
+	yield(get_tree().create_timer(.1), 'timeout')
 	get_tree().change_scene("res://world/world.tscn")

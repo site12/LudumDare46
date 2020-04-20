@@ -7,6 +7,7 @@ var stuck_to
 var second_last_point
 var colliding = true
 var tran
+onready var player = get_parent().get_node('player')
 
 func _ready():
 	get_parent().get_node("Camera2D")
@@ -14,11 +15,15 @@ func _ready():
 func _process(delta):
 	z_index = position.y+10
 	if Input.is_action_pressed('pull'):
-		colliding = false
+		if linear_velocity.length()<100:
+			colliding = false
+		else:
+			colliding = true
 		if stuck:
 			if is_instance_valid(stuck_to):
 				if stuck_to.is_in_group('enemy'):
-					stuck_to.move_and_slide((second_last_point - stuck_to.position).normalized() *1000)
+					stuck_to.move_and_slide((player.position - position).normalized() *1000)
+					
 					# pos = stuck_to.position
 					# stuck = false
 					# stuck_to = null
@@ -29,6 +34,11 @@ func _process(delta):
 				stuck = false
 		else:
 			linear_velocity = Vector2.ZERO
+	if Input.is_action_just_released('pull'):
+		release()
+		stuck = false
+		stuck_to = null
+		
 
 func body_killed(body):
 	stuck = false
@@ -43,10 +53,14 @@ func _on_Arrow_body_entered(body):
 		if body.is_in_group('enemy'):
 			body.hurt(5, self)
 			stuck_to = body
+			stuck_to.can_damage = false
 			
 		else:
 			rotatoe = true
 		
+func release():
+	if stuck and is_instance_valid(stuck_to):
+		stuck_to.can_damage = true
 
 func _integrate_forces(state):
 	if rotatoe:

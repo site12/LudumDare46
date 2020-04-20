@@ -77,6 +77,7 @@ func die():
 func collect_arrow():
 	get_parent().get_node("Camera2D").isArrow = false
 	print('got arrow')
+	arrow.release()
 	has_arrow = true
 	get_parent().remove_child(arrow)
 	get_parent().remove_child(rope)
@@ -91,7 +92,8 @@ func _physics_process(_delta):
 
 func _on_hitbox_body_entered(body):
 	if body.get_class() == 'enemy':
-		hurt(5)
+		if body.can_damage:
+			hurt(5)	
 
 func _on_Collection_body_entered(body):
 	# print('arrow!')

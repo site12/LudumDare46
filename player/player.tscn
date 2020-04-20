@@ -20,7 +20,7 @@
 [ext_resource path="res://enemies/hurt.tres" type="Material" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.3077, 4.66667 )
+extents = Vector2( 8.9898, 4.66667 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "front"
@@ -127,8 +127,8 @@ animations = [ {
 radius = 69.5
 
 [sub_resource type="CapsuleShape2D" id=6]
-radius = 16.9361
-height = 17.8888
+radius = 17.3036
+height = 34.9394
 
 [sub_resource type="Animation" id=7]
 length = 0.3
@@ -201,7 +201,8 @@ texture = ExtResource( 5 )
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2( 0.203918, 2.24297 )
+position = Vector2( 0.655792, 20.5437 )
+rotation = 1.5708
 shape = SubResource( 6 )
 
 [node name="player" type="AnimationPlayer" parent="."]
