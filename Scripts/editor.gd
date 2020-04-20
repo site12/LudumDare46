@@ -1,3 +1,0 @@
-extends WindowDialog
-
-var ID

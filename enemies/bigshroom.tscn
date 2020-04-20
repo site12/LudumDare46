@@ -2,7 +2,7 @@
 
 [ext_resource path="res://enemies/bigshroom.gd" type="Script" id=1]
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
-[ext_resource path="res://0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/0cddeb41ec7b14acc1a3eae0542218b7.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/big boi2/big guy0012.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/big boi2/big guy0013.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/big boi2/big guy0010.png" type="Texture" id=6]
@@ -21,7 +21,9 @@
 [ext_resource path="res://Sprites/big boi2/big guy0000.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/big boi2/big guy0001.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/big boi2/big guy0002.png" type="Texture" id=21]
-[ext_resource path="res://JitterFreePixelArt.tres" type="Material" id=22]
+[ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=22]
+
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.523651, 1 )
