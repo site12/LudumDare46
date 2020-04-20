@@ -39,7 +39,7 @@ func shoppe(type):
 	blacksmith_stock.shuffle()
 	magic_stock.shuffle()
 	update_ui()
-	for x in 5:
+	for x in 4:
 		var t = item.instance()
 		match type:
 			'majick':
