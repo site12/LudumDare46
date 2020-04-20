@@ -23,3 +23,5 @@ func shoppe(type):
 
 func _on_Button_pressed():
 	$AnimationPlayer.play_backwards("init")
+	yield(get_tree().create_timer(0.3), 'timeout')
+	get_parent().comeback()

@@ -1,7 +1,7 @@
 extends Node2D
 
 var entered = false
-
+var shoptype = "majick"
 
 
 func _on_interact_body_entered(body):
