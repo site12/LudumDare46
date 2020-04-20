@@ -185,7 +185,7 @@ flip_h = true
 [node name="sprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "mage"
-frame = 14
+frame = 8
 playing = true
 flip_h = true
 
@@ -258,7 +258,7 @@ position = Vector2( 208, 688 )
 scale = Vector2( 0.525, 0.534152 )
 frames = SubResource( 8 )
 animation = "mage"
-frame = 3
+frame = 14
 playing = true
 flip_h = true
 
