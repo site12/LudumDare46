@@ -185,7 +185,7 @@ flip_h = true
 [node name="sprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "mage"
-frame = 12
+frame = 14
 playing = true
 flip_h = true
 
@@ -236,8 +236,10 @@ __meta__ = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="dialogue"]
+layer = 4
 
 [node name="Node2D" type="Node2D" parent="dialogue/CanvasLayer"]
+z_index = 1900
 
 [node name="portait" type="ColorRect" parent="dialogue/CanvasLayer/Node2D"]
 modulate = Color( 1, 1, 1, 0 )
@@ -256,7 +258,7 @@ position = Vector2( 208, 688 )
 scale = Vector2( 0.525, 0.534152 )
 frames = SubResource( 8 )
 animation = "mage"
-frame = 1
+frame = 3
 playing = true
 flip_h = true
 
@@ -294,7 +296,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="buy" type="Button" parent="dialogue/CanvasLayer/Node2D/bottom"]
+[node name="buy2" type="Button" parent="dialogue/CanvasLayer/Node2D/bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1408.0
@@ -306,7 +308,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="dialogue/CanvasLayer/Node2D/bottom/buy"]
+[node name="Label" type="Label" parent="dialogue/CanvasLayer/Node2D/bottom/buy2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 10 )
@@ -317,7 +319,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="bye" type="Button" parent="dialogue/CanvasLayer/Node2D/bottom"]
+[node name="bye2" type="Button" parent="dialogue/CanvasLayer/Node2D/bottom"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1408.0
@@ -329,7 +331,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="dialogue/CanvasLayer/Node2D/bottom/bye"]
+[node name="Label" type="Label" parent="dialogue/CanvasLayer/Node2D/bottom/bye2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 10 )
@@ -349,6 +351,6 @@ anims/begin = SubResource( 11 )
 [connection signal="area_entered" from="interact" to="." method="_on_interact_area_entered"]
 [connection signal="body_entered" from="interact" to="." method="_on_interact_body_entered"]
 [connection signal="body_exited" from="interact" to="." method="_on_interact_body_exited"]
-[connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/buy" to="dialogue" method="_on_buy_pressed"]
-[connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/bye" to="dialogue" method="_on_bye_pressed"]
+[connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/buy2" to="dialogue" method="_on_buy_pressed"]
+[connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/bye2" to="dialogue" method="_on_bye_pressed"]
 [connection signal="timeout" from="dialogue/texttimer" to="dialogue" method="_on_texttimer_timeout"]

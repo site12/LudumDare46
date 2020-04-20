@@ -90,9 +90,9 @@ __meta__ = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="Control" type="Control" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -102,7 +102,7 @@ __meta__ = {
 [node name="ui" type="ColorRect" parent="CanvasLayer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.831373, 0.807843, 0.807843, 0 )
+color = Color( 0.831373, 0.807843, 0.807843, 0.737255 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -111,9 +111,8 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -256.0
-margin_top = -147.0
 margin_right = 256.0
-margin_bottom = -19.0
+margin_bottom = 128.0
 color = Color( 0.819608, 0.623529, 0.207843, 1 )
 __meta__ = {
 "_edit_group_": true,
@@ -144,9 +143,9 @@ __meta__ = {
 [node name="currency" type="ColorRect" parent="CanvasLayer/Control/ui"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 1024.0
+margin_left = 224.0
 margin_top = 256.0
-margin_right = 1536.0
+margin_right = 736.0
 margin_bottom = 417.0
 color = Color( 0.819608, 0.623529, 0.207843, 1 )
 __meta__ = {
@@ -187,9 +186,9 @@ __meta__ = {
 [node name="list" type="ColorRect" parent="CanvasLayer/Control/ui"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -1960.0
+margin_left = -880.0
 margin_top = 256.0
-margin_right = -1064.0
+margin_right = 15.9999
 margin_bottom = 1024.0
 color = Color( 0.819608, 0.623529, 0.207843, 1 )
 __meta__ = {
@@ -224,9 +223,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 144.0
+margin_left = -256.0
 margin_top = -168.0
-margin_right = 336.0
+margin_right = -64.0
 margin_bottom = -56.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/Button"]
