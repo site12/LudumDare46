@@ -1,6 +1,7 @@
 extends Node2D
 
 var entered = false
+var shoptype = "Weapons"
 
 func _on_interact_body_entered(body):
 	if(body.name == "player"):

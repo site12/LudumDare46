@@ -8,6 +8,7 @@ var dial = [
 	"Interested in buying something?"
 ]
 
+onready var shoppe = preload("res://shopUI.tscn")
 var diag = ""
 onready var player = get_parent().get_parent().get_parent().get_parent().get_node("player")
 
@@ -34,6 +35,11 @@ func _on_bye_pressed():
 	get_parent().get_node("e").play("E")
 	player.interacting = false
 
+func comeback():
+	$CanvasLayer/Node2D.scale.x = 1
 
 func _on_buy_pressed():
-	get_parent().get_node("shoppe").shoppe("magick")
+	var s = shoppe.instance()
+	add_child(s)
+	$CanvasLayer/Node2D.scale.x = 0
+	s.shoppe(get_parent().shoptype)

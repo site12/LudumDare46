@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0016.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Magic Guy outline/MagicGuy O0015.png" type="Texture" id=2]
@@ -39,7 +39,6 @@
 [ext_resource path="res://Fipps-Regular.otf" type="DynamicFontData" id=37]
 [ext_resource path="res://characters/dialogue.gd" type="Script" id=38]
 [ext_resource path="res://alagard.ttf" type="DynamicFontData" id=39]
-[ext_resource path="res://shopUI.tscn" type="PackedScene" id=40]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -186,7 +185,7 @@ flip_h = true
 [node name="sprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "mage"
-frame = 9
+frame = 12
 playing = true
 flip_h = true
 
@@ -257,7 +256,7 @@ position = Vector2( 208, 688 )
 scale = Vector2( 0.525, 0.534152 )
 frames = SubResource( 8 )
 animation = "mage"
-frame = 15
+frame = 1
 playing = true
 flip_h = true
 
@@ -346,8 +345,6 @@ wait_time = 0.05
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="dialogue"]
 anims/begin = SubResource( 11 )
-
-[node name="shoppe" parent="." instance=ExtResource( 40 )]
 [connection signal="animation_finished" from="e" to="." method="_on_e_animation_finished"]
 [connection signal="area_entered" from="interact" to="." method="_on_interact_area_entered"]
 [connection signal="body_entered" from="interact" to="." method="_on_interact_body_entered"]

@@ -182,7 +182,7 @@ frames = SubResource( 1 )
 
 [node name="sprites" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 15
+frame = 2
 playing = true
 
 [node name="near" type="AnimationPlayer" parent="."]
@@ -252,7 +252,7 @@ position = Vector2( 208, 608 )
 scale = Vector2( 0.525, 0.534152 )
 frames = SubResource( 8 )
 animation = "blacksmith"
-frame = 10
+frame = 14
 playing = true
 flip_h = true
 
@@ -348,5 +348,6 @@ anims/begin = SubResource( 11 )
 [connection signal="area_entered" from="interact" to="." method="_on_interact_area_entered"]
 [connection signal="body_entered" from="interact" to="." method="_on_interact_body_entered"]
 [connection signal="body_exited" from="interact" to="." method="_on_interact_body_exited"]
+[connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/buy" to="dialogue" method="_on_buy_pressed"]
 [connection signal="pressed" from="dialogue/CanvasLayer/Node2D/bottom/bye" to="dialogue" method="_on_bye_pressed"]
 [connection signal="timeout" from="dialogue/texttimer" to="dialogue" method="_on_texttimer_timeout"]
