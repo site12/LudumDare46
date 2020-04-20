@@ -8,7 +8,7 @@ onready var smith = preload("res://characters/blacksmith.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func house(house):
-	z_index = int(position.y)+50
+	z_index = int(get_global_position().y)
 	if house == type[0]:
 		$potion.visible = true
 		$potion/collision/CollisionShape2D.disabled = false

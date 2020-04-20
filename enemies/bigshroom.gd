@@ -10,7 +10,13 @@ var dir
 
 
 func _ready():
-	pass
+	match Level.biome:
+		'forest':
+			modulate = Color.white
+		'cave':
+			modulate = Color.brown
+		'hell':
+			modulate = Color.purple
 	# speed = 0
 	# $spritehelper.visible = false
 	# $hurt.visible = false
