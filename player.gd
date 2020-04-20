@@ -5,9 +5,12 @@ const ARROW = preload('res://player/arrow.tscn')
 const ROPE = preload('res://verlet.tscn')
 var velocity = Vector2()
 var has_arrow = true
+var health = 100
 onready var sprites = $spritehelper/sprites
 onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
+onready var healthbar = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/ProgressBar')
+onready var health_value = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/Label')
 
 
 func get_input():
@@ -54,6 +57,31 @@ func _process(delta):
 				get_parent().add_child(rope)
 			
 			has_arrow = false
+	if Input.is_action_pressed('pull'):
+		if (arrow.position - position).length() < 50:
+			collect_arrow()
+
+func hurt(damage):	
+	$hurt.emitting = true
+	health -= damage
+	$player.play('hurt')
+	healthbar.value = health
+	health_value.text = str(health)
+	if health < 0:
+		health == 0
+		die()
+
+func die():
+	print('sucks to suck guy')
+
+func collect_arrow():
+	get_parent().get_node("Camera2D").isArrow = false
+	print('got arrow')
+	has_arrow = true
+	get_parent().remove_child(arrow)
+	get_parent().remove_child(rope)
+	arrow = ARROW.instance()
+	rope = ROPE.instance()
 
 func _physics_process(_delta):
 	get_input()
@@ -63,22 +91,11 @@ func _physics_process(_delta):
 
 func _on_hitbox_body_entered(body):
 	if body.get_class() == 'enemy':
-		#uhhhh get knocked back and apply modulate and apply damage
-		pass
+		hurt(5)
 
 func _on_Collection_body_entered(body):
 	# print('arrow!')
 	if body.is_in_group('arrow'):
 		if body.linear_velocity.length() < 500:
-			get_parent().get_node("Camera2D").isArrow = false
-			print('got arrow')
-			has_arrow = true
-			# get_parent().call_deferred('remove_child','arrow')
-			# get_parent().call_deferred('remove_child','rope')
-			# get_parent().find_node('Mount').find_node('Joint').node_b = null
-			get_parent().remove_child(arrow)
-			get_parent().remove_child(rope)
-			arrow = ARROW.instance()
-			rope = ROPE.instance()
-
+			collect_arrow()
 			

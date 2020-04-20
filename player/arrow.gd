@@ -13,15 +13,15 @@ func _ready():
 	colliding = true
 func _process(delta):
 	z_index = position.y+10
-	if Input.is_action_just_pressed('pull'):
+	if Input.is_action_pressed('pull'):
 		colliding = false
 		if stuck:
 			if is_instance_valid(stuck_to):
 				if stuck_to.is_in_group('enemy'):
-					stuck_to.move_and_slide((position - second_last_point).normalized() *1000)
-					pos = stuck_to.position
-					stuck = false
-					stuck_to = null
+					stuck_to.move_and_slide((second_last_point - stuck_to.position).normalized() *1000)
+					# pos = stuck_to.position
+					# stuck = false
+					# stuck_to = null
 					
 				else:
 					stuck = false
