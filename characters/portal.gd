@@ -1,6 +1,6 @@
 extends Node2D
 
-const WORLD = preload('res://world/world.tscn')
+# const WORLD = preload('res://world/world.tscn')
 var available = true
 onready var player = get_node('../player')
 
@@ -15,8 +15,11 @@ func _process(delta):
 				'hell': 
 					get_tree().change_scene("res://intro text.tscn")
 					return
-			get_tree().get_root().call_deferred('add_child', WORLD.instance())
-			get_tree().get_root().call_deferred('remove_child', self)
+			var world = load('res://world/world.tscn')
+			world = world.instance()
+			get_tree().get_root().call_deferred('add_child', world.instance())
+			var old_world = get_parent()
+			get_tree().get_root().call_deferred('remove_child', old_world)
 			
 		
 		
