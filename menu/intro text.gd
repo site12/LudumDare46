@@ -89,4 +89,4 @@ func _ready():
 
 func _on_Button_pressed():
 	yield(get_tree().create_timer(2), 'timeout')
-	get_tree().change_scene("res://player/world.tscn")
+	get_tree().change_scene("res://world/world.tscn")
