@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/forest - sstw.wav-847b55492f545802c9c741374279295e.sample"
+
+[deps]
+
+source_file="res://Music/forest - sstw.wav"
+dest_files=[ "res://.import/forest - sstw.wav-847b55492f545802c9c741374279295e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
