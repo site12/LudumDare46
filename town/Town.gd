@@ -31,6 +31,10 @@ func generate_houses():
 	house2.house(house_types[1])
 	house3.house(house_types[2])
 	house4.house(house_types[3])
+	house1.z_index = house1.position.y
+	house2.z_index = house1.position.y
+	house3.z_index = house1.position.y
+	house4.z_index = house1.position.y
 
 func killfade():
 	$Control.queue_free()

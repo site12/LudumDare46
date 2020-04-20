@@ -16,3 +16,8 @@ script = ExtResource( 2 )
 [node name="enemies" type="Node2D" parent="."]
 
 [node name="wallcollision" type="Node2D" parent="."]
+
+[node name="door_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+[connection signal="timeout" from="door_timer" to="." method="_on_door_timer_timeout"]
