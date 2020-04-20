@@ -8,26 +8,26 @@ var tree = load("res://tiles/leaves_new/sprite_80.png")
 var rock = load("res://tiles/rocks/sprite_09.png")
 var tile
 # Called when the node enters the scene tree for the first time.
-func pick():
+func pick(biome):
 	randomize()
 	var t = int(rand_range(0,2))
 	#print(t)
 	if(t==0):
-		if type == "forest":
+		if biome == "forest":
 			tile = forest[t]
-		elif type == "cave":
+		elif biome == "cave":
 			tile = cave[t]
 	elif(t==1):
-		if type == "forest":
+		if biome == "forest":
 			tile = forest[t]
-		elif type == "cave":
+		elif biome == "cave":
 			tile = cave[t]
 	$Sprite.texture = tile
 
-func tree():
-	if type == "forest":
+func tree(biome):
+	if biome == "forest":
 		$Sprite.texture = tree
-	elif type == "cave":
+	elif biome == "cave":
 		$Sprite.texture = rock
 
 
