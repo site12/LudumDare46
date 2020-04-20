@@ -42,53 +42,53 @@ func create():
 	generate_doors()
 	
 func thru_door(side):
-	
-	if current_room:
-		print('thru '+side+' door from ' + str(self.get_instance_id()))
-		current_room = false
-		var root = get_tree().get_root().get_node('world')
-		var level = root.get_node('ROOM')
-		var player = root.get_node('player')
-		var new_room = connected_rooms[side]
-		root.call_deferred('remove_child', self)
-		#level.call_deferred("free")
-		
-		#new_room.create()
-		
-		#root.get_node('player').position = Vector2(500,500)
-		#var player = PLAYER.instance()
-		#player.position = Vector2(200,200)
-		#root.get_node('ROOM').add_child(player)
-		var which_door
-		for key in new_room.connected_rooms:
-			printt(new_room.connected_rooms[key].get_instance_id(), self.get_instance_id())
-			if int(new_room.connected_rooms[key].get_instance_id()) == int(self.get_instance_id()):
-				which_door = key
-		print(which_door)
-		match which_door:
-			'right':
-				player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
-			'left':
-				player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
-			'down':
-				player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
-			'up':
-				player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
+	if get_node('enemies').get_children().empty():
+		if current_room:
+			print('thru '+side+' door from ' + str(self.get_instance_id()))
+			current_room = false
+			var root = get_tree().get_root().get_node('world')
+			var level = root.get_node('ROOM')
+			var player = root.get_node('player')
+			var new_room = connected_rooms[side]
+			root.call_deferred('remove_child', self)
+			#level.call_deferred("free")
+			
+			#new_room.create()
+			
+			#root.get_node('player').position = Vector2(500,500)
+			#var player = PLAYER.instance()
+			#player.position = Vector2(200,200)
+			#root.get_node('ROOM').add_child(player)
+			var which_door
+			for key in new_room.connected_rooms:
+				printt(new_room.connected_rooms[key].get_instance_id(), self.get_instance_id())
+				if int(new_room.connected_rooms[key].get_instance_id()) == int(self.get_instance_id()):
+					which_door = key
+			print(which_door)
+			match which_door:
+				'right':
+					player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+				'left':
+					player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+				'down':
+					player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+				'up':
+					player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
 
 
-		# match side:
-		# 	'left':
-		# 		player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
-		# 	'right':
-		# 		player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
-		# 	'up':
-		# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
-		# 	'down':
-		# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
-		root.call_deferred('add_child',new_room)
-		if not force_stay:
-			new_room.current_room = true
-		new_room.discovered = true
+			# match side:
+			# 	'left':
+			# 		player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+			# 	'right':
+			# 		player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+			# 	'up':
+			# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+			# 	'down':
+			# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
+			root.call_deferred('add_child',new_room)
+			if not force_stay:
+				new_room.current_room = true
+			new_room.discovered = true
 
 
 

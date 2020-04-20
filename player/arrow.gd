@@ -54,6 +54,7 @@ func _on_Arrow_body_entered(body):
 			body.hurt(5, self)
 			stuck_to = body
 			stuck_to.can_damage = false
+			stuck_to.canattack = false
 			
 		else:
 			rotatoe = true
@@ -61,6 +62,8 @@ func _on_Arrow_body_entered(body):
 func release():
 	if stuck and is_instance_valid(stuck_to):
 		stuck_to.can_damage = true
+		#stuck_to.canattack = true
+		stuck_to.get_node('attacktimer').start()
 
 func _integrate_forces(state):
 	if rotatoe:
