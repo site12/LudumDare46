@@ -4,7 +4,7 @@ var entered = false
 var shoptype = "Weapons"
 
 func _on_interact_body_entered(body):
-	if(body.name == "player"):
+	if(body.name == "Player"):
 		entered = true
 		print("interact bitch")
 		$near.play("near")
