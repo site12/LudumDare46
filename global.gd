@@ -1,7 +1,7 @@
 extends Node
 
 
-var potions = 0
+var potions = 1000
 var currency = 20
-var spell = 'whack'
+var spell = 'fireblast'
 var bow_damage = 5

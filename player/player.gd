@@ -197,7 +197,7 @@ func fireblast():
 	var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
 	for baddy in baddies:
 		var pos_dif = (position - baddy.position)
-		if pos_dif.length < 100:
+		if pos_dif.length() < 100:
 			baddy.hurt(5)
 			baddy.knockback(50, -pos_dif.normalized())
 
@@ -211,7 +211,7 @@ func remote_detonate():
 		var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
 		for baddy in baddies:
 			var pos_dif = (arrow.position - baddy.position)
-			if pos_dif.length < 100:
+			if pos_dif.length() < 100:
 				baddy.hurt(5)
 				baddy.knockback(50, -pos_dif.normalized())
 
