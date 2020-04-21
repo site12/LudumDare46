@@ -12,13 +12,12 @@
 [ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=10]
 [ext_resource path="res://player/shadow.png" type="Texture" id=11]
 [ext_resource path="res://tiles/damage_particles/Allagard_5.png" type="Texture" id=12]
-[ext_resource path="res://enemies/hurt.tres" type="Material" id=13]
 [ext_resource path="res://Music/fx/mushroom_damage.wav" type="AudioStream" id=15]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 7.08337 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
@@ -26,13 +25,16 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0588235, 0.647059, 0.027451, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.0823529, 0.00392157, 0.00392157, 1 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.00180723, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.996083 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=6]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("spritehelper/sprites:modulate")
@@ -57,7 +59,7 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 21.0834 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="shadow" type="Sprite" parent="."]
 position = Vector2( 0, 24 )
@@ -71,7 +73,7 @@ position = Vector2( 0, -0.00748885 )
 [node name="sprites" type="AnimatedSprite" parent="spritehelper"]
 material = ExtResource( 10 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 frame = 1
 speed_scale = 2.5
 playing = true
@@ -101,12 +103,12 @@ __meta__ = {
 margin_right = 32.0
 margin_bottom = 1.0
 size_flags_horizontal = 3
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 value = 100.0
 percent_visible = false
 
-[node name="hurt" type="Particles2D" parent="."]
+[node name="hurt" type="CPUParticles2D" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 material = ExtResource( 10 )
 position = Vector2( 0, 6 )
@@ -115,12 +117,17 @@ emitting = false
 amount = 1
 lifetime = 0.5
 one_shot = true
-visibility_rect = Rect2( -4.0105, -8.88989, 10.1708, 9.56652 )
-process_material = ExtResource( 13 )
 texture = ExtResource( 12 )
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 0.75
+scale_amount_curve = SubResource( 1 )
 
 [node name="player" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 5 )
+anims/hurt = SubResource( 6 )
 
 [node name="attacktimer" type="Timer" parent="."]
 wait_time = 3.0

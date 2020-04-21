@@ -17,16 +17,14 @@
 [ext_resource path="res://Sprites/Archer/Side running/New run0001.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/Archer/Side running/New run0002.png" type="Texture" id=16]
 [ext_resource path="res://shaders/JitterFreePixelArt.tres" type="Material" id=17]
-[ext_resource path="res://enemies/hurt.tres" type="Material" id=18]
 [ext_resource path="res://Music/fx/pickupcurrency.wav" type="AudioStream" id=19]
 [ext_resource path="res://Music/fx/player_hurt.wav" type="AudioStream" id=20]
 [ext_resource path="res://Music/fx/mushroom_die.wav" type="AudioStream" id=21]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8.9898, 4.66667 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "front"
+[sub_resource type="Animation" id=3]
 length = 1.1
 loop = true
 tracks/0/type = "value"
@@ -90,8 +88,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("spritehelper/sprites:position")
@@ -118,7 +115,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.384615, 0.384615 ), Vector2( 0.384615, 0.384615 ), Vector2( 0.384615, 0.384615 ), Vector2( 0.384615, 0.384615 ) ]
 }
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 6 ), ExtResource( 13 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ) ],
 "loop": true,
@@ -126,14 +123,17 @@ animations = [ {
 "speed": 16.0
 } ]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=6]
 radius = 69.5
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.00180723, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.996083 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CapsuleShape2D" id=7]
 radius = 17.3036
 height = 34.9394
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("spritehelper/sprites:modulate")
@@ -157,15 +157,15 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 20 )
 scale = Vector2( 1.5, 1 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="rotation_helper" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.3
-anims/front = SubResource( 2 )
-anims/idle = SubResource( 3 )
+anims/front = SubResource( 3 )
+anims/idle = SubResource( 4 )
 
 [node name="shadow" type="Sprite" parent="."]
 material = ExtResource( 17 )
@@ -180,7 +180,7 @@ material = ExtResource( 17 )
 position = Vector2( -24.615, -23.5 )
 scale = Vector2( 0.384615, 0.384615 )
 z_index = 1
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "front_view"
 centered = false
 
@@ -189,9 +189,9 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
-[node name="hurt" type="Particles2D" parent="."]
+[node name="hurt" type="CPUParticles2D" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 0, 6 )
 z_index = 11
@@ -199,19 +199,24 @@ emitting = false
 amount = 1
 lifetime = 0.5
 one_shot = true
-visibility_rect = Rect2( -4.0105, -8.88989, 10.1708, 9.56652 )
-process_material = ExtResource( 18 )
 texture = ExtResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 0.25
+scale_amount_curve = SubResource( 1 )
 
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2( 0.655792, 20.5437 )
 rotation = 1.5708
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="player" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 7 )
+anims/hurt = SubResource( 8 )
 
 [node name="magic_cooldown" type="Timer" parent="."]
 one_shot = true

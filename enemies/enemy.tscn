@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
@@ -13,22 +13,7 @@ bg_color = Color( 0.0823529, 0.00392157, 0.00392157, 1 )
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0.00180723, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.996083 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=5]
-emission_shape = 1
-emission_sphere_radius = 2.0
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.2
-scale_curve = SubResource( 4 )
-
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "hurt"
 length = 0.3
 tracks/0/type = "value"
@@ -95,7 +80,7 @@ step = 1.0
 value = 15.0
 percent_visible = false
 
-[node name="hurt" type="Particles2D" parent="."]
+[node name="hurt" type="CPUParticles2D" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 0, 16 )
 z_index = 11
@@ -103,12 +88,17 @@ emitting = false
 amount = 1
 lifetime = 0.5
 one_shot = true
-visibility_rect = Rect2( -4.0105, -8.88989, 10.1708, 9.56652 )
-process_material = SubResource( 5 )
 texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+scale_amount = 0.2
+scale_amount_curve = SubResource( 3 )
 
 [node name="player" type="AnimationPlayer" parent="."]
-anims/hurt = SubResource( 6 )
+anims/hurt = SubResource( 4 )
 
 [node name="fire_timer" type="Timer" parent="."]
 one_shot = true

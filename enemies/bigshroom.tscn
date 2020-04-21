@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://enemies/bigshroom.gd" type="Script" id=1]
 [ext_resource path="res://player/shadow.png" type="Texture" id=2]
@@ -25,35 +25,15 @@
 [ext_resource path="res://Music/fx/mushroom_die.wav" type="AudioStream" id=23]
 [ext_resource path="res://Music/fx/mushroom_damage.wav" type="AudioStream" id=24]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.844444, 0.992593, 1 )
-colors = PoolColorArray( 0.741176, 0.980392, 0.345098, 0.717647, 0.0745098, 0.423529, 0.0313726, 0.756863, 0.32549, 1, 0.0117647, 0.670588, 1, 0, 0, 0.301961 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=1]
 max_value = 2.5
 _data = [ Vector2( 0.00100402, 1.26958 ), 0.0, 0.0, 0, 0, Vector2( 0.498193, 2.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.23042 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.844444, 0.992593, 1 )
+colors = PoolColorArray( 0.741176, 0.980392, 0.345098, 0.717647, 0.0745098, 0.423529, 0.0313726, 0.756863, 0.32549, 1, 0.0117647, 0.670588, 1, 0, 0, 0.301961 )
 
-[sub_resource type="ParticlesMaterial" id=5]
-emission_shape = 1
-emission_sphere_radius = 2.0
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 300.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 300.0
-scale = 5.0
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
-
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 17 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 14 ) ],
 "loop": true,
@@ -61,31 +41,16 @@ animations = [ {
 "speed": 6.0
 } ]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0588235, 0.647059, 0.027451, 1 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.0823529, 0.00392157, 0.00392157, 1 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0.00180723, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.996083 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
-
-[sub_resource type="ParticlesMaterial" id=11]
-emission_shape = 1
-emission_sphere_radius = 2.0
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.2
-scale_curve = SubResource( 10 )
-
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 32, 10 )
 
 [node name="bigshroom" type="KinematicBody2D" groups=[
@@ -99,21 +64,29 @@ script = ExtResource( 1 )
 position = Vector2( 0, 64 )
 texture = ExtResource( 2 )
 
-[node name="plume" type="Particles2D" parent="."]
+[node name="plume" type="CPUParticles2D" parent="."]
 position = Vector2( 0, 56 )
 emitting = false
 amount = 300
 lifetime = 0.5
 one_shot = true
-process_material = SubResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 300.0
+linear_accel = 300.0
+scale_amount = 5.0
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
 
 [node name="spritehelper" type="Node2D" parent="."]
 
 [node name="sprites" type="AnimatedSprite" parent="spritehelper"]
 material = ExtResource( 22 )
 position = Vector2( -64, -64 )
-frames = SubResource( 6 )
-frame = 13
+frames = SubResource( 3 )
+frame = 3
 speed_scale = 2.5
 playing = true
 centered = false
@@ -150,14 +123,14 @@ __meta__ = {
 margin_right = 96.0
 margin_bottom = 1.0
 size_flags_horizontal = 3
-custom_styles/fg = SubResource( 7 )
-custom_styles/bg = SubResource( 8 )
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 max_value = 15.0
 step = 1.0
 value = 15.0
 percent_visible = false
 
-[node name="hurt" type="Particles2D" parent="."]
+[node name="hurt" type="CPUParticles2D" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 0, 16 )
 z_index = 11
@@ -165,13 +138,18 @@ emitting = false
 amount = 1
 lifetime = 0.5
 one_shot = true
-visibility_rect = Rect2( -4.0105, -8.88989, 10.1708, 9.56652 )
-process_material = SubResource( 11 )
 texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+scale_amount = 0.2
+scale_amount_curve = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 56 )
-shape = SubResource( 12 )
+shape = SubResource( 7 )
 
 [node name="damage2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 24 )
