@@ -14,6 +14,7 @@ var arrow
 var l = 200.1
 
 onready var target = get_parent().get_node("Player")
+onready var healthbar = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/ProgressBar')
 
 func _physics_process(_delta):
 	if is_instance_valid(target):
@@ -29,6 +30,7 @@ func _physics_process(_delta):
 
 func _ready():
 	set_process(true)
+	healthbar.value = global.health
 
 # Shake with decreasing intensity while there's time remaining.
 func _process(delta):

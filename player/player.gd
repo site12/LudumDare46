@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed = 400
+export (int) var speed = 300
 const ARROW = preload('res://player/arrow.tscn')
 const ROPE = preload('res://Rope/verlet.tscn')
 const FIREBALL = preload('res://player/fireball.tscn')
