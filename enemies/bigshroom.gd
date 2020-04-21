@@ -72,7 +72,7 @@ func attack(delta):
 		attack_dir = (obj.global_position - global_position).normalized()
 		speed = 100
 		if (obj.global_position - global_position).length() < 200:
-			obj.hurt(5)
+			obj.hurt(10)
 		$plume.emitting = true
 		$attacktimer.start()
 		#dir = -(obj.global_position - global_position).normalized()
