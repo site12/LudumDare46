@@ -13,10 +13,11 @@ var isArrow = false
 var arrow
 var l = 200.1
 
-onready var target = get_parent().get_node("player")
+onready var target = get_parent().get_node("Player")
 
 func _physics_process(_delta):
-	position = target.position
+	if is_instance_valid(target):
+		position = target.position
 	if isArrow:
 		arrow = get_parent().get_node("Arrow")
 		var length = (arrow.global_position - target.global_position).length()

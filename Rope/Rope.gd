@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta):
 	var player = get_parent().find_node('Player')
-	if player:
+	if is_instance_valid(player):
 		$Anchor.position = player.position
 
 func addPiece(parent):

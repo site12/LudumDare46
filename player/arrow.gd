@@ -7,37 +7,39 @@ var stuck_to
 var second_last_point
 var colliding = true
 var tran
-onready var player = get_parent().get_node('player')
+var player
 
 func _ready():
 	get_parent().get_node("Camera2D")
 	colliding = true
 func _process(_delta):
-	z_index = position.y+10
-	if Input.is_action_pressed('pull'):
-		if linear_velocity.length()<100:
-			colliding = false
-		else:
-			colliding = true
-		if stuck:
-			if is_instance_valid(stuck_to):
-				if stuck_to.is_in_group('enemy'):
-					stuck_to.move_and_slide((player.position - position).normalized() *1000)
-					
-					# pos = stuck_to.position
-					# stuck = false
-					# stuck_to = null
-					
+	player = get_parent().get_node('Player')
+	if is_instance_valid(player):
+		z_index = position.y+10
+		if Input.is_action_pressed('pull'):
+			if linear_velocity.length()<100:
+				colliding = false
+			else:
+				colliding = true
+			if stuck:
+				if is_instance_valid(stuck_to):
+					if stuck_to.is_in_group('enemy'):
+						stuck_to.move_and_slide((player.position - position).normalized() *1000)
+						
+						# pos = stuck_to.position
+						# stuck = false
+						# stuck_to = null
+						
+					else:
+						stuck = false
 				else:
 					stuck = false
 			else:
-				stuck = false
-		else:
-			linear_velocity = Vector2.ZERO
-	if Input.is_action_just_released('pull'):
-		release()
-		stuck = false
-		stuck_to = null
+				linear_velocity = Vector2.ZERO
+		if Input.is_action_just_released('pull'):
+			release()
+			stuck = false
+			stuck_to = null
 		
 
 func body_killed(_body):

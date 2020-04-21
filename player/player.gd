@@ -8,6 +8,7 @@ const SHADOWBALL = preload('res://player/shadowball.tscn')
 const EXPLODE = preload('res://player/explode.tscn')
 const DIE = preload('res://die.tscn')
 const PARTI = preload('res://enemies/deadparticleshuman.tscn')
+var next_pos = Vector2.ZERO
 var velocity = Vector2()
 var has_arrow = true
 var max_health = 100
@@ -53,7 +54,9 @@ func get_input():
 		$AnimationPlayer.play("front")
 		$AnimationPlayer.stop()
 		
+		
 func _process(_delta):
+	# print(position)
 	currency_value.text = str(global.currency)
 	if get_parent().name != 'Town':
 		if Input.is_action_just_pressed("click") and !interacting:
@@ -248,6 +251,10 @@ func pickupcoin():
 
 func _physics_process(_delta):
 	get_input()
+	if next_pos:
+		velocity = Vector2.ZERO
+		position = next_pos
+		next_pos = Vector2.ZERO
 	velocity = move_and_slide(velocity)
 	z_index = int(position.y)
 

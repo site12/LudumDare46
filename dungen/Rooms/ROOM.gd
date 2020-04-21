@@ -1,8 +1,7 @@
 extends Node2D
 
 class_name room
-
-
+ 
 const DOOR = preload('res://dungen/Rooms/doortile.tscn')
 const TILE = preload("res://dungen/Rooms/floortile.tscn")
 const EXTRA = preload('res://dungen/Rooms/extratile.tscn')
@@ -28,7 +27,7 @@ var pos
 var astar_index
 var discovered
 var force_stay = false
-var do_doors_work = false
+var do_doors_work = true
 
 var tilesize = 64/2
 var roompos = global_position
@@ -42,8 +41,9 @@ func create():
 	generate_doors()
 
 func _ready():
-	do_doors_work = false
-	$door_timer.start()
+	# do_doors_work = false
+	# $door_timer.start()
+	pass
 	
 func thru_door(side):
 	if get_node('enemies').get_children().empty():
@@ -53,10 +53,24 @@ func thru_door(side):
 				current_room = false
 				var root = get_tree().get_root().get_node('world')
 				var level = root.get_node('ROOM')
-				var player = root.get_node('player')
+				for thing in root.get_children():
+					if thing.is_in_group('player'):
+						root.remove_child(thing)
+						thing.queue_free()
+				# var player = root.get_node('player')
 				var new_room = connected_rooms[side]
 				root.call_deferred('remove_child', self)
+				# if player:
+				# 	player.visible = false
+				# 	player.interacting = true
+				# 	player.layers = 0
+				# 	player.name = str(00000)
+					
+				yield(get_tree().create_timer(0.1), 'timeout')
+				var player = PLAYER.instance()
 				root.call_deferred('add_child',new_room)
+				root.call_deferred('add_child',player)
+				root.get_node('Camera2D').target = player
 				#level.call_deferred("free")
 				
 				#new_room.create()
@@ -67,19 +81,45 @@ func thru_door(side):
 				#root.get_node('ROOM').add_child(player)
 				var which_door
 				for key in new_room.connected_rooms:
-					printt(new_room.connected_rooms[key].get_instance_id(), self.get_instance_id())
+					# printt(new_room.connected_rooms[key].get_instance_id(), self.get_instance_id())
 					if int(new_room.connected_rooms[key].get_instance_id()) == int(self.get_instance_id()):
 						which_door = key
-				print(which_door)
+				# print(which_door)
+				
 				match which_door:
 					'right':
-						player.position = new_room.doors['right'].position + Vector2(-2*tilesize,0)
+						var comp1 = new_room.doors['right'].get_global_position()
+						var comp2 = Vector2((-2*tilesize),0)
+						printt(comp1,comp2, comp1 + comp2)
+						player.position = comp1 + comp2
 					'left':
-						player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+						var comp1 = new_room.doors['left'].get_global_position()
+						var comp2 = Vector2(2*tilesize,0)
+						printt(comp1, comp2, comp1 + comp2)
+						player.position = comp1 + comp2
 					'down':
-						player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+						var comp1 = new_room.doors['down'].get_global_position()
+						var comp2 = Vector2(0, (-2*tilesize))
+						printt(comp1, comp2, comp1 + comp2)
+						player.position = comp1 + comp2
 					'up':
-						player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
+						var comp1 = new_room.doors['up'].get_global_position()
+						var comp2 = Vector2(0, 2*tilesize)
+						printt(comp1, comp2, comp1 + comp2)
+						player.position = comp1 + comp2
+
+
+				# player.position = new_room.doors[which_door].get_node('spawn_point').get_global_position()
+				
+				# match which_door:
+				# 	'right':
+				# 		player.position = new_room.doors['right'].get_node('spawn_point').get_global_position()
+				# 	'left':
+				# 		player.position = new_room.doors['left'].position + Vector2(2*tilesize,0)
+				# 	'down':
+				# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
+				# 	'up':
+				# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
 
 
 				# match side:
@@ -91,7 +131,8 @@ func thru_door(side):
 				# 		player.position = new_room.doors['down'].position + Vector2(0, -2*tilesize)
 				# 	'down':
 				# 		player.position = new_room.doors['up'].position + Vector2(0, 2*tilesize)
-				
+				# new_room.do_doors_work = false
+				# new_room.get_node('door_timer').start()
 				if not force_stay:
 					new_room.current_room = true
 				new_room.discovered = true
@@ -109,11 +150,12 @@ func generate_doors():
 				new_door.rotation_degrees = 90
 			'right':
 				new_door.position = Vector2(size.x, rand_range(1, size.y-1))
-				new_door.rotation_degrees = 90
+				new_door.rotation_degrees = -90
 			'up':
 				new_door.position = Vector2(rand_range(1, size.x-1), -1)
 			'down':
 				new_door.position = Vector2(rand_range(1, size.x-1), size.y)
+				new_door.rotation_degrees = 180
 		new_door.position*= tilesize
 		new_door.z_index = -490
 		new_door.z_as_relative = false

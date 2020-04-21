@@ -10,9 +10,12 @@ var dial = [
 
 onready var shoppe = preload("res://shopUI.tscn")
 var diag = ""
-onready var player = get_parent().get_parent().get_parent().get_parent().get_node("player")
+var player
 
 onready var label = $CanvasLayer/Node2D/bottom/ColorRect2/Label
+
+func _process(delta):
+	player = get_parent().get_parent().get_parent().get_parent().get_node("Player")
 
 func dialogue():
 	label.visible_characters = 0
@@ -33,7 +36,8 @@ func _on_bye_pressed():
 	$AnimationPlayer.play_backwards("begin")
 	get_parent().entered = true
 	get_parent().get_node("e").play("E")
-	player.interacting = false
+	if is_instance_valid(player):
+		player.interacting = false
 
 func comeback():
 	$CanvasLayer/Node2D.scale.x = 1

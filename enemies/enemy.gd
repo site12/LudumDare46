@@ -12,11 +12,14 @@ var on_fire = false
 var fire_time
 var frozen = false
 onready var sprites = $spritehelper/sprites
-onready var obj = get_parent().get_parent().get_parent().get_node("player")
+var obj
+# onready var obj = get_parent().get_parent().get_parent().get_node("player")
 #onready var healthbar = $spritehelper/zGUI/Control/HBoxContainer/ProgressBar
 
 func _process(delta):
-	attack_dir = (obj.global_position - global_position).normalized()
+	obj = get_parent().get_parent().get_parent().get_node("Player")
+	if is_instance_valid(obj):
+		attack_dir = (obj.global_position - global_position).normalized()
 		
 func hurt(damage, arrow = null):
 	#move_and_collide(position - arrow.position)
