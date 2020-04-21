@@ -4,6 +4,7 @@ extends Node
 var room_array = []
 var a_star
 var virtual_rooms = []
+var town = ""
 var direction = ""
 var cursor = load("res://tiles/cursor.png")
 var biome = 'hell'

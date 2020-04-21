@@ -9,12 +9,11 @@
 size = 64
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 60
 font_data = ExtResource( 6 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "init"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control/CanvasLayer/ColorRect2:color")
 tracks/0/interp = 1
@@ -83,7 +82,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0.5, 1 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control/CanvasLayer/ColorRect:visible")
@@ -258,7 +257,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Control/CanvasLayer/TextureRect/ColorRect/ColorRect2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "Steven Saves The World!"
 align = 1
 valign = 1
@@ -289,7 +288,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/init = SubResource( 2 )
-anims/load = SubResource( 3 )
+anims/init = SubResource( 3 )
+anims/load = SubResource( 4 )
 anims/next = ExtResource( 4 )
 [connection signal="pressed" from="Control/CanvasLayer/TextureRect/play" to="." method="_on_play_pressed"]
