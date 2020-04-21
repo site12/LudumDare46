@@ -15,6 +15,16 @@ var foresttiles = [
 	preload("res://tiles/leaves_tile/sprite_19.png"),
 	preload("res://tiles/leaves_tile/sprite_18.png"),
 	preload("res://tiles/leaves_tile/sprite_26.png")]
+var helltiles = [
+	preload("res://tiles/hellwall/sprite_3.png"),
+	preload("res://tiles/hellwall/sprite_2.png"),
+	preload("res://tiles/hellwall/sprite_1.png"),
+	preload("res://tiles/hellwall/sprite_back.png")]
+var hellcorners = [
+	preload("res://tiles/hellwall/sprite_4.png"),
+	preload("res://tiles/hellwall/Sprite_5.png"),
+	preload("res://tiles/hellwall/Sprite_6.png"),
+	preload("res://tiles/hellwall/Sprite_7.png")]
 var forestcorners = [
 	preload("res://tiles/leaves_tile/sprite_14.png"),
 	preload("res://tiles/leaves_tile/sprite_16.png"),
@@ -36,6 +46,9 @@ func set_biome(biome):
 	elif biome == 'forest':
 		corners = forestcorners
 		tiles = foresttiles
+	elif biome == 'hell':
+		corners = hellcorners
+		tiles = helltiles
 
 func wall(biome):
 	$Sprite.texture = tile

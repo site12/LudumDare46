@@ -20,7 +20,7 @@ func pick(biome):
 	elif(t==1):
 		if biome == "forest":
 			tile = forest[t]
-		elif biome == "cave":
+		elif biome == "cave" || biome == "hell":
 			tile = cave[t]
 	$Sprite.texture = tile
 
@@ -28,6 +28,8 @@ func tree(biome):
 	if biome == "forest":
 		$Sprite.texture = tree
 	elif biome == "cave":
+		$Sprite.texture = rock
+	elif biome == "hell":
 		$Sprite.texture = rock
 
 

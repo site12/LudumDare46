@@ -10,14 +10,14 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id=2]
 radius = 23.5
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=3]
 max_value = 2.5
 _data = [ Vector2( 0.00100402, 1.26958 ), 0.0, 0.0, 0, 0, Vector2( 0.498193, 2.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.23042 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=5]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -26,7 +26,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 300.0
 scale = 5.0
-scale_curve = SubResource( 6 )
+scale_curve = SubResource( 4 )
 color_ramp = ExtResource( 2 )
 
 [node name="shadowball" type="RigidBody2D"]
@@ -46,7 +46,7 @@ scale = Vector2( 0.3, 0.3 )
 amount = 300
 lifetime = 0.25
 speed_scale = 2.0
-process_material = SubResource( 7 )
+process_material = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

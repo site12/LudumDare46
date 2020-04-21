@@ -17,6 +17,7 @@ func _ready():
 	generate_houses()
 	dir(Level.direction)
 	Level.biome = 'forest'
+	
 
 func transition():
 	$transition.play(true)
