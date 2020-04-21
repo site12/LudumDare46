@@ -73,7 +73,7 @@ var quips = [
 "I swear this is a one-time thing.",
 "Or like, whatever. Do what you want."
 ]
-var end = false
+var end = Level.end
 onready var Label = $ColorRect/Node2D/Label
 
 # Called when the node enters the scene tree for the first time.

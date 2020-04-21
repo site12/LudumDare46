@@ -15,7 +15,9 @@ func _process(delta):
 					'forest': Level.biome = 'cave'
 					'cave': Level.biome = 'hell'
 					'hell': 
+						Level.end = true
 						get_tree().change_scene("res://intro text.tscn")
+						
 						return
 				var old_world = get_parent().get_parent()
 				get_tree().get_root().call_deferred('remove_child', old_world)
