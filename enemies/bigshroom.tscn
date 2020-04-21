@@ -113,7 +113,7 @@ process_material = SubResource( 5 )
 material = ExtResource( 22 )
 position = Vector2( -64, -64 )
 frames = SubResource( 6 )
-frame = 8
+frame = 13
 speed_scale = 2.5
 playing = true
 centered = false
@@ -178,3 +178,5 @@ stream = ExtResource( 24 )
 
 [node name="die2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 23 )
+
+[node name="attacktimer" type="Timer" parent="."]

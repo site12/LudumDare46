@@ -77,7 +77,8 @@ func _integrate_forces(state):
 			print()
 			pos = stuck_to.position
 		else:
-			state.set_transform(tran)
+			if tran:
+				state.set_transform(tran)
 
 	if not pos == Vector2.ZERO:
 		var t = state.get_transform()

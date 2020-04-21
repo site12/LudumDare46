@@ -6,7 +6,7 @@ const COINBAG = preload('res://player/coinbag.tscn')
 
 var attack_dir
 var speed = 100
-var health = 15
+var health = 10
 var dead = false
 var on_fire = false
 var fire_time
@@ -65,7 +65,7 @@ func die():
 	
 	var coinbag = COINBAG.instance()
 	coinbag.position = position
-	get_parent().get_parent().get_parent().call_deferred('add_child', coinbag)
+	get_parent().get_parent().call_deferred('add_child', coinbag)
 	get_parent().call_deferred('remove_child', 'self')
 	call_deferred('queue_free')
 

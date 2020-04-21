@@ -3,6 +3,10 @@ extends Node2D
 
 
 func _ready():
+	var old_world = get_parent().find_node('world')
+	if is_instance_valid(old_world):
+		old_world.name = str('old_world')
+		name = 'world'
 	#$transition.play(true)
 	$transition.black()
 	$music.play()

@@ -18,13 +18,13 @@ onready var target = get_parent().get_node("Player")
 func _physics_process(_delta):
 	if is_instance_valid(target):
 		position = target.position
-	if isArrow:
-		arrow = get_parent().get_node("Arrow")
-		var length = (arrow.global_position - target.global_position).length()
-		if length > 200:
-			l = length
-			print(l)
-	zoom = Vector2(l/400,l/400)
+		if isArrow:
+			arrow = get_parent().get_node("Arrow")
+			var length = (arrow.global_position - target.global_position).length()
+			if length > 200:
+				l = length
+				print(l)
+		zoom = Vector2(l/400,l/400)
 
 
 func _ready():
@@ -32,6 +32,10 @@ func _ready():
 
 # Shake with decreasing intensity while there's time remaining.
 func _process(delta):
+
+	target = get_parent().get_node("Player")
+	
+	
 	# Only shake when there's shake time remaining.
 	if _timer == 0:
 		return

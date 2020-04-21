@@ -16,7 +16,7 @@ func _ready():
 	$AnimationPlayer.play("load")
 	generate_houses()
 	dir(Level.direction)
-	Level.biome = 'hell'
+	Level.biome = 'forest'
 	
 
 func transition():

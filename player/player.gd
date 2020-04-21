@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed = 200
+export (int) var speed = 400
 const ARROW = preload('res://player/arrow.tscn')
 const ROPE = preload('res://Rope/verlet.tscn')
 const FIREBALL = preload('res://player/fireball.tscn')
@@ -11,8 +11,6 @@ const PARTI = preload('res://enemies/deadparticleshuman.tscn')
 var next_pos = Vector2.ZERO
 var velocity = Vector2()
 var has_arrow = true
-var max_health = 100
-var health = 100
 var interacting = false
 var armor = 1
 var flame_cloak = false
@@ -22,6 +20,9 @@ onready var arrow = ARROW.instance()
 onready var rope = ROPE.instance()
 onready var healthbar = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/ProgressBar')
 onready var currency_value = get_parent().get_node('Camera2D/Control/CanvasLayer/healthbar/Label')
+
+func _ready():
+	name = 'Player'
 
 func dir():
 	if !interacting:
@@ -85,7 +86,7 @@ func _process(_delta):
 		if Input.is_action_pressed('magic'):
 			
 			if $magic_cooldown.time_left == 0:
-				$magic_cooldown.wait_time = 1
+				$magic_cooldown.wait_time = 0.1
 				match global.spell:
 					'speed_up': speed_up()
 					'health_up': health_up()
@@ -112,11 +113,11 @@ func _process(_delta):
 func hurt(damage):
 	$hurt2.play()
 	$hurt.emitting = true
-	health -= damage / armor
+	global.health -= damage / armor
 	$player.play('hurt')
-	healthbar.value = health
-	if health < 0:
-		health == 0
+	healthbar.value = global.health
+	if global.health < 0:
+		global.health == 0
 		die()
 
 func die():
@@ -143,11 +144,11 @@ func speed_up():
 	#Like probably indicated this somehow
 
 func health_up():
-	max_health += 40
-	health += 40
+	global.max_health += 40
+	global.health += 40
 	yield(get_tree().create_timer(2), 'timeout')
-	max_health -= 40
-	health = max(health-40, 1)
+	global.max_health -= 40
+	global.health = max(global.health-40, 1)
 
 func armor_up():
 	armor += 1
@@ -193,6 +194,7 @@ func fireblast():
 	explode.emitting = true
 	explode.position = position
 	explode.modulate = Color.red
+	explode.scale = Vector2(1,1)
 	get_parent().call_deferred('add_child', explode)
 	var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
 	for baddy in baddies:
@@ -207,6 +209,7 @@ func remote_detonate():
 		explode.emitting = true
 		explode.position = arrow.position
 		explode.modulate = Color.red
+		explode.scale = Vector2(1,1)
 		get_parent().call_deferred('add_child', explode)
 		var baddies = get_parent().get_node('ROOM').get_node('enemies').get_children()
 		for baddy in baddies:
@@ -233,8 +236,8 @@ func freezeblast():
 func use_potion():
 	if global.potions > 0:
 		global.potions -= 1
-		health += 20
-		healthbar.value = health
+		global.health += 20
+		healthbar.value = global.health
 
 func collect_arrow():
 	get_parent().get_node("Camera2D").isArrow = false
@@ -262,7 +265,11 @@ func _physics_process(_delta):
 func _on_hitbox_body_entered(body):
 	if body.get_class() == 'enemy':
 		if body.can_damage:
-			hurt(5)	
+			match Level.biome:
+				'forest' : hurt(1/armor)
+				'cave' : hurt(2/armor)
+				'hell' : hurt(3/armor)
+				
 			if flame_cloak:
 				body.set_on_fire()
 

@@ -324,6 +324,7 @@ func generate_floor(size,biome):
 	generate_extras(size,biome)
 	generate_walls(size,biome)
 	generate_gaps(size,biome)
+	generate_boss(size)
 			
 func _on_door_timer_timeout():
 	do_doors_work = true
