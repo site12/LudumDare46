@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_2.png-098198e295fb2915ebc262bc6302e02c.stex"
+path="res://.import/sprite_1-1.png.png-ebd3fc7603eb9d56059a2a2a7a0774e2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/hellwall/sprite_2.png"
-dest_files=[ "res://.import/sprite_2.png-098198e295fb2915ebc262bc6302e02c.stex" ]
+source_file="res://tiles/hellwall/sprite_1-1.png.png"
+dest_files=[ "res://.import/sprite_1-1.png.png-ebd3fc7603eb9d56059a2a2a7a0774e2.stex" ]
 
 [params]
 
