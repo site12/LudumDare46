@@ -17,7 +17,7 @@ var foresttiles = [
 	preload("res://tiles/leaves_tile/sprite_26.png")]
 var helltiles = [
 	preload("res://tiles/hellwall/sprite_3.png"),
-	preload("res://tiles/hellwall/sprite_2.png"),
+	preload("res://tiles/hellwall/sprite_1-1.png (1).png"),
 	preload("res://tiles/hellwall/sprite_1.png"),
 	preload("res://tiles/hellwall/sprite_back.png")]
 var hellcorners = [
